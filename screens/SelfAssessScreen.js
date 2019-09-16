@@ -2,6 +2,7 @@ import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
 import {
   Image,
+  Button,
   Platform,
   ScrollView,
   StyleSheet,
@@ -10,9 +11,9 @@ import {
   View,
 } from 'react-native';
 
-export default class HomeScreen extends React.Component {
+export default class SelfAssessScreen extends React.Component {
   static navigationOptions = {
-    title: 'Home'
+    title: 'SelfAssess'
   };
   
   render(){
@@ -20,32 +21,14 @@ export default class HomeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.title}>
-          <Image 
-            source={ require('../assets/images/title.png')}
-            style={styles.titleImage}
-          />
+          <Text style={{fontWeight: 'bold', fontSize: 20}}>
+            Do your assessment here
+          </Text>
         </View>
-
-        <View style={styles.bottomContainer}>
-          <View style={styles.homeContainer}>
-            <Image
-              source={ require('../assets/images/test.png')}
-              style={styles.homeImage}
-            />
-          </View>    
-
-          <View style={styles.menu}>
-            <Text style={{fontWeight: 'bold', fontSize: 20, marginBottom: 35}}
-                    onPress={() => navigate('Tutorial')}>
-                Self Assessment
-            </Text>
-            
-            <Text style={{fontWeight: 'bold', fontSize: 20, color: 'grey', marginBottom: 40}}
-                  onPress={() => navigate('Login')}>
-              Clinical Assessment
-            </Text>
-          </View>  
-        </View>
+        <Button style={{fontWeight: 'bold', fontSize: 20, marginBottom: 35}}
+                title="Check result"
+                onPress={() => navigate('SelfAssessResult')}/>
+                
       </View>
     );
   }
