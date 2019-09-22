@@ -1,6 +1,6 @@
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
-import firebase from 'react-native-firebase';
+import firebase from 'react-native-firebase'; //firebase
 import {
   Image,
   Button,
