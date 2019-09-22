@@ -1,5 +1,6 @@
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
+import firebase from 'react-native-firebase';
 import {
   Image,
   Button,
@@ -19,6 +20,17 @@ export default class ClinicalAssessResultScreen extends React.Component {
   state = {
     text: ''
   }
+}
+
+export default class LoginScreen extends React.Component {
+   state = { email: '', password: '', errorMessage: null }
+ handleLogin = () => {
+   firebase
+     .auth()
+     .signInWithEmailAndPassword(email, password)
+     .then(() => this.props.navigation.navigate('ClinicalAssess'))
+     .catch(error => this.setState({ errorMessage: error.message }))
+}  
   
   render(){
     
@@ -50,7 +62,7 @@ export default class ClinicalAssessResultScreen extends React.Component {
           </View>
           <Button style={{fontWeight: 'bold', fontSize: 20, marginBottom: 35}}
                 title="Login"
-                onPress={() => navigate('ClinicalAssess')}/>
+                onPress={this.handleLogin}/>
                 
       </View>
     );
