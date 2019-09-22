@@ -13,24 +13,19 @@ import {
   View,
 } from 'react-native';
 
-export default class ClinicalAssessResultScreen extends React.Component {
+
+export default class LoginScreen extends React.Component {
   static navigationOptions = {
     title: 'ClinicalAssessResult'
   };
-  state = {
-    text: ''
-  }
-}
-
-export default class LoginScreen extends React.Component {
-   state = { email: '', password: '', errorMessage: null }
+   state = { email: '', password: '', errorMessage: null, text: '' }
  handleLogin = () => {
    firebase
      .auth()
      .signInWithEmailAndPassword(email, password)
      .then(() => this.props.navigation.navigate('ClinicalAssess'))
      .catch(error => this.setState({ errorMessage: error.message }))
-}  
+  }  
   
   render(){
     
