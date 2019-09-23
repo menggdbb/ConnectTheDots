@@ -1,1 +1,2 @@
 version 0.10: first set of front end interfaces was pushed
+version 0.11: authentication services pushed, but still need fixing
