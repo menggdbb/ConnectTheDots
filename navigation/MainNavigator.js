@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { View, Platform } from 'react-native';
-import { createAppContainer, createSwitchNavigator, createStackNavigator } from 'react-navigation';
-
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 import HomeScreen from '../screens/HomeScreen';
 import ClinicalAssessScreen from '../screens/ClinicalAssessScreen';
 import ClinicalAssessResultScreen from '../screens/ClinicalAssessResultScreen';
