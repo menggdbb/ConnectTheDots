@@ -1,20 +1,26 @@
 import React, {Component} from "react";
 import MainNavigator from "./navigation/MainNavigator";
+import ApiKeys from './constants/ApiKeys';
+import firebase from 'firebase';
+import 'firebase/firestore';
+import { createStore, applyMiddleware, compose } from 'redux';
+import { Provider } from 'react-redux';
+import RootReducer from './store/reducers/RootReducer';
+import thunk from 'redux-thunk';
+import { reduxFirestore, getFirestore } from 'redux-firestore';
+import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
 
-import * as firebase from 'firebase';
 
 // Initialize Firebase
-const firebaseConfig = {
-    apiKey: "AIzaSyAAIXWSST5snIy2iVtiboZmDMDArUyF8dk",
-    authDomain: "trail-to-remember.firebaseapp.com",
-    databaseURL: "https://trail-to-remember.firebaseio.com",
-    projectId: "trail-to-remember",
-    storageBucket: "trail-to-remember.appspot.com",
-    messagingSenderId: "381778973506",
-    appId: "1:381778973506:web:d81583326228740045aedb"
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(ApiKeys.FirebaseConfig);
+
+const store = createStore(RootReducer, 
+    compose(
+        applyMiddleware(thunk.withExtraArgument({getFirebase,getFirestore})),
+        reduxFirestore(firebase),
+        reactReduxFirebase(firebase)
+    )
+);
 
 const App = () => <MainNavigator/>
 

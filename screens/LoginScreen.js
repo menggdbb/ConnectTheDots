@@ -43,7 +43,7 @@ export default class LoginScreen extends React.Component {
             </Text>
             <TextInput
               style={styles.textInput}
-              onChangeText={text => this.setState({ text })}
+              onChangeText={text => this.setState({ email })}
               value={this.state.text}
             />
             <Text style={{fontWeight: 'bold', fontSize: 20}}>
@@ -51,7 +51,7 @@ export default class LoginScreen extends React.Component {
             </Text>
             <TextInput
               style={styles.textInput}
-              onChangeText={text => this.setState({ text })}
+              onChangeText={text => this.setState({ password })}
               value={this.state.text}
             />
           </View>
