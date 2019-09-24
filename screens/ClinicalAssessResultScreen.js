@@ -48,7 +48,6 @@ export default class ClinicalAssessResultScreen extends React.Component {
                 onPress={() => navigate('Home')}/>
                 
       </View>
-      
     );
   }
 }
