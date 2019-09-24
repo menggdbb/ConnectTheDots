@@ -1,5 +1,6 @@
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
+import firebase from 'firebase'; //firebase
 import {
   Image,
   Button,
@@ -12,13 +13,18 @@ import {
   View,
 } from 'react-native';
 
-export default class ClinicalAssessResultScreen extends React.Component {
+export default class LoginScreen extends React.Component {
   static navigationOptions = {
-    title: 'ClinicalAssessResult'
+    title: 'Login'
   };
-  state = {
-    text: ''
-  }
+  state = { email: '', password: '', errorMessage: null, text: '' }
+ handleLogin = () => {
+   firebase
+     .auth()
+     .signInWithEmailAndPassword(email, password)
+     .then(() => this.props.navigation.navigate('ClinicalAssess'))
+     .catch(error => this.setState({ errorMessage: error.message }))
+  }  
   
   render(){
     
@@ -36,21 +42,21 @@ export default class ClinicalAssessResultScreen extends React.Component {
             </Text>
             <TextInput
               style={styles.textInput}
-              onChangeText={text => this.setState({ text })}
-              value={this.state.text}
+              onChangeText={email => this.setState({ email })}
+              value={this.state.email}
             />
             <Text style={{fontWeight: 'bold', fontSize: 20}}>
               Password
             </Text>
             <TextInput
               style={styles.textInput}
-              onChangeText={text => this.setState({ text })}
-              value={this.state.text}
+              onChangeText={password => this.setState({ password })}
+              value={this.state.password}
             />
           </View>
           <Button style={{fontWeight: 'bold', fontSize: 20, marginBottom: 35}}
                 title="Login"
-                onPress={() => navigate('ClinicalAssess')}/>
+                onPress={this.handleLogin}/>
                 
       </View>
     );
