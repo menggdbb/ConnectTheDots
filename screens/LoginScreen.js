@@ -17,14 +17,7 @@ export default class LoginScreen extends React.Component {
   static navigationOptions = {
     title: 'Login'
   };
-  state = { email: '', password: '', errorMessage: null, text: '' }
- handleLogin = () => {
-   firebase
-     .auth()
-     .signInWithEmailAndPassword(email, password)
-     .then(() => this.props.navigation.navigate('ClinicalAssess'))
-     .catch(error => this.setState({ errorMessage: error.message }))
-  }  
+  state = { email: '', password: '', errorMessage: "hi. good morning, you have entered the wrong username or password", text: '' }
   
   render(){
     
@@ -42,6 +35,7 @@ export default class LoginScreen extends React.Component {
             </Text>
             <TextInput
               style={styles.textInput}
+              autoCapitalize={'none'}
               onChangeText={email => this.setState({ email })}
               value={this.state.email}
             />
@@ -50,13 +44,19 @@ export default class LoginScreen extends React.Component {
             </Text>
             <TextInput
               style={styles.textInput}
+              autoCapitalize={'none'}
+              secureTextEntry={true}
               onChangeText={password => this.setState({ password })}
               value={this.state.password}
             />
           </View>
           <Button style={{fontWeight: 'bold', fontSize: 20, marginBottom: 35}}
                 title="Login"
-                onPress={this.handleLogin}/>
+                onPress={() => firebase
+                  .auth()
+                  .signInWithEmailAndPassword(this.state.email, this.state.password)
+                  .then(() => navigate('ClinicalAssess'))
+                  .catch(error => this.setState({ errorMessage: error.message }))}/>
                 
       </View>
     );
