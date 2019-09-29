@@ -24,10 +24,12 @@ export default class ClinicalAssessScreen extends React.Component {
           <Text style={{fontWeight: 'bold', fontSize: 20}}>
             Do your assessment here
           </Text>
-        </View>
-        <Button style={{fontWeight: 'bold', fontSize: 20, marginBottom: 35}}
+          <Button style={{fontWeight: 'bold', fontSize: 20, marginBottom: 35}}
                 title="Check result"
                 onPress={() => navigate('ClinicalAssessResult')}/>
+        </View>
+
+        
                 
       </View>
     );

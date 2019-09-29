@@ -40,13 +40,13 @@ export default class ClinicalAssessResultScreen extends React.Component {
                 onChangeText={text => this.setState({ text })}
                 value={this.state.text}
             />
+            <View style={styles.buttonView}>
+              <Button style={{fontWeight: 'bold', fontSize: 20, marginBottom: 35}}
+                  title="Back to Main Menu"
+                  onPress={() => navigate('Home')}/>
+            </View>
           </View>
-
-          
-          <Button style={{fontWeight: 'bold', fontSize: 20, marginBottom: 35}}
-                title="Back to Main Menu"
-                onPress={() => navigate('Home')}/>
-                
+               
       </View>
     );
   }
@@ -85,15 +85,23 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   textInput: {
-    width: 400,
     fontSize: 20,
     borderColor: 'darkslategrey',
     borderWidth: 1,
-    paddingHorizontal: '2%'
+    paddingHorizontal: '2%',
+    paddingVertical: '1%',
+    marginBottom: 10
   },
   input: {
-    flex: 5,
-    justifyContent: 'flex-start'
+    flex: 6,
+    justifyContent: 'flex-start',
+    marginLeft: 30,
+    marginRight: 60
+  },
+  buttonView: {
+    
+    marginRight: 50,
+    marginTop: 10
   }
 
 });

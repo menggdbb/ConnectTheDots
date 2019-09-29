@@ -1,6 +1,7 @@
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
 import {
+  Button,
   Image,
   Platform,
   ScrollView,
@@ -8,44 +9,69 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Dimensions
 } from 'react-native';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     title: 'Home'
   };
+  state = {imgOpacity: 0, textColor: "#ffffff"}
+
   
   render(){
     const { navigate } = this.props.navigation;
     return (
+      
       <View style={styles.container}>
-        <View style={styles.title}>
+      
+        <TouchableOpacity style={styles.title}
+          onPress={() => this.setState({
+            imgOpacity: 0,
+            textColor: "#ffffff" })}>
           <Image 
             source={ require('../assets/images/title.png')}
             style={styles.titleImage}
           />
-        </View>
+        </TouchableOpacity>
 
-        <View style={styles.bottomContainer}>
-          <View style={styles.homeContainer}>
-            <Image
-              source={ require('../assets/images/test.png')}
-              style={styles.homeImage}
-            />
-          </View>    
+        <View style={styles.menu}>
 
-          <View style={styles.menu}>
-            <Text style={{fontWeight: 'bold', fontSize: 20, marginBottom: 35}}
-                    onPress={() => navigate('Tutorial')}>
+          <TouchableOpacity style={styles.optionsBlue}
+              onPress={() => navigate('Tutorial')}>
+            <Text style={styles.optionText}>
                 Self Assessment
             </Text>
-            
-            <Text style={{fontWeight: 'bold', fontSize: 20, color: 'grey', marginBottom: 40}}
-                  onPress={() => navigate('Login')}>
-              Clinical Assessment
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.optionsGrey}
+              onPress={() => navigate('Login')}>
+            <Text style={styles.optionText}>
+                Clinical Assessment
             </Text>
-          </View>  
+          </TouchableOpacity>
+
         </View>
+
+        
+        <View style = {styles.backgroundContainer}>
+          <Image
+            style={{opacity: this.state.imgOpacity, width: Dimensions.get('window').width, height: 190}}
+            resizeMode = 'contain'
+            source={require('../assets/images/hehe.png')}
+          />
+        </View>
+        <TouchableOpacity style={styles.huehehehehe}
+              onPress={() => this.setState({
+                imgOpacity: 1,
+                textColor: "#000000"
+                })}>
+            <Text style={{color: this.state.textColor}}>
+                huehehehehe
+            </Text>
+        </TouchableOpacity>  
+        
+        
       </View>
     );
   }
@@ -56,31 +82,56 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  title: {
-    flex: 1,
-    alignItems: 'center',
-    marginTop: 40,
+  backgroundContainer: {
+    position: "absolute",
+    bottom: 0,
+    
+
   },
+  title: {
+    flex: 4,
+    alignItems: 'center',
+    marginTop: 10,
+  },
+
   titleImage: {
-    height: 270,
+    height: 250,
     resizeMode: 'contain',
   },
-  homeContainer: {
-    flex: 1,
-    justifyContent: 'flex-end',
-  },
+
   homeImage: {
     width: 150,
     height: 200,
     resizeMode: 'contain',
     marginBottom: -10,
   },
-  bottomContainer: {
-    flexDirection: "row",
-  },
+
   menu: {
-    alignContent: 'flex-end',
-    justifyContent: 'flex-end',
-    marginRight: 10,
+    flex: 3,
+    alignContent: 'flex-start',
+    justifyContent: 'flex-start',
+    marginLeft: 40,
+    marginRight: 60,
+    
   },
+  optionsGrey: {
+    backgroundColor: '#DDDDDD',
+    marginBottom: 20,
+    padding: 10,
+    borderRadius: 10
+  },
+  optionsBlue: {
+    backgroundColor: '#4fc3f7',
+    marginBottom: 20,
+    padding: 10,
+    borderRadius: 10
+  },
+  optionText: {
+    fontSize: 20,
+    fontWeight: 'bold'
+  },
+  huehehehehe: {
+    padding: 40
+  },
+  
 });

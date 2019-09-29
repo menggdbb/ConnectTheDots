@@ -2,6 +2,7 @@ import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
 import firebase from 'firebase'; //firebase
 import {
+  Alert,
   Image,
   Button,
   Platform,
@@ -49,15 +50,20 @@ export default class LoginScreen extends React.Component {
               onChangeText={password => this.setState({ password })}
               value={this.state.password}
             />
+            <View style={styles.buttonView}>
+              <Button style={{fontWeight: 'bold', fontSize: 20, marginBottom: 35}}
+                  title="Login"
+                  onPress={() => firebase
+                    .auth()
+                    .signInWithEmailAndPassword(this.state.email, this.state.password)
+                    .then(() => navigate('ClinicalAssess'))
+                    .catch(error => Alert.alert(
+                      'Authentication Error!',
+                      'You have entered the wrong username or password'
+                    ) )}/>
+              </View>
           </View>
-          <Button style={{fontWeight: 'bold', fontSize: 20, marginBottom: 35}}
-                title="Login"
-                onPress={() => firebase
-                  .auth()
-                  .signInWithEmailAndPassword(this.state.email, this.state.password)
-                  .then(() => navigate('ClinicalAssess'))
-                  .catch(error => this.setState({ errorMessage: error.message }))}/>
-                
+
       </View>
     );
   }
@@ -96,15 +102,24 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   textInput: {
-    width: 400,
     fontSize: 20,
     borderColor: 'darkslategrey',
     borderWidth: 1,
-    paddingHorizontal: '2%'
+    paddingHorizontal: '2%',
+    paddingVertical: '1%',
+    marginBottom: 10
+    
   },
   input: {
-    flex: 5,
-    justifyContent: 'flex-start'
+    flex: 6,
+    justifyContent: 'flex-start',
+    marginLeft: 30,
+    marginRight: 60
+  },
+  buttonView: {
+    
+    marginRight: 50,
+    marginTop: 10
   }
 
 });
