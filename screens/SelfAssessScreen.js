@@ -1,10 +1,13 @@
 import * as WebBrowser from 'expo-web-browser';
 import React, {PureComponent} from 'react';
-import { AppRegistry, StyleSheet, StatusBar } from "react-native";
+import { AppRegistry, StyleSheet, StatusBar, Dimensions } from "react-native";
 import { GameEngine } from "react-native-game-engine";
 import { Circle } from "../components/engine/circle";
 import { TouchCircle } from "../components/engine/systems"
 import { Line } from '../components/engine/line';
+import { TestText} from '../components/engine/test-text'
+
+const { width: WIDTH, height: HEIGHT } = Dimensions.get("window");
 
 export default class SelfAssessScreen extends PureComponent {
   static navigationOptions = {
@@ -21,12 +24,10 @@ export default class SelfAssessScreen extends PureComponent {
         style={styles.container}
         systems={[TouchCircle]} //-- We can add as many systems as needed
         entities={{
-          0: { position: [60,  0], backgroundColor: "blue", renderer: <Circle />}, //-- Notice that each entity has a unique id (required)
-          1: { position: [180, 60], backgroundColor: "blue", renderer: <Circle />}, //-- and a map of components. Each entity has an optional
-          2: { position: [300, 200], backgroundColor: "blue", renderer: <Circle />}, //-- renderer component. If no renderer is supplied with the
-          3: { position: [60, 800], backgroundColor: "blue", renderer: <Circle />}, //-- entity - it won't get displayed.
-          4: { position: [400, 600], backgroundColor: "blue", renderer: <Circle />},
-          5: { position: [0, 300], text: "hello", renderer: <Line />},
+          0: { position: [60,  HEIGHT - 140], backgroundColor: "yellow", renderer: <Circle />},
+          1: { position: [180, HEIGHT - 120], backgroundColor: "blue", renderer: <Circle />},
+          2: { position: [180, 0, 400, HEIGHT - 60], renderer: <Line />},
+          3: { text: 'width: ' + WIDTH + ', height: ' + HEIGHT, width: WIDTH, top: HEIGHT / 2, renderer: <TestText />},
         }}>
 
         <StatusBar hidden={false} />
