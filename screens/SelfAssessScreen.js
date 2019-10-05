@@ -1,35 +1,37 @@
 import * as WebBrowser from 'expo-web-browser';
-import React from 'react';
-import {
-  Image,
-  Button,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import React, {PureComponent} from 'react';
+import { AppRegistry, StyleSheet, StatusBar } from "react-native";
+import { GameEngine } from "react-native-game-engine";
+import { Circle } from "../components/engine/circle";
+import { TouchCircle } from "../components/engine/systems"
+import { Line } from '../components/engine/line';
 
-export default class SelfAssessScreen extends React.Component {
+export default class SelfAssessScreen extends PureComponent {
   static navigationOptions = {
     title: 'SelfAssess'
   };
+
+  constructor() {
+    super();
+  }
   
   render(){
-    const { navigate } = this.props.navigation;
     return (
-      <View style={styles.container}>
-        <View style={styles.title}>
-          <Text style={{fontWeight: 'bold', fontSize: 20}}>
-            Do your assessment here
-          </Text>
-        </View>
-        <Button style={{fontWeight: 'bold', fontSize: 20, marginBottom: 35}}
-                title="Check result"
-                onPress={() => navigate('SelfAssessResult')}/>
-                
-      </View>
+      <GameEngine
+        style={styles.container}
+        systems={[TouchCircle]} //-- We can add as many systems as needed
+        entities={{
+          0: { position: [60,  0], backgroundColor: "blue", renderer: <Circle />}, //-- Notice that each entity has a unique id (required)
+          1: { position: [180, 60], backgroundColor: "blue", renderer: <Circle />}, //-- and a map of components. Each entity has an optional
+          2: { position: [300, 200], backgroundColor: "blue", renderer: <Circle />}, //-- renderer component. If no renderer is supplied with the
+          3: { position: [60, 800], backgroundColor: "blue", renderer: <Circle />}, //-- entity - it won't get displayed.
+          4: { position: [400, 600], backgroundColor: "blue", renderer: <Circle />},
+          5: { position: [0, 300], text: "hello", renderer: <Line />},
+        }}>
+
+        <StatusBar hidden={false} />
+
+      </GameEngine>
     );
   }
 }
@@ -37,33 +39,8 @@ export default class SelfAssessScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-  },
-  title: {
-    flex: 1,
-    alignItems: 'center',
-    marginTop: 40,
-  },
-  titleImage: {
-    height: 270,
-    resizeMode: 'contain',
-  },
-  homeContainer: {
-    flex: 1,
-    justifyContent: 'flex-end',
-  },
-  homeImage: {
-    width: 150,
-    height: 200,
-    resizeMode: 'contain',
-    marginBottom: -10,
-  },
-  bottomContainer: {
-    flexDirection: "row",
-  },
-  menu: {
-    alignContent: 'flex-end',
-    justifyContent: 'flex-end',
-    marginRight: 10,
+    backgroundColor: "#FFF"
   },
 });
+
+AppRegistry.registerComponent("SelfAssessScreen", () => SelfAssessScreen);
