@@ -22,7 +22,7 @@ class Circle extends PureComponent {
 const styles = StyleSheet.create({
   circle: {
     borderColor: "#CCC",
-    borderWidth: 4,
+    borderWidth: 1,
     borderRadius: radius * 2,
     width: radius * 2,
     height: radius * 2,
