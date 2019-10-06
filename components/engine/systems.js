@@ -11,6 +11,7 @@ const TouchCircle = (entities, { touches }) => {
               ((circle.position[1] + NAVIGATION_BAR_PIXELS - touchOrigin[1]) *
                (circle.position[1] + NAVIGATION_BAR_PIXELS - touchOrigin[1]))) <= CIRCLE_RADIUS) {
                 circle.backgroundColor = "red"
+                console.log("x: " + circle.position[0] + ", y: " + circle.position[1])
             }
         }
       })   

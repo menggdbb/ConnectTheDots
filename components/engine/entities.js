@@ -32,7 +32,7 @@ const lineTouchCircle = (x1, y1, x2, y2, x3, y3) => {
   const c = (x1 * (y1 - y2)) - (y1 * (x1 - x2))
 
   //finding distance of line from circle
-  let distance = Math.abs(a*x3 + b*y3 + c) / Math.sqrt(x3*x3 + y3*y3)
+  let distance = Math.abs(a*x3 + b*y3 + c) / Math.sqrt(a*a + b*b)
   if (distance <= CIRCLE_RADIUS) {
     return true
   } else {
@@ -104,7 +104,9 @@ export default (WIDTH, HEIGHT) => {
   const circles = []
   const lines = []
 
-  let timeStart = new Date().getMilliseconds
+  const initialTime = new Date().getTime()
+  let timeStart = new Date().getTime()
+  let done = false
 
   // circles[0] = { position: [WIDTH / 2,  HEIGHT / 2], backgroundColor: "yellow", number: 1, renderer: <Circle />}
 
@@ -112,11 +114,10 @@ export default (WIDTH, HEIGHT) => {
     // generates a circle
     circles[i] = { position: [randomX(WIDTH),  (randomY(HEIGHT))], backgroundColor: "yellow", number: i+1, renderer: <Circle />}
 
-    // checks if all circles overlaps with current generated circle
     for (let j = 0; j < i; j++) {
+      // checks if all circles overlaps with current generated circle
       let circleOverlaps = circleOverlap(circles[j].position[0], circles[j].position[1], circles[i].position[0], circles[i].position[1])
       if (circleOverlaps) {
-        console.log('overlap, i: ' + i + ' ,j: ' + j)
         i -= 1 // if clash index of current array will regenerate new circle
         break
       }
@@ -134,7 +135,6 @@ export default (WIDTH, HEIGHT) => {
         }
         //checks for the 3 conditions
         if (circleTouchesLine || lineTouchesCirle || linesIntercepts) {
-          console.log('line, i: ' + i + ' ,j: ' + j)
           i-- // if clash index of current array will regenerate new circle
           break
         }
@@ -145,7 +145,18 @@ export default (WIDTH, HEIGHT) => {
         lines[j] = { position: [circles[j].position[0], circles[j].position[1], circles[i].position[0], circles[i].position[1]], renderer: <Line />}
       }
     }
+    
+    //timeout
+    let timeEnd = new Date().getTime()
+    if (timeEnd - timeStart > 30 && !done) {
+      console.log('restarted')
+      i = 0
+      timeStart = new Date().getTime()
+    }
   }
+  done = !done
+  console.log(new Date().getTime() - timeStart)
+  console.log("total: " + (new Date().getTime() - initialTime))
 
   // returns the entities to be rendered on screen
   const entities =
@@ -155,50 +166,50 @@ export default (WIDTH, HEIGHT) => {
     2 : circles[2],
     3 : circles[3],
     4 : circles[4],
-    // 5 : circles[5],
-    // 6 : circles[6],
-    // 7 : circles[7],
-    // 8 : circles[8],
-    // 9 : circles[9],
-    // 10 : circles[10],
-    // 11 : circles[11],
-    // 12 : circles[12],
-    // 13 : circles[13],
-    // 14 : circles[14],
-    // 15 : circles[15],
-    // 16 : circles[16],
-    // 17 : circles[17],
-    // 18 : circles[18],
-    // 19 : circles[19],
-    // 20 : circles[20],
-    // 21 : circles[21],
-    // 22 : circles[22],
-    // 23 : circles[23],
-    // 24 : circles[24],
+    5 : circles[5],
+    6 : circles[6],
+    7 : circles[7],
+    8 : circles[8],
+    9 : circles[9],
+    10 : circles[10],
+    11 : circles[11],
+    12 : circles[12],
+    13 : circles[13],
+    14 : circles[14],
+    15 : circles[15],
+    16 : circles[16],
+    17 : circles[17],
+    18 : circles[18],
+    19 : circles[19],
+    20 : circles[20],
+    21 : circles[21],
+    22 : circles[22],
+    23 : circles[23],
+    24 : circles[24],
     25 : lines[0],
     26 : lines[1],
     27 : lines[2],
     28 : lines[3],
-    // 29 : lines[4],
-    // 30 : lines[5],
-    // 31 : lines[6],
-    // 32 : lines[7],
-    // 33 : lines[8],
-    // 34 : lines[9],
-    // 35 : lines[10],
-    // 36 : lines[11],
-    // 37 : lines[12],
-    // 38 : lines[13],
-    // 39 : lines[14],
-    // 40 : lines[15],
-    // 41 : lines[16],
-    // 42 : lines[17],
-    // 43 : lines[18],
-    // 44 : lines[19],
-    // 45 : lines[20],
-    // 46 : lines[21],
-    // 47 : lines[22],
-    // 48 : lines[23],
+    29 : lines[4],
+    30 : lines[5],
+    31 : lines[6],
+    32 : lines[7],
+    33 : lines[8],
+    34 : lines[9],
+    35 : lines[10],
+    36 : lines[11],
+    37 : lines[12],
+    38 : lines[13],
+    39 : lines[14],
+    40 : lines[15],
+    41 : lines[16],
+    42 : lines[17],
+    43 : lines[18],
+    44 : lines[19],
+    45 : lines[20],
+    46 : lines[21],
+    47 : lines[22],
+    48 : lines[23],
   }
   
   return entities;
