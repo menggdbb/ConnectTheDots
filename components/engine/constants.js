@@ -6,4 +6,4 @@ export const BOTTOM_BAR_PIXELS = 140;
 export const NUMBER_OF_NODES = 25;
 
 //circle radius
-export const CIRCLE_RADIUS = 60;
+export const CIRCLE_RADIUS = 30;
