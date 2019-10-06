@@ -50,20 +50,20 @@ const linesIntercept = (x1, y1, x2, y2, x3, y3, x4, y4) => {
   const o4 = orientation(x3, y3, x4, y4, x2, y2)
 
   // General case 
-  // if (o1 != o2 && o3 != o4) return true; 
+  if (o1 != o2 && o3 != o4) return true; 
 
   // Special Cases 
-  // p1, q1 and p2 are colinear and p2 lies on segment p1q1 
-  // if (o1 == 0 && onSegment(x1, y1, x3, y3, x2, y2)) return true; 
+  //p1, q1 and p2 are colinear and p2 lies on segment p1q1 
+  if (o1 == 0 && onSegment(x1, y1, x3, y3, x2, y2)) return true; 
 
-  // // p1, q1 and q2 are colinear and q2 lies on segment p1q1 
-  // if (o2 == 0 && onSegment(x1, y1, x4, y4, x2, y2)) return true; 
+  // p1, q1 and q2 are colinear and q2 lies on segment p1q1 
+  if (o2 == 0 && onSegment(x1, y1, x4, y4, x2, y2)) return true; 
 
-  // // p2, q2 and p1 are colinear and p1 lies on segment p2q2 
-  // if (o3 == 0 && onSegment(x3, y3, x1, y1, x4, y4)) return true; 
+  // p2, q2 and p1 are colinear and p1 lies on segment p2q2 
+  if (o3 == 0 && onSegment(x3, y3, x1, y1, x4, y4)) return true; 
 
-  // // p2, q2 and q1 are colinear and q1 lies on segment p2q2 
-  // if (o4 == 0 && onSegment(x3, y3, x2, y2, x4, y4)) return true; 
+  // p2, q2 and q1 are colinear and q1 lies on segment p2q2 
+  if (o4 == 0 && onSegment(x3, y3, x2, y2, x4, y4)) return true; 
 
   return false; // Doesn't fall in any of the above cases 
 
@@ -110,20 +110,7 @@ export default (WIDTH, HEIGHT) => {
 
   for (let i = 0; i < NUMBER_OF_NODES; i++) {
     // generates a circle
-    // if (i > 0) {
     circles[i] = { position: [randomX(WIDTH),  (randomY(HEIGHT))], backgroundColor: "yellow", number: i+1, renderer: <Circle />}
-    // }
-
-    if (notInScreen(circles[i].position[0], circles[i].position[1], WIDTH, HEIGHT)){
-      console.log("not in screen, i: " + i)
-    }
-
-    // if (i > 0 && Math.sqrt(
-    //   (circles[i-1].position[0] - circles[i].position[0]) * (circles[i-1].position[0] - circles[i].position[0]) +
-    //   (circles[i-1].position[1] - circles[i].position[1]) * (circles[i-1].position[1] - circles[i].position[1])) > WIDTH * 0.3 ) {
-    //     i--
-    //     continue
-    // }
 
     // checks if all circles overlaps with current generated circle
     for (let j = 0; j < i; j++) {
@@ -139,9 +126,13 @@ export default (WIDTH, HEIGHT) => {
         // checks if generated line overlaps with all circles
         let lineTouchesCirle = lineTouchCircle(circles[i-1].position[0], circles[i-1].position[1], circles[i].position[0], circles[i].position[1], circles[j].position[0], circles[j].position[1])
         // checks if generated line intercepts with other lines
-        let linesIntercepts = linesIntercept(
-          circles[j].position[0], circles[j].position[1], circles[j+1].position[0], circles[j+1].position[1],
-          circles[i-1].position[0], circles[i-1].position[1], circles[i].position[0], circles[i].position[1])
+        let linesIntercepts = false
+        if (j+1 != i-1) {
+          linesIntercepts = linesIntercept(
+            circles[j].position[0], circles[j].position[1], circles[j+1].position[0], circles[j+1].position[1],
+            circles[i-1].position[0], circles[i-1].position[1], circles[i].position[0], circles[i].position[1])
+        }
+        //checks for the 3 conditions
         if (circleTouchesLine || lineTouchesCirle || linesIntercepts) {
           console.log('line, i: ' + i + ' ,j: ' + j)
           i-- // if clash index of current array will regenerate new circle
@@ -154,12 +145,6 @@ export default (WIDTH, HEIGHT) => {
         lines[j] = { position: [circles[j].position[0], circles[j].position[1], circles[i].position[0], circles[i].position[1]], renderer: <Line />}
       }
     }
-
-    //timeout
-    // let timeEnd = new Date().getMilliseconds
-    // if (timeEnd - timeStart > 1000){
-    //   i = 0
-    // }
   }
 
   // returns the entities to be rendered on screen
