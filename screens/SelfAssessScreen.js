@@ -1,11 +1,9 @@
 import * as WebBrowser from 'expo-web-browser';
 import React, {PureComponent} from 'react';
-import { AppRegistry, StyleSheet, StatusBar, Dimensions } from "react-native";
+import { AppRegistry, StyleSheet, StatusBar } from "react-native";
 import { GameEngine } from "react-native-game-engine";
 import { TouchCircle } from "../components/engine/systems"
 import Entities from '../components/engine/entities'
-
-const { width: WIDTH, height: HEIGHT } = Dimensions.get("window");
 
 export default class SelfAssessScreen extends PureComponent {
   static navigationOptions = {
@@ -21,7 +19,7 @@ export default class SelfAssessScreen extends PureComponent {
       <GameEngine
         style={styles.container}
         systems={[TouchCircle]} 
-        entities={Entities(WIDTH, HEIGHT)}>
+        entities={Entities()}>
           <StatusBar hidden={false} />
       </GameEngine>
     );

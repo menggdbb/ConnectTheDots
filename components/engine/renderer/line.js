@@ -9,9 +9,10 @@ class Line extends PureComponent {
       const y2 = this.props.position[3]; // y postion of circle 2
       const rotationRad = Math.atan2(y2-y1, x2-x1); // finds the angle to rotate the line
       const length = Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)); // length of the line
+      const color = this.props.borderColor; //color of line
       return (
         <View style={
-          [styles.line, { left: x1 - length / 2 + (x2 - x1) / 2, top: y1 + (y2 - y1) / 2, width: length, height: 0, transform : [{rotate : rotationRad + 'rad'}]}]}>
+          [styles.line, { borderColor: color, left: x1 - length / 2 + (x2 - x1) / 2, top: y1 + (y2 - y1) / 2, width: length, height: 0, transform : [{rotate : rotationRad + 'rad'}]}]}>
         </View>
       );
     }
@@ -19,10 +20,9 @@ class Line extends PureComponent {
    
   const styles = StyleSheet.create({
     line: {
-      borderColor: "#CCC",
       borderWidth: 1,
-      backgroundColor: "orange",
-      position: "absolute"
+      backgroundColor: "white",
+      position: "absolute",
     }
   });
    
