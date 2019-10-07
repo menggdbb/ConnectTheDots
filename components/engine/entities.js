@@ -11,9 +11,6 @@ export default () => {
 
   const initialTime = new Date().getTime()
   let timeStart = new Date().getTime()
-  let done = false
-
-  let miss = 0
 
   // circles[0] = { position: [WIDTH / 2,  HEIGHT / 2], backgroundColor: "yellow", number: 1, renderer: <Circle />}
 
@@ -55,19 +52,12 @@ export default () => {
     
     //timeout
     let timeEnd = new Date().getTime()
-    if (timeEnd - timeStart > 30 && !done) {
+    if (timeEnd - timeStart > 30) {
       console.log(i + ': restarted')
-      i = 0
-      // if (miss == 3){
-      //   i--
-      //   miss = 0
-      // } else {
-      //   miss++
-      // }
+      i = 0 //if timeout node creation is restarted
       timeStart = new Date().getTime()
     }
   }
-  done = !done
   // console.log(new Date().getTime() - timeStart)
   console.log("total: " + (new Date().getTime() - initialTime))
 
