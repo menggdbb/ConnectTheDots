@@ -27,7 +27,7 @@ export default class TutorialScreen extends React.Component {
         </View>
         <TouchableOpacity style={styles.button}
               onPress={() => navigate('SelfAssess')}>
-            <Text style={styles.optionText}>
+            <Text style={styles.buttonText}>
                 Proceed
             </Text>
         </TouchableOpacity>
@@ -73,6 +73,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#4fc3f7',
     marginBottom: 20,
     padding: 10,
-    borderRadius: 10
+    borderRadius: 10,
+    
+  },
+  buttonText: {
+    textAlign: 'center',
   }
 });

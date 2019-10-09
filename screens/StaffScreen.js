@@ -13,6 +13,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import renderIf from '../components/renderIf';
 
 export default class LoginScreen extends React.Component {
   static navigationOptions = {
@@ -20,26 +21,23 @@ export default class LoginScreen extends React.Component {
   };
   state = { nric: '' , show: false}
   
-  toggleStatus(){
-    this.setShow({
-      show: !this.state.show
-    });
-    console.log('toggle button handler: '+ this.state.show);
-  }
 
   render(){  
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-          
-        <TouchableOpacity style={styles.optionsBlue}
-            onPress={() => toggleStatus()}>
-          <Text style={styles.optionText}>
-              Search previous record
-          </Text>
-        </TouchableOpacity>
+        <View style={styles.part}> 
+          <TouchableOpacity style={styles.optionsBlue}
+              onPress={() => this.setState({
+                show: !this.state.show
+              })}>
+            <Text style={styles.optionText}>
+                Search previous record
+            </Text>
+          </TouchableOpacity>
+        </View>
 
-        {renderIf(this.state.status)(
+        {renderIf(this.state.show)(
           <View style={styles.input}>
             <Text style={{fontWeight: 'bold', fontSize: 20}}>
               NRIC
@@ -51,20 +49,25 @@ export default class LoginScreen extends React.Component {
               value={this.state.nric}
             />
             <View style={styles.buttonView}>
-              <Button style={{fontWeight: 'bold', fontSize: 20, marginBottom: 35}}
-                  title="Login"
-                  onPress={() => navigate('Records')}/>
+
+            
+            <TouchableOpacity style={styles.optionsBlue}
+                onPress={() => navigate('Records')}>
+              <Text style={styles.optionText}>
+                  Search records
+              </Text>
+            </TouchableOpacity>
             </View>
           </View>
         )}
-
-        <TouchableOpacity style={styles.optionsBlue}
-            onPress={() => navigate('ClinicalAssess')}>
-          <Text style={styles.optionText}>
-              Clinical Assessment
-          </Text>
-        </TouchableOpacity>
- 
+        <View style={styles.part}> 
+          <TouchableOpacity style={styles.optionsBlue}
+              onPress={() => navigate('ClinicalAssess')}>
+            <Text style={styles.optionText}>
+                Clinical Assessment
+            </Text>
+          </TouchableOpacity>
+        </View>
 
       </View>
     );
@@ -103,11 +106,19 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     marginRight: 10,
   },
+  part: {
+    
+  }
+  ,
   optionsBlue: {
+    marginTop: 100,
     backgroundColor: '#4fc3f7',
     marginBottom: 20,
     padding: 10,
     borderRadius: 10
+  },
+  optionText: {
+    
   },
   textInput: {
     fontSize: 20,
@@ -119,10 +130,11 @@ const styles = StyleSheet.create({
     
   },
   input: {
-    flex: 6,
+    flex: 4,
     justifyContent: 'flex-start',
     marginLeft: 30,
-    marginRight: 60
+    marginRight: 60,
+    
   },
   buttonView: {
     
