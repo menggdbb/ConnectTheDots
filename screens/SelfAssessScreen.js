@@ -4,6 +4,7 @@ import { AppRegistry, StyleSheet, StatusBar } from "react-native";
 import { GameEngine } from "react-native-game-engine";
 import { TouchCircle } from "../components/engine/systems"
 import Entities from '../components/engine/entities'
+import {dac, border} from '../components/engine/creation-logic'
 
 export default class SelfAssessScreen extends PureComponent {
   static navigationOptions = {
@@ -19,7 +20,7 @@ export default class SelfAssessScreen extends PureComponent {
       <GameEngine
         style={styles.container}
         systems={[TouchCircle]} 
-        entities={Entities()}>
+        entities={Entities()}> 
           <StatusBar hidden={false} />
       </GameEngine>
     );

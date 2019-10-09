@@ -1,7 +1,7 @@
 import React from 'react'
 import { Circle } from "./renderer/circle"
 import { Line } from "./renderer/line"
-import { NUMBER_OF_NODES, CIRCLE_RADIUS } from "./constants"
+import { NUMBER_OF_NODES } from "./constants"
 import * as logic from "./creation-logic"
 
 export default () => {
@@ -12,10 +12,9 @@ export default () => {
   const initialTime = new Date().getTime()
   let timeStart = new Date().getTime()
 
-  // circles[0] = { position: [WIDTH / 2,  HEIGHT / 2], backgroundColor: "yellow", number: 1, renderer: <Circle />}
-
   for (let i = 0; i < NUMBER_OF_NODES; i++) {
     // generates a circle
+    // let p = logic.getXYPosition(i)
     circles[i] = { position: [logic.randomX(), logic.randomY()], backgroundColor: "yellow", number: i+1, renderer: <Circle />}
 
     for (let j = 0; j < i; j++) {

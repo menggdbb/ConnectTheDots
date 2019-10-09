@@ -8,6 +8,7 @@ const TouchCircle = (entities, { touches }) => {
         let touchOrigin = [t.event.pageX, t.event.pageY]; //position finger pressed
         for (let i = 0; i < NUMBER_OF_NODES; i++) {
             let circle = entities[i+24];
+            // let circle = entities[i+4];
             // checks if finger position within circle
             if (Math.sqrt(
               ((circle.position[0] - touchOrigin[0]) *
