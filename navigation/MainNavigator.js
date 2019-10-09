@@ -9,6 +9,8 @@ import LoginScreen from '../screens/LoginScreen';
 import SelfAssessScreen from '../screens/SelfAssessScreen';
 import SelfAssessResultScreen from '../screens/SelfAssessResultScreen';
 import TutorialScreen from '../screens/TutorialScreen';
+import StaffScreen  from '../screens/StaffScreen';
+import RecordsScreen from '../screens/RecordsScreen';
 
 
 const Project = createStackNavigator({
@@ -18,7 +20,13 @@ const Project = createStackNavigator({
   Login: {
     screen: LoginScreen,
   },
-   ClinicalAssess: {
+  Staff: {
+    screen: StaffScreen,
+  },
+  Records: {
+    screen: RecordsScreen,
+  },
+  ClinicalAssess: {
     screen: ClinicalAssessScreen,
   },
   ClinicalAssessResult: {

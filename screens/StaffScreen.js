@@ -16,53 +16,55 @@ import {
 
 export default class LoginScreen extends React.Component {
   static navigationOptions = {
-    title: 'Login'
+    title: 'Staff'
   };
-  state = { email: '', password: '', errorMessage: "hi. good morning, you have entered the wrong username or password", text: '' }
+  state = { nric: '' , show: false}
   
-  render(){
-    
+  toggleStatus(){
+    this.setShow({
+      show: !this.state.show
+    });
+    console.log('toggle button handler: '+ this.state.show);
+  }
+
+  render(){  
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-          <View style={styles.title}>
-            <Text style={{fontWeight: 'bold', fontSize: 20}}>
-                Login please
-            </Text>
-          </View>
+          
+        <TouchableOpacity style={styles.optionsBlue}
+            onPress={() => toggleStatus()}>
+          <Text style={styles.optionText}>
+              Search previous record
+          </Text>
+        </TouchableOpacity>
+
+        {renderIf(this.state.status)(
           <View style={styles.input}>
             <Text style={{fontWeight: 'bold', fontSize: 20}}>
-              User name
+              NRIC
             </Text>
             <TextInput
               style={styles.textInput}
               autoCapitalize={'none'}
-              onChangeText={email => this.setState({ email })}
-              value={this.state.email}
-            />
-            <Text style={{fontWeight: 'bold', fontSize: 20}}>
-              Password
-            </Text>
-            <TextInput
-              style={styles.textInput}
-              autoCapitalize={'none'}
-              secureTextEntry={true}
-              onChangeText={password => this.setState({ password })}
-              value={this.state.password}
+              onChangeText={nric => this.setState({ nric })}
+              value={this.state.nric}
             />
             <View style={styles.buttonView}>
               <Button style={{fontWeight: 'bold', fontSize: 20, marginBottom: 35}}
                   title="Login"
-                  onPress={() => firebase
-                    .auth()
-                    .signInWithEmailAndPassword(this.state.email, this.state.password)
-                    .then(() => navigate('Staff'))
-                    .catch(error => Alert.alert(
-                      'Authentication Error!',
-                      'You have entered the wrong username or password'
-                    ) )}/>
-              </View>
+                  onPress={() => navigate('Records')}/>
+            </View>
           </View>
+        )}
+
+        <TouchableOpacity style={styles.optionsBlue}
+            onPress={() => navigate('ClinicalAssess')}>
+          <Text style={styles.optionText}>
+              Clinical Assessment
+          </Text>
+        </TouchableOpacity>
+ 
 
       </View>
     );
@@ -100,6 +102,12 @@ const styles = StyleSheet.create({
     alignContent: 'flex-end',
     justifyContent: 'flex-end',
     marginRight: 10,
+  },
+  optionsBlue: {
+    backgroundColor: '#4fc3f7',
+    marginBottom: 20,
+    padding: 10,
+    borderRadius: 10
   },
   textInput: {
     fontSize: 20,

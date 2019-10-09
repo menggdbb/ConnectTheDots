@@ -25,9 +25,12 @@ export default class TutorialScreen extends React.Component {
             Here's the tutorial
           </Text>
         </View>
-        <Button style={{fontWeight: 'bold', fontSize: 20, marginBottom: 35}}
-                title="Proceed"
-                onPress={() => navigate('SelfAssess')}/>
+        <TouchableOpacity style={styles.button}
+              onPress={() => navigate('SelfAssess')}>
+            <Text style={styles.optionText}>
+                Proceed
+            </Text>
+        </TouchableOpacity>
                 
       </View>
     );
@@ -66,4 +69,10 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     marginRight: 10,
   },
+  button: {
+    backgroundColor: '#4fc3f7',
+    marginBottom: 20,
+    padding: 10,
+    borderRadius: 10
+  }
 });
