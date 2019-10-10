@@ -5,8 +5,6 @@ import {
   Alert,
   Image,
   Button,
-  Platform,
-  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -18,7 +16,7 @@ export default class LoginScreen extends React.Component {
   static navigationOptions = {
     title: 'Login'
   };
-  state = { email: '', password: '', errorMessage: "hi. good morning, you have entered the wrong username or password", text: '' }
+  state = { email: '', password: '', errorMessage: "", text: '' }
   
   render(){
     
@@ -51,8 +49,7 @@ export default class LoginScreen extends React.Component {
               value={this.state.password}
             />
             <View style={styles.buttonView}>
-              <Button style={{fontWeight: 'bold', fontSize: 20, marginBottom: 35}}
-                  title="Login"
+              <TouchableOpacity style={styles.options}
                   onPress={() => firebase
                     .auth()
                     .signInWithEmailAndPassword(this.state.email, this.state.password)
@@ -60,7 +57,16 @@ export default class LoginScreen extends React.Component {
                     .catch(error => Alert.alert(
                       'Authentication Error!',
                       'You have entered the wrong username or password'
-                    ) )}/>
+                    ) )}>
+                <Text style={styles.optionText}>
+                    LOGIN
+                </Text>
+              </TouchableOpacity>
+
+              <Button style={{fontWeight: 'bold', fontSize: 20, marginBottom: 35}}
+                  title="Login"
+                  onPress={() => navigate('Staff')}
+                  />
               </View>
           </View>
 
@@ -117,9 +123,19 @@ const styles = StyleSheet.create({
     marginRight: 60
   },
   buttonView: {
-    
     marginRight: 50,
     marginTop: 10
-  }
+  },
+  options: {
+    backgroundColor: '#0095dd',
+    padding: 10,
+    paddingLeft: 10,
+
+  },
+  optionText: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    color: '#ffffff'
+  },
 
 });

@@ -1,6 +1,5 @@
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
-import firebase from 'firebase'; //firebase
 import {
   Alert,
   Image,
@@ -15,7 +14,7 @@ import {
 } from 'react-native';
 import renderIf from '../components/renderIf';
 
-export default class LoginScreen extends React.Component {
+export default class StaffScreen extends React.Component {
   static navigationOptions = {
     title: 'Staff'
   };
@@ -51,10 +50,10 @@ export default class LoginScreen extends React.Component {
             <View style={styles.buttonView}>
 
             
-            <TouchableOpacity style={styles.optionsBlue}
-                onPress={() => navigate('Records')}>
-              <Text style={styles.optionText}>
-                  Search records
+            <TouchableOpacity style={styles.options}
+                onPress={() => navigate('Records', {nric: this.state.nric})}>
+              <Text style={styles.optionTextSmall}>
+                  SEARCH
               </Text>
             </TouchableOpacity>
             </View>
@@ -111,14 +110,28 @@ const styles = StyleSheet.create({
   }
   ,
   optionsBlue: {
-    marginTop: 100,
+    marginTop: 80,
     backgroundColor: '#4fc3f7',
-    marginBottom: 20,
     padding: 10,
+    paddingLeft: 10,
+    marginLeft: 20,
+    marginRight: 20,
     borderRadius: 10
   },
+  options: {
+    backgroundColor: '#0095dd',
+    padding: 10,
+    paddingLeft: 10,
+    marginRight: 80,
+  },
   optionText: {
-    
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  optionTextSmall: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    color: '#ffffff'
   },
   textInput: {
     fontSize: 20,
@@ -130,8 +143,8 @@ const styles = StyleSheet.create({
     
   },
   input: {
-    flex: 4,
     justifyContent: 'flex-start',
+    marginTop: 20,
     marginLeft: 30,
     marginRight: 60,
     
