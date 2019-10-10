@@ -1,5 +1,12 @@
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
+import firebase from 'firebase'; //firebase
+import  database  from '../App';
+import  db  from '../App';
+import ItemComponent from '../components/ItemComponent';
+
+
+//import renderRecords from '../components/renderRecords';
 import {
   Button,
   Image,
@@ -12,65 +19,35 @@ import {
   Dimensions
 } from 'react-native';
 
-export default class HomeScreen extends React.Component {
+console.log('Hi from React Native');
+
+let itemsRef = db.ref('/items');
+
+
+export default class RecordsScreen extends React.Component {
   static navigationOptions = {
     title: 'Home'
   };
-  state = {imgOpacity: 0, textColor: "#ffffff"}
+  state = {items: []};
 
-  
+  componentDidMount() {
+    itemsRef.on('value', snapshot => {
+      let data = snapshot.val();
+      let items = Object.values(data);
+      this.setState({ items });
+    });
+  }
+
   render(){
+    const nric = this.props.navigation.getParam('nric', 'S1234567A');
     const { navigate } = this.props.navigation;
     return (
       
       <View style={styles.container}>
       
-        <TouchableOpacity style={styles.title}
-          onPress={() => this.setState({
-            imgOpacity: 0,
-            textColor: "#ffffff" })}>
-          <Image 
-            source={ require('../assets/images/title.png')}
-            style={styles.titleImage}
-          />
-        </TouchableOpacity>
-
-        <View style={styles.menu}>
-
-          <TouchableOpacity style={styles.optionsBlue}
-              onPress={() => navigate('Tutorial')}>
-            <Text style={styles.optionText}>
-                Self Assessment
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.optionsGrey}
-              onPress={() => navigate('Login')}>
-            <Text style={styles.optionText}>
-                Clinical Assessment
-            </Text>
-          </TouchableOpacity>
-
-        </View>
-
         
-        <View style = {styles.backgroundContainer}>
-          <Image
-            style={{opacity: this.state.imgOpacity, width: Dimensions.get('window').width, height: 190}}
-            resizeMode = 'contain'
-            source={require('../assets/images/hehe.png')}
-          />
-        </View>
-        <TouchableOpacity style={styles.huehehehehe}
-              onPress={() => this.setState({
-                imgOpacity: 1,
-                textColor: "#000000"
-                })}>
-            <Text style={{color: this.state.textColor}}>
-                huehehehehe
-            </Text>
-        </TouchableOpacity>  
         
+                 
         
       </View>
     );
