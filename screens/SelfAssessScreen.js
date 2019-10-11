@@ -4,7 +4,7 @@ import { AppRegistry, StyleSheet, StatusBar } from "react-native";
 import { GameEngine } from "react-native-game-engine";
 import { TouchCircle } from "../components/engine/systems"
 import Entities from '../components/engine/entities'
-import {dac, border} from '../components/engine/creation-logic'
+import {dac} from '../components/engine/creation-logic2'
 
 export default class SelfAssessScreen extends PureComponent {
   static navigationOptions = {

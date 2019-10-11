@@ -1,7 +1,4 @@
 import { WIDTH, HEIGHT, BOTTOM_BAR_PIXELS, CIRCLE_RADIUS} from "./constants"
-import { Circle } from "./renderer/circle"
-import { Border} from "./renderer/border"
-import React from 'react'
 
 // generates random x using width of screen
 export const randomX = () => {
@@ -12,11 +9,6 @@ export const randomX = () => {
 export const randomY = () => {
   return CIRCLE_RADIUS + Math.floor(Math.random() * Math.floor(HEIGHT - CIRCLE_RADIUS * 2 - BOTTOM_BAR_PIXELS))
 }
-
-// gets random x-y position
-// export const getXYPosition = (i) => {
-//   return [randomX(), randomY()];
-// }
  
 // checks if circle generated overlaps with a circle
 export const circleOverlap = (x1, y1, x2, y2) => {
@@ -97,111 +89,3 @@ const orientation = (x1, y1, x2, y2, x3, y3) => {
     else if (val > 0) return 1 //clockwise
     else return 2 // counterclockwise 
 } 
-
-const LAYER1_RATIO = 0.1
-const LAYER2_RATIO = 0.2
-const LAYER3_RATIO = 0.3
-const LAYER4_RATIO = 0.4
-const LAYER5_RATIO = 0.5
-
-const NUMBER_OF_LAYERS = 5
-const layers = []
-
-points1 = []
-points2 = []
-points3 = []
-points4 = []
-points5 = []
-points = [points1, points2, points3, points4, points5]
-
-area = [[0, LAYER1_RATIO], [LAYER1_RATIO, LAYER2_RATIO], [LAYER2_RATIO, LAYER3_RATIO], [LAYER3_RATIO, LAYER4_RATIO], [LAYER4_RATIO, LAYER5_RATIO]]
-quantity = [2, 4, 5, 6, 8]
-
-let pRegen = null
-let pPivot = null
-
-export const dac = () => {
-  for (let i = 0; i < NUMBER_OF_LAYERS; i++) {
-    points[i] = randomDots(area[i][0], area[i][1], quantity[i])
-  }
-
-  borders = [
-    {position: [0.1, 0.1], ratio: 0.8, renderer: <Border />},
-    {position: [0.2, 0.2], ratio: 0.6, renderer: <Border />},
-    {position: [0.3, 0.3], ratio: 0.4, renderer: <Border />},
-    {position: [0.4, 0.4], ratio: 0.2, renderer: <Border />},
-  ]
-
-  const entities =
-  {
-    0 : borders[0],
-    1 : borders[1],
-    2 : borders[2],
-    3 : borders[3],
-    4 : points[0][0],
-    5 : points[0][1],
-    6 : points[1][0],
-    7 : points[1][1],
-    8 : points[1][2],
-    9 : points[1][3],
-    10 : points[2][0],
-    11 : points[2][1],
-    12 : points[2][2],
-    13 : points[2][3],
-    14 : points[2][4],
-    15 : points[3][0],
-    16 : points[3][1],
-    17 : points[3][2],
-    18 : points[3][3],
-    19 : points[3][4],
-    20 : points[3][5],
-    21 : points[4][0],
-    22 : points[4][1],
-    23 : points[4][2],
-    24 : points[4][3],
-    25 : points[4][4],
-    26 : points[4][5],
-    27 : points[4][6],
-    28 : points[4][7],
-  }
-
-  return entities
-}
-
-const randomDots = (ratio1, ratio2, quantity) => {
-  let tempPoints = []
-  for (let i = 0; i < quantity; i++) {
-    position = getPosition(ratio1, ratio2)
-    tempPoints[i] = { position: [position[0], position[1]], backgroundColor: "yellow", number: i+1, renderer: <Circle />}
-  }
-  return tempPoints
-}
-
-const getPosition = (ratio1, ratio2) => {
-  let xRatio = Math.random()
-  let yRatio = Math.random()
-  while (!(xRatio > 0.5 - ratio2 && xRatio < 0.5 + ratio2 && yRatio > 0.5 - ratio2 && yRatio < 0.5 + ratio2 && !(xRatio > 0.5 - ratio1 && xRatio < 0.5 + ratio1 && yRatio > 0.5 - ratio1 && yRatio < 0.5 + ratio1))) {
-    xRatio = Math.random()
-    yRatio = Math.random()
-  }
-  return [CIRCLE_RADIUS + Math.floor(xRatio * Math.floor(WIDTH - CIRCLE_RADIUS*2)), CIRCLE_RADIUS + Math.floor(yRatio * Math.floor(HEIGHT - CIRCLE_RADIUS*2 - BOTTOM_BAR_PIXELS))]
-}
-
-// genertates random y using height of screen and ratio
-const getRandomX = (ratio1, ratio2) => {
-  let ratio = Math.random()
-
-  while (Math.abs(ratio - 0.5) < ratio1 || Math.abs(ratio - 0.5) > ratio2) {
-    ratio = Math.random()
-  }
-  return 60 + Math.floor(ratio * Math.floor(WIDTH - 120))
-}
-
-// genertates random y using height of screen and ratio
-const getRandomY = (ratio1, ratio2) => {
-  let ratio = Math.random()
-  while (Math.abs(ratio - 0.5) < ratio1 || Math.abs(ratio - 0.5) > ratio2) {
-    ratio = Math.random()
-  }
-  return 60 + Math.floor(ratio * Math.floor(HEIGHT - 120 - BOTTOM_BAR_PIXELS))
-}

@@ -14,7 +14,6 @@ export default () => {
 
   for (let i = 0; i < NUMBER_OF_NODES; i++) {
     // generates a circle
-    // let p = logic.getXYPosition(i)
     circles[i] = { position: [logic.randomX(), logic.randomY()], backgroundColor: "yellow", number: i+1, renderer: <Circle />}
 
     for (let j = 0; j < i; j++) {
@@ -57,7 +56,7 @@ export default () => {
       timeStart = new Date().getTime()
     }
   }
-  // console.log(new Date().getTime() - timeStart)
+  console.log(new Date().getTime() - timeStart)
   console.log("total: " + (new Date().getTime() - initialTime))
 
   // returns the entities to be rendered on screen
