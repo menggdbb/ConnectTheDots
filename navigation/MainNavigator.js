@@ -23,9 +23,9 @@ const Project = createStackNavigator({
   Staff: {
     screen: StaffScreen,
   },
-  // Records: {
-  //   screen: RecordsScreen,
-  // },
+  Records: {
+    screen: RecordsScreen,
+  },
   ClinicalAssess: {
     screen: ClinicalAssessScreen,
   },

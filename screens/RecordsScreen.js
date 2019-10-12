@@ -20,22 +20,23 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 var db = firebase.firestore();
 
+
 // Getting Data
-db.collection('scores').where('NRIC', '==', 'S1234567A').get().then((snapshot) => { //db.collection('scores').where('NRIC', '==', 'nric').get().then((snapshot) => {
-    snapshot.docs.forEach(doc => {
-      //console.log(doc.data())
-      var NRIC = doc.data().NRIC;
-      var accuracy = doc.data().accuracy;
-      var completionTime = doc.data().completionTime;
-      var date = doc.data().date.toDate;
-      var noOfErrors = doc.data().noOfErrors;
-      console.log(NRIC);
-      console.log(accuracy);
-      console.log(completionTime);
-      console.log(date);
-      console.log(noOfErrors);
-    }) 
-  })
+// db.collection('scores').where('NRIC', '==', nric).orderBy('date').get().then((snapshot) => { //db.collection('scores').where('NRIC', '==', 'nric').get().then((snapshot) => {
+//     snapshot.docs.forEach(doc => {
+//       //console.log(doc.data())
+//       var NRIC = doc.data().NRIC;
+//       var accuracy = doc.data().accuracy;
+//       var completionTime = doc.data().completionTime;
+//       var date = doc.data().date.toDate;
+//       var noOfErrors = doc.data().noOfErrors;
+//       console.log(NRIC);
+//       console.log(accuracy);
+//       console.log(completionTime);
+//       console.log(date);
+//       console.log(noOfErrors);
+//     }) 
+//   })
 
 //import renderRecords from '../components/renderRecords';
 import {
@@ -57,8 +58,30 @@ export default class RecordsScreen extends React.Component {
   state = {items: []};
 
   render(){
-    const nric = this.props.navigation.getParam('nric', 'S1234567A');
     const { navigate } = this.props.navigation;
+    const nric = this.props.navigation.getParam('nric', 'S1234567A');
+    var records = [];
+
+    // Getting Data
+    db.collection('scores').where('NRIC', '==', nric).get().then((snapshot) => { //.orderBy('date')
+      snapshot.docs.forEach(doc => {
+        //console.log(doc.data())
+        var NRIC = doc.data().NRIC;
+        var accuracy = doc.data().accuracy;
+        var completionTime = doc.data().completionTime;
+        var date = doc.data().date.toDate();
+        var noOfErrors = doc.data().noOfErrors;
+        // console.log(NRIC);
+        // console.log(accuracy);
+        // console.log(completionTime);
+        // console.log(date);
+        // console.log(noOfErrors);
+        var temp = [NRIC, accuracy, completionTime, date, noOfErrors];
+        records.push(temp);
+        console.log(records);
+      }) 
+    })
+    
     return (
       
       <View style={styles.container}>

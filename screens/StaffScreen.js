@@ -18,7 +18,7 @@ export default class StaffScreen extends React.Component {
   static navigationOptions = {
     title: 'Staff'
   };
-  state = { nric: '' , show: false}
+  state = { nric: '', nric2: '' , show: false, show2: false}
   
 
   render(){  
@@ -59,14 +59,41 @@ export default class StaffScreen extends React.Component {
             </View>
           </View>
         )}
+
         <View style={styles.part}> 
           <TouchableOpacity style={styles.optionsBlue}
-              onPress={() => navigate('ClinicalAssess')}>
+              onPress={() => this.setState({
+                show2: !this.state.show2
+              })}>
             <Text style={styles.optionText}>
                 Clinical Assessment
             </Text>
           </TouchableOpacity>
         </View>
+
+        {renderIf(this.state.show2)(
+          <View style={styles.input}>
+            <Text style={{fontWeight: 'bold', fontSize: 20}}>
+              NRIC
+            </Text>
+            <TextInput
+              style={styles.textInput}
+              autoCapitalize={'none'}
+              onChangeText={nric2 => this.setState({ nric2 })}
+              value={this.state.nric2}
+            />
+            <View style={styles.buttonView}>
+
+            
+            <TouchableOpacity style={styles.options}
+                onPress={() => navigate('ClinicalAssess', {nric2: this.state.nric2})}>
+              <Text style={styles.optionTextSmall}>
+                  START
+              </Text>
+            </TouchableOpacity>
+            </View>
+          </View>
+        )}
 
       </View>
     );

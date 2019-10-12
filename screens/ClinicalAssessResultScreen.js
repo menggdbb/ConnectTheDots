@@ -22,30 +22,43 @@ export default class ClinicalAssessResultScreen extends React.Component {
 
   render(){
     
+    const timeTaken = "46"; //need this
+    const timeSec = timeTaken%60;
+    const timeMin = ((timeTaken+timeSec) /60) - 1;
+    const numErr = "4"; //and this
+    const accuracy = 100 - (numErr/(numErr+25))*100;
+
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-          <View style={styles.title}>
-            <Text style={{fontWeight: 'bold', fontSize: 20}}>
-                Here's your result, also input the NRIC yo
-            </Text>
-              
-          </View>
-          <View style={styles.input}>
-            <Text style={{fontWeight: 'bold', fontSize: 20}}>
-            NRIC
-            </Text>
-            <TextInput
-                style={styles.textInput}
-                onChangeText={text => this.setState({ text })}
-                value={this.state.text}
+        <View style={styles.timeView}>
+          <Text style={styles.timeText}>
+              {timeMin}:{timeSec} min
+          </Text>
+          <View style={styles.labelText}>
+            <Image 
+              source={ require('../assets/images/time.png')}
+              style={styles.icon}
             />
-            <View style={styles.buttonView}>
-              <Button style={{fontWeight: 'bold', fontSize: 20, marginBottom: 35}}
-                  title="Back to Main Menu"
-                  onPress={() => navigate('Home')}/>
-            </View>
+            <Text style={styles.timeText}>
+                Time Taken
+            </Text>
           </View>
+        </View>
+
+        <View style={styles.accuracyView}>
+          <Text style={styles.accuracyText}>
+              {accuracy}%
+          </Text>
+        </View>
+
+        <View style={styles.errorView}>
+          <Text style={styles.errorText}>
+              {numErr}
+          </Text>
+        </View>
+        
+        
                
       </View>
     );
