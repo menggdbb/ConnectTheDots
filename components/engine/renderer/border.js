@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     borderColor: "#CCC",
     borderWidth: 4,
     backgroundColor: "white",
-    position: "absolute",
+    position: "absolute", 
   },
 });
  
