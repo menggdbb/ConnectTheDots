@@ -9,9 +9,13 @@ export const { width: WIDTH, height: HEIGHT } = Dimensions.get("window");
 export const NUMBER_OF_NODES = 25;
 
 //circle radius
-const smallSide = Math.min(WIDTH, HEIGHT);
+const smallSide = Math.min(WIDTH, HEIGHT); 
 const radiusRatio = 0.04;
 export const CIRCLE_RADIUS = smallSide * radiusRatio;
+
+//colour constants
+export const COLOUR_UNTOUCHED = "#CAC4C4"
+export const COLOUR_TOUCHED = "#65F987"
 
 //layer constants
 export const LAYER1_RATIO = 0.1

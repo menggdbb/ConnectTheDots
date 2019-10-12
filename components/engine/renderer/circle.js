@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import { StyleSheet, View, Text } from "react-native";
-import { CIRCLE_RADIUS} from "../constants"
+import { CIRCLE_RADIUS } from "../constants"
 
 //radius of circle
 const radius = CIRCLE_RADIUS

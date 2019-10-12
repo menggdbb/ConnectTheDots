@@ -13,7 +13,7 @@ export const randomY = () => {
 
 export const getPosition = (index) => {
   const ratio1 = getLayerRatioMin(index)
-  const ratio2 = getLayerRatioMax(index)
+  const ratio2 = getLayerRatioMax(index) 
   let xRatio = Math.random()
   let yRatio = Math.random()
   while (!(xRatio > 0.5 - ratio2 && xRatio < 0.5 + ratio2 && yRatio > 0.5 - ratio2 && yRatio < 0.5 + ratio2 && !(xRatio > 0.5 - ratio1 && xRatio < 0.5 + ratio1 && yRatio > 0.5 - ratio1 && yRatio < 0.5 + ratio1))) {
