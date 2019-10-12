@@ -20,19 +20,22 @@ export default () => {
     "2", "B", 
     "3", "C", 
     "4", "D", 
-    "5", "A", 
-    "6", "A", 
-    "7", "A", 
-    "8", "A", 
-    "9", "A", 
-    "10", "A", 
+    "5", "E", 
+    "6", "F", 
+    "7", "G", 
+    "8", "H", 
+    "9", "I", 
+    "10", "J",
+    "11", "K", 
+    "12", "L",
+    "13"  
   ]
 
   for (let i = 0; i < NUMBER_OF_NODES; i++) {
     // generates a circle
     let circlePosition = []
     circlePosition = logic.getPosition(i)
-    circles[i] = { position: [circlePosition[0], circlePosition[1]], backgroundColor: COLOUR_UNTOUCHED, number: i+1, renderer: <Circle />}
+    circles[i] = { position: [circlePosition[0], circlePosition[1]], backgroundColor: COLOUR_UNTOUCHED, number: string[i], renderer: <Circle />}
 
     for (let j = 0; j < i; j++) {
       // checks if all circles overlaps with current generated circle
