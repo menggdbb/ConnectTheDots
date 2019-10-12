@@ -11,9 +11,9 @@ import {
   View,
 } from 'react-native';
 
-export default class TutorialScreen extends React.Component {
+export default class ClinicalAssessScreenB extends React.Component {
   static navigationOptions = {
-    title: 'Tutorial part A'
+    title: 'Part B Assessment'
   };
   
   render(){
@@ -22,15 +22,14 @@ export default class TutorialScreen extends React.Component {
       <View style={styles.container}>
         <View style={styles.title}>
           <Text style={{fontWeight: 'bold', fontSize: 20}}>
-            Here's the tutorial
+            Do your assessment here
           </Text>
+          <Button style={{fontWeight: 'bold', fontSize: 20, marginBottom: 35}}
+                title="Check result"
+                onPress={() => navigate('ClinicalAssessResultB')}/>
         </View>
-        <TouchableOpacity style={styles.button}
-              onPress={() => navigate('SelfAssessA')}>
-            <Text style={styles.buttonText}>
-                Proceed
-            </Text>
-        </TouchableOpacity>
+
+        
                 
       </View>
     );
@@ -69,14 +68,4 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     marginRight: 10,
   },
-  button: {
-    backgroundColor: '#4fc3f7',
-    marginBottom: 20,
-    padding: 10,
-    borderRadius: 10,
-    
-  },
-  buttonText: {
-    textAlign: 'center',
-  }
 });

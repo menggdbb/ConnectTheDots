@@ -6,9 +6,9 @@ import { TouchCircle } from "../components/engine/systems"
 import Entities from '../components/engine/entities'
 import {dac} from '../components/engine/creation-logic2'
 
-export default class SelfAssessScreen extends PureComponent {
+export default class SelfAssessScreenB extends PureComponent {
   static navigationOptions = {
-    title: 'SelfAssess'
+    title: 'Part B Assessment'
   };
 
   constructor() {

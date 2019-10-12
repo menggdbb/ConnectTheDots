@@ -11,26 +11,25 @@ import {
   View,
 } from 'react-native';
 
-export default class TutorialScreen extends React.Component {
+export default class SelfAssessResultScreenB extends React.Component {
   static navigationOptions = {
-    title: 'Tutorial part A'
+    title: 'SelfAssessResult'
   };
   
   render(){
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <View style={styles.title}>
-          <Text style={{fontWeight: 'bold', fontSize: 20}}>
-            Here's the tutorial
-          </Text>
-        </View>
-        <TouchableOpacity style={styles.button}
-              onPress={() => navigate('SelfAssessA')}>
-            <Text style={styles.buttonText}>
-                Proceed
+          <View style={styles.title}>
+            <Text style={{fontWeight: 'bold', fontSize: 20}}>
+                Here's your result, also ya may want to go to hospital mate
             </Text>
-        </TouchableOpacity>
+          </View>
+          
+          
+          <Button style={{fontWeight: 'bold', fontSize: 20, marginBottom: 35}}
+                title="Back to Main Menu"
+                onPress={() => navigate('Home')}/>
                 
       </View>
     );
@@ -69,14 +68,4 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     marginRight: 10,
   },
-  button: {
-    backgroundColor: '#4fc3f7',
-    marginBottom: 20,
-    padding: 10,
-    borderRadius: 10,
-    
-  },
-  buttonText: {
-    textAlign: 'center',
-  }
 });

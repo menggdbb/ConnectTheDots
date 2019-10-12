@@ -86,7 +86,7 @@ export default class StaffScreen extends React.Component {
 
             
             <TouchableOpacity style={styles.options}
-                onPress={() => navigate('ClinicalAssess', {nric2: this.state.nric2})}>
+                onPress={() => navigate('ClinicalAssessA', {nric2: this.state.nric2})}>
               <Text style={styles.optionTextSmall}>
                   START
               </Text>
@@ -150,15 +150,20 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingLeft: 10,
     marginRight: 80,
+    
   },
   optionText: {
     fontSize: 20,
     fontWeight: 'bold',
+    
   },
   optionTextSmall: {
     textAlign: 'center',
     fontWeight: 'bold',
-    color: '#ffffff'
+    color: '#ffffff',
+    textShadowColor: '#000000',
+    textShadowOffset: {width: 0, height: 0},
+    textShadowRadius: 4,
   },
   textInput: {
     fontSize: 20,

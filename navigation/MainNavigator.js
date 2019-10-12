@@ -3,12 +3,17 @@ import { View, Platform } from 'react-native';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import HomeScreen from '../screens/HomeScreen';
-import ClinicalAssessScreen from '../screens/ClinicalAssessScreen';
-import ClinicalAssessResultScreen from '../screens/ClinicalAssessResultScreen';
+import ClinicalAssessScreenA from '../screens/ClinicalAssessScreenA';
+import ClinicalAssessScreenB from '../screens/ClinicalAssessScreenB';
+import ClinicalAssessResultScreenA from '../screens/ClinicalAssessResultScreenA';
+import ClinicalAssessResultScreenB from '../screens/ClinicalAssessResultScreenB';
 import LoginScreen from '../screens/LoginScreen';
-import SelfAssessScreen from '../screens/SelfAssessScreen';
-import SelfAssessResultScreen from '../screens/SelfAssessResultScreen';
+import SelfAssessScreenA from '../screens/SelfAssessScreenA';
+import SelfAssessScreenB from '../screens/SelfAssessScreenB';
+import SelfAssessResultScreenA from '../screens/SelfAssessResultScreenA';
+import SelfAssessResultScreenB from '../screens/SelfAssessResultScreenB';
 import TutorialScreen from '../screens/TutorialScreen';
+import TutorialScreenB from '../screens/TutorialScreenB';
 import StaffScreen  from '../screens/StaffScreen';
 import RecordsScreen from '../screens/RecordsScreen';
 
@@ -26,20 +31,35 @@ const Project = createStackNavigator({
   Records: {
     screen: RecordsScreen,
   },
-  ClinicalAssess: {
-    screen: ClinicalAssessScreen,
+  ClinicalAssessA: {
+    screen: ClinicalAssessScreenA,
   },
-  ClinicalAssessResult: {
-    screen: ClinicalAssessResultScreen,
+  ClinicalAssessB: {
+    screen: ClinicalAssessScreenB,
   },
-  SelfAssess: {
-    screen: SelfAssessScreen,
+  ClinicalAssessResultA: {
+    screen: ClinicalAssessResultScreenA,
   },
-  SelfAssessResult: {
-    screen: SelfAssessResultScreen,
+  ClinicalAssessResultB: {
+    screen: ClinicalAssessResultScreenB,
+  },
+  SelfAssessA: {
+    screen: SelfAssessScreenA,
+  },
+  SelfAssessB: {
+    screen: SelfAssessScreenB,
+  },
+  SelfAssessResultA: {
+    screen: SelfAssessResultScreenA,
+  }, 
+  SelfAssessResultB: {
+    screen: SelfAssessResultScreenB,
   }, 
   Tutorial: {
     screen: TutorialScreen,
+  },
+  TutorialB: {
+    screen: TutorialScreenB,
   },
 });
 

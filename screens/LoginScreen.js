@@ -135,7 +135,10 @@ const styles = StyleSheet.create({
   optionText: {
     textAlign: 'center',
     fontWeight: 'bold',
-    color: '#ffffff'
+    color: '#ffffff',
+    textShadowColor: '#000000',
+    textShadowOffset: {width: 0, height: 0},
+    textShadowRadius: 4,
   },
 
 });

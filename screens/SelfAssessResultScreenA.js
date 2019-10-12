@@ -11,25 +11,25 @@ import {
   View,
 } from 'react-native';
 
-export default class ClinicalAssessScreen extends React.Component {
+export default class SelfAssessResultScreenA extends React.Component {
   static navigationOptions = {
-    title: 'ClinicalAssess'
+    title: 'SelfAssessResult'
   };
   
   render(){
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <View style={styles.title}>
-          <Text style={{fontWeight: 'bold', fontSize: 20}}>
-            Do your assessment here
-          </Text>
+          <View style={styles.title}>
+            <Text style={{fontWeight: 'bold', fontSize: 20}}>
+                Here's your result, also ya may want to go to hospital mate
+            </Text>
+          </View>
+          
+          
           <Button style={{fontWeight: 'bold', fontSize: 20, marginBottom: 35}}
-                title="Check result"
-                onPress={() => navigate('ClinicalAssessResult')}/>
-        </View>
-
-        
+                title="Back to Main Menu"
+                onPress={() => navigate('Home')}/>
                 
       </View>
     );
