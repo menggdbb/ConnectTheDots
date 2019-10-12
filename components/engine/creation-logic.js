@@ -1,4 +1,5 @@
-import { WIDTH, HEIGHT, BOTTOM_BAR_PIXELS, CIRCLE_RADIUS} from "./constants"
+import { WIDTH, HEIGHT, BOTTOM_BAR_PIXELS, CIRCLE_RADIUS, } from "./constants"
+import * as constants from "./constants"
 
 // generates random x using width of screen
 export const randomX = () => {
@@ -8,6 +9,47 @@ export const randomX = () => {
 // genertates random y using height of screen
 export const randomY = () => {
   return CIRCLE_RADIUS + Math.floor(Math.random() * Math.floor(HEIGHT - CIRCLE_RADIUS * 2 - BOTTOM_BAR_PIXELS))
+}
+
+export const getPosition = (index) => {
+  const ratio1 = getLayerRatioMin(index)
+  const ratio2 = getLayerRatioMax(index)
+  let xRatio = Math.random()
+  let yRatio = Math.random()
+  while (!(xRatio > 0.5 - ratio2 && xRatio < 0.5 + ratio2 && yRatio > 0.5 - ratio2 && yRatio < 0.5 + ratio2 && !(xRatio > 0.5 - ratio1 && xRatio < 0.5 + ratio1 && yRatio > 0.5 - ratio1 && yRatio < 0.5 + ratio1))) {
+    xRatio = Math.random()
+    yRatio = Math.random()
+  }
+  return [CIRCLE_RADIUS + Math.floor(xRatio * Math.floor(WIDTH - CIRCLE_RADIUS*2)), CIRCLE_RADIUS + Math.floor(yRatio * Math.floor(HEIGHT - CIRCLE_RADIUS*2 - BOTTOM_BAR_PIXELS))]
+}
+
+const getLayerRatioMin = (index) => {
+  if (index < constants.LAYER1_NUMBER) {
+    return 0
+  } else if (index < constants.LAYER1_NUMBER + constants.LAYER2_NUMBER) {
+    return constants.LAYER1_RATIO
+  } else if (index < constants.LAYER1_NUMBER + constants.LAYER2_NUMBER + constants.LAYER3_NUMBER) {
+    return constants.LAYER2_RATIO
+  } else if (index < constants.LAYER1_NUMBER + constants.LAYER2_NUMBER + constants.LAYER3_NUMBER + constants.LAYER4_NUMBER) {
+    return constants.LAYER3_RATIO
+  } else {
+    return constants.LAYER4_RATIO
+  }
+}
+
+
+const getLayerRatioMax = (index) => {
+  if (index < constants.LAYER1_NUMBER) {
+    return constants.LAYER1_RATIO
+  } else if (index < constants.LAYER1_NUMBER + constants.LAYER2_NUMBER) {
+    return constants.LAYER2_RATIO
+  } else if (index < constants.LAYER1_NUMBER + constants.LAYER2_NUMBER + constants.LAYER3_NUMBER) {
+    return constants.LAYER3_RATIO
+  } else if (index < constants.LAYER1_NUMBER + constants.LAYER2_NUMBER + constants.LAYER3_NUMBER + constants.LAYER4_NUMBER) {
+    return constants.LAYER4_RATIO
+  } else {
+    return constants.LAYER5_RATIO
+  }
 }
  
 // checks if circle generated overlaps with a circle

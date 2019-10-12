@@ -121,9 +121,27 @@ let pRegen = null
 let pPivot = null
 
 export const dac = () => {
+  let number_to_add = 0
   for (let i = 0; i < NUMBER_OF_LAYERS; i++) {
-    points[i] = randomDots(area[i][0], area[i][1], quantity[i])
+    points[i] = randomDots(area[i][0], area[i][1], number_to_add, quantity[i])
+    number_to_add += quantity[i]
+
+    let lowestRad = 1000
+    let previousRad = 0
+    let anchorCircle = points[i][0]
+    let ordered = []
+    ordered[0] = anchorCircle
+    for (let j = 1; j < quantity[i]; j++) {
+      let selected = points[i][j]
+      let currentRad = Math.atan2(selected.position[1] - anchorCircle.position[1], selected.position[0] - anchorCircle.position[0])
+      if (currentRad < lowestRad) {
+        lowestRad = currentRad
+      }
+    }
+
   }
+
+
 
   borders = [
     {position: [0.1, 0.1], ratio: 0.8, renderer: <Border />},
@@ -168,13 +186,20 @@ export const dac = () => {
   return entities
 }
 
-const randomDots = (ratio1, ratio2, quantity) => {
-  let tempPoints = []
+const randomDots = (ratio1, ratio2, counter, quantity) => {
+  let tempCircles = []
   for (let i = 0; i < quantity; i++) {
     position = getPosition(ratio1, ratio2)
-    tempPoints[i] = { position: [position[0], position[1]], backgroundColor: "yellow", number: i+1, renderer: <Circle />}
+    tempCircles[i] = { position: [position[0], position[1]], backgroundColor: "yellow", number: counter+i+1, renderer: <Circle />}
+    for (let j = 0; j < i; j++) {
+      let circlesOverlap = circleOverlap(tempCircles[j].position[0], tempCircles[j].position[1], tempCircles[i].position[0], tempCircles[i].position[1])
+      if (circlesOverlap) {
+        i--
+        break
+      }
+    }
   }
-  return tempPoints
+  return tempCircles
 }
 
 const getPosition = (ratio1, ratio2) => {
