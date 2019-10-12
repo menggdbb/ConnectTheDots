@@ -17,7 +17,7 @@ import 'firebase/firestore';
 //firebase.initializeApp(firebaseConfig);
 //var db = firebase.firestore();
 
-console.log("Welcome to the Thunderdome.");
+//console.log("Welcome to the Thunderdome.");
 
 // // Getting Data
 // db.collection('scores').get().then((snapshot) => {

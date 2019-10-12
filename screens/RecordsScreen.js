@@ -27,13 +27,13 @@ db.collection('scores').where('NRIC', '==', 'S1234567A').get().then((snapshot) =
       var NRIC = doc.data().NRIC;
       var accuracy = doc.data().accuracy;
       var completionTime = doc.data().completionTime;
-      var date = doc.data().date;
+      var date = doc.data().date.toDate;
       var noOfErrors = doc.data().noOfErrors;
-      console.log(doc.data().NRIC);
-      console.log(doc.data().accuracy);
-      console.log(doc.data().completionTime);
-      console.log(doc.data().date.toDate());
-      console.log(doc.data().noOfErrors);
+      console.log(NRIC);
+      console.log(accuracy);
+      console.log(completionTime);
+      console.log(date);
+      console.log(noOfErrors);
     }) 
   })
 
