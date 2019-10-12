@@ -21,7 +21,7 @@ firebase.initializeApp(firebaseConfig);
 var db = firebase.firestore();
 
 // Getting Data
-db.collection('scores').get().then((snapshot) => { //db.collection('scores').where('NRIC', '==', 'nric').get().then((snapshot) => {
+db.collection('scores').where('NRIC', '==', 'S1234567A').get().then((snapshot) => { //db.collection('scores').where('NRIC', '==', 'nric').get().then((snapshot) => {
     snapshot.docs.forEach(doc => {
       //console.log(doc.data())
       var NRIC = doc.data().NRIC;
