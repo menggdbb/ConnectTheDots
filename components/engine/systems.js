@@ -1,5 +1,7 @@
 import { NAVIGATION_BAR_PIXELS, NUMBER_OF_NODES, CIRCLE_RADIUS, COLOUR_TOUCHED } from "./constants"
 import { getTimeStart } from "./entities"
+import React from 'react';
+
 
 //counter for node to be pressed
 let counter = 0;
@@ -24,6 +26,7 @@ const TouchCircle = (entities, { touches }) => {
                   // last node pressed
                   if (counter == 24){
                     console.log(new Date().getTime() - getTimeStart())
+                    navigate('Tutorial')
                   }
                   circle.backgroundColor = COLOUR_TOUCHED
                   counter++
