@@ -64,15 +64,15 @@ export const minDistance = (x1, y1, x2, y2) => {
   }
 }
  
-// checks if circle generated overlaps with a circle
-export const circleOverlap = (x1, y1, x2, y2) => {
-  const length = Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
-  if (length < CIRCLE_RADIUS * 2) {
-    return true
-  } else {
-    return false
-  }
-}
+// // checks if circle generated overlaps with a circle
+// export const circleOverlap = (x1, y1, x2, y2) => {
+//   const length = Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+//   if (length < CIRCLE_RADIUS * 2) {
+//     return true
+//   } else {
+//     return false
+//   }
+// }
   
 //checks if the line touches the circle
 export const lineTouchCircle = (x1, y1, x2, y2, x3, y3) => {

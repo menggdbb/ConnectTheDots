@@ -18,15 +18,15 @@ export default class SelfAssessScreenA extends PureComponent {
     }
   }
 
-  // to recieve events from game engine
+  // to receive events from game engine
   onEvent = (e) => {
-    const navigate = this.props.navigation //LOOK AT THISSS
+    const {navigate} = this.props.navigation //LOOK AT THISSS
     if (e.type === "game-over") {
       this.setState({
         timing: e.timing,
         errors: e.errors
       })
-      navigate('SelfAssessResultScreenA') //I THINK IS THIS
+      navigate('SelfAssessResult') //I THINK IS THIS
       console.log(this.state.timing + " " + this.state.errors)
     }
   }
