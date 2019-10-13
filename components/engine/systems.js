@@ -13,8 +13,8 @@ const TouchCircle = (entities, { touches, dispatch }) => {
     touches.filter(t => t.type === "press").forEach(t => {
         let touchOrigin = [t.event.pageX, t.event.pageY]; //position finger pressed
 
-        //get touch x y data
-        entities[53].text = 'x: ' + touchOrigin[0] + ', y: ' + touchOrigin[1];
+        // //get touch x y data
+        // entities[53].text = 'x: ' + touchOrigin[0] + ', y: ' + touchOrigin[1];
 
         for (let i = 0; i < NUMBER_OF_NODES; i++) {
             // let circle = entities[i+24]; 

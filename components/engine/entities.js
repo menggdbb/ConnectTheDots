@@ -38,15 +38,20 @@ export default () => {
     circlePosition = logic.getPosition(i)
     circles[i] = { position: [circlePosition[0], circlePosition[1]], backgroundColor: COLOUR_UNTOUCHED, number: i+1, renderer: <Circle />}
 
-    if (i == 24) {
-      circles[24] = { position: [CIRCLE_RADIUS + Math.floor(1.0 * Math.floor(WIDTH - CIRCLE_RADIUS*2)), CIRCLE_RADIUS + Math.floor(1.0 * Math.floor(HEIGHT - CIRCLE_RADIUS*2 - 79))] , backgroundColor: COLOUR_UNTOUCHED, number: i+1, renderer: <Circle />}
+    //checks if both circles have minimum distance
+    if (i > 0) {
+      let hasMinDistance = logic.minDistance(circles[i].position[0], circles[i].position[1], circles[i-1].position[0], circles[i-1].position[1])
+      if (!hasMinDistance) {
+        i-- //if circle less than minimum distance index of current array will regenrate new circle
+        continue
+      }
     }
 
     for (let j = 0; j < i; j++) {
       // checks if all circles overlaps with current generated circle
       let circleOverlaps = logic.circleOverlap(circles[j].position[0], circles[j].position[1], circles[i].position[0], circles[i].position[1])
       if (circleOverlaps) {
-        i -- // if clash index of current array will regenerate new circle
+        i-- // if clash index of current array will regenerate new circle
         break
       }
       if (i > 1 && j < i-1) {
@@ -196,7 +201,7 @@ export default () => {
     50 : circles[22],
     51 : circles[23],
     52 : circles[24],
-    53 : {text: 'width: ' + WIDTH + ', height: ' + HEIGHT, width: WIDTH, top:0, renderer: <TestText />},
+    // 53 : {text: 'width: ' + WIDTH + ', height: ' + HEIGHT, width: WIDTH, top:0, renderer: <TestText />},
   }
   
   return entities;

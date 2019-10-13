@@ -2,8 +2,9 @@ import { Dimensions } from "react-native"
 
 //screen constants
 export const NAVIGATION_BAR_PIXELS = 80;
-export const BOTTOM_BAR_PIXELS = 79; //140
+export const BOTTOM_BAR_PIXELS = 85;
 export const { width: WIDTH, height: HEIGHT } = Dimensions.get("window");
+
 
 //number of nodes
 export const NUMBER_OF_NODES = 25;
@@ -12,6 +13,10 @@ export const NUMBER_OF_NODES = 25;
 const smallSide = Math.min(WIDTH, HEIGHT); 
 const radiusRatio = 0.04;
 export const CIRCLE_RADIUS = smallSide * radiusRatio;
+
+//node distance constant
+distanceRatio = 0.08;
+export const NODE_DISTANCE = CIRCLE_RADIUS*2 + smallSide * distanceRatio;
 
 //colour constants
 export const COLOUR_UNTOUCHED = "#CAC4C4"

@@ -1,4 +1,4 @@
-import { WIDTH, HEIGHT, BOTTOM_BAR_PIXELS, CIRCLE_RADIUS, } from "./constants"
+import { WIDTH, HEIGHT, BOTTOM_BAR_PIXELS, CIRCLE_RADIUS, NODE_DISTANCE} from "./constants"
 import * as constants from "./constants"
 
 // generates random x using width of screen
@@ -6,11 +6,12 @@ export const randomX = () => {
     return CIRCLE_RADIUS + Math.floor(Math.random() * Math.floor(WIDTH - CIRCLE_RADIUS * 2))
 }
   
-// genertates random y using height of screen
+// generates random y using height of screen
 export const randomY = () => {
   return CIRCLE_RADIUS + Math.floor(Math.random() * Math.floor(HEIGHT - CIRCLE_RADIUS * 2 - BOTTOM_BAR_PIXELS))
 }
 
+// returns a position of the circle 
 export const getPosition = (index) => {
   const ratio1 = getLayerRatioMin(index)
   const ratio2 = getLayerRatioMax(index) 
@@ -23,6 +24,7 @@ export const getPosition = (index) => {
     return [CIRCLE_RADIUS + Math.floor(xRatio * Math.floor(WIDTH - CIRCLE_RADIUS*2)), CIRCLE_RADIUS + Math.floor(yRatio * Math.floor(HEIGHT - CIRCLE_RADIUS*2 - BOTTOM_BAR_PIXELS))]
 }
 
+//left ratio limit of layers
 const getLayerRatioMin = (index) => {
   if (index < constants.LAYER1_NUMBER) {
     return 0
@@ -37,7 +39,7 @@ const getLayerRatioMin = (index) => {
   }
 }
 
-
+//right layer limit of layers
 const getLayerRatioMax = (index) => {
   if (index < constants.LAYER1_NUMBER) {
     return constants.LAYER1_RATIO
@@ -49,6 +51,16 @@ const getLayerRatioMax = (index) => {
     return constants.LAYER4_RATIO
   } else {
     return constants.LAYER5_RATIO
+  }
+}
+
+//checks if both circles have minimum distance
+export const minDistance = (x1, y1, x2, y2) => {
+  const length = Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+  if (length > NODE_DISTANCE) {
+    return true
+  } else {
+    return false
   }
 }
  
