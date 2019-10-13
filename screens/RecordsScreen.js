@@ -4,6 +4,17 @@ import firebase from 'firebase'; //firebase
 import 'firebase/firestore';
 import ItemComponent from '../components/ItemComponent';
 import Firebase from '../components/Firebase';
+import {
+  Button,
+  Image,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  Dimensions
+} from 'react-native';
 
 // const firebaseConfig = {
 //     apiKey: "AIzaSyBvSYNhzz71ndyMv1sev-DjCrvDyC8zIxs",
@@ -19,18 +30,6 @@ import Firebase from '../components/Firebase';
 // firebase.initializeApp(firebaseConfig);
 const db = Firebase.firestore();
 
-//import renderRecords from '../components/renderRecords';
-import {
-  Button,
-  Image,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  Dimensions
-} from 'react-native';
 
 export default class RecordsScreen extends React.Component {
   static navigationOptions = {

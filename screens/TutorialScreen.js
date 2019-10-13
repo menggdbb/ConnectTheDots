@@ -19,6 +19,30 @@ export default class TutorialScreen extends React.Component {
   static navigationOptions = {
     title: 'Tutorial part A'
   };
+
+  constructor() {
+    super();
+    this.state = {
+      text: "Try to connect in order!"
+    }
+  }
+
+  // to receive events from game engine
+  onEvent = (e) => {
+    if (e.type === "correct") {
+      this.setState({
+        text: e.text
+      })
+    } else if (e.type === "wrong") {
+      this.setState({
+        text: e.text
+      })
+    } else if (e.type === "last") {
+      this.setState({
+        text: e.text
+      })
+    }
+  }
   
   render(){
     const { navigate } = this.props.navigation;
@@ -31,6 +55,9 @@ export default class TutorialScreen extends React.Component {
             onEvent={this.onEvent}>
             <StatusBar hidden={false} />
         </GameEngine>
+        <Text style={styles.tutorialText}>
+            {this.state.text}
+        </Text>
         <TouchableOpacity style={styles.button}
               onPress={() => navigate('SelfAssessA')}>
             <Text style={styles.buttonText}>
@@ -83,5 +110,11 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     textAlign: 'center',
-  }
+  },
+  tutorialText: {
+    fontWeight: 'bold',
+    fontSize: 20,
+    textAlign: 'center',
+    marginBottom: 20
+  },
 });

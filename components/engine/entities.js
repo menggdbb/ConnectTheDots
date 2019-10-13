@@ -1,8 +1,7 @@
 import React from 'react'
 import { Circle } from "./renderer/circle"
 import { Line } from "./renderer/line"
-import { TestText } from "./renderer/test-text"
-import { NUMBER_OF_NODES, COLOUR_UNTOUCHED, STRING_PART_A, STRING_PART_B, TUTORIAL_NUMBER_OF_NODES, TUTORIAL_STRING_PART_A, WIDTH, HEIGHT, CIRCLE_RADIUS, TUTORIAL_CIRCLE_RADIUS } from "./constants"
+import { NUMBER_OF_NODES, COLOUR_UNTOUCHED, STRING_PART_A, STRING_PART_B, TUTORIAL_NUMBER_OF_NODES, TUTORIAL_STRING_PART_A, TUTORIAL_STRING_PART_B, CIRCLE_RADIUS, TUTORIAL_CIRCLE_RADIUS } from "./constants"
 import * as logic from "./creation-logic"
 
 let time_of_start = 0
@@ -25,6 +24,10 @@ export default (type) => {
     radius = CIRCLE_RADIUS
   } else if (type == "TA") {
     strings = TUTORIAL_STRING_PART_A
+    numberOfNodes = TUTORIAL_NUMBER_OF_NODES
+    radius = TUTORIAL_CIRCLE_RADIUS
+  } else if (type == "TB") {
+    strings = TUTORIAL_STRING_PART_B
     numberOfNodes = TUTORIAL_NUMBER_OF_NODES
     radius = TUTORIAL_CIRCLE_RADIUS
   }
@@ -150,7 +153,6 @@ export default (type) => {
       8 : circles[3],
       9 : circles[4],
       10 : circles[5],
-      // 5 : { text: 'width: ' + WIDTH + ', height: ' + HEIGHT, width: WIDTH, top: 0, renderer: <TestText />}
     }
   }
 
