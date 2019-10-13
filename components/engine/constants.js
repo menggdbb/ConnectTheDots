@@ -2,7 +2,7 @@ import { Dimensions } from "react-native"
 
 //screen constants
 export const NAVIGATION_BAR_PIXELS = 80;
-export const BOTTOM_BAR_PIXELS = 140;
+export const BOTTOM_BAR_PIXELS = 79; //140
 export const { width: WIDTH, height: HEIGHT } = Dimensions.get("window");
 
 //number of nodes
