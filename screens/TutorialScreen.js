@@ -1,5 +1,8 @@
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
+import { GameEngine } from "react-native-game-engine";
+import { TutorialTouchCircle } from "../components/engine/systems"
+import Entities from '../components/engine/entities'
 import {
   Image,
   Button,
@@ -9,6 +12,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  StatusBar
 } from 'react-native';
 
 export default class TutorialScreen extends React.Component {
@@ -25,6 +29,13 @@ export default class TutorialScreen extends React.Component {
             Here's the tutorial
           </Text>
         </View>
+        <GameEngine
+          style={styles.container}
+          systems={[TutorialTouchCircle]} 
+          entities={Entities("TA")}
+          onEvent={this.onEvent}>
+          <StatusBar hidden={false} />
+      </GameEngine>
         <TouchableOpacity style={styles.button}
               onPress={() => navigate('SelfAssessA')}>
             <Text style={styles.buttonText}>

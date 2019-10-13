@@ -2,41 +2,22 @@ import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
 import firebase from 'firebase'; //firebase
 import 'firebase/firestore';
-//import  database  from '../App';
-//import  db  from '../App';
 import ItemComponent from '../components/ItemComponent';
+import Firebase from '../components/Firebase';
 
-const firebaseConfig = {
-    apiKey: "AIzaSyBvSYNhzz71ndyMv1sev-DjCrvDyC8zIxs",
-    authDomain: "connect-the-dots-abd9a.firebaseapp.com",
-    databaseURL: "https://connect-the-dots-abd9a.firebaseio.com",
-    projectId: "connect-the-dots-abd9a",
-    storageBucket: "connect-the-dots-abd9a.appspot.com",
-    messagingSenderId: "1045616440269",
-    appId: "1:1045616440269:web:fc8bd26ea251f936350a84",
-    measurementId: "G-SR4CM03XTV"
-  };
+// const firebaseConfig = {
+//     apiKey: "AIzaSyBvSYNhzz71ndyMv1sev-DjCrvDyC8zIxs",
+//     authDomain: "connect-the-dots-abd9a.firebaseapp.com",
+//     databaseURL: "https://connect-the-dots-abd9a.firebaseio.com",
+//     projectId: "connect-the-dots-abd9a",
+//     storageBucket: "connect-the-dots-abd9a.appspot.com",
+//     messagingSenderId: "1045616440269",
+//     appId: "1:1045616440269:web:fc8bd26ea251f936350a84",
+//     measurementId: "G-SR4CM03XTV"
+//   };
 
-firebase.initializeApp(firebaseConfig);
-var db = firebase.firestore();
-
-
-// Getting Data
-// db.collection('scores').where('NRIC', '==', nric).orderBy('date').get().then((snapshot) => { //db.collection('scores').where('NRIC', '==', 'nric').get().then((snapshot) => {
-//     snapshot.docs.forEach(doc => {
-//       //console.log(doc.data())
-//       var NRIC = doc.data().NRIC;
-//       var accuracy = doc.data().accuracy;
-//       var completionTime = doc.data().completionTime;
-//       var date = doc.data().date.toDate;
-//       var noOfErrors = doc.data().noOfErrors;
-//       console.log(NRIC);
-//       console.log(accuracy);
-//       console.log(completionTime);
-//       console.log(date);
-//       console.log(noOfErrors);
-//     }) 
-//   })
+// firebase.initializeApp(firebaseConfig);
+const db = Firebase.firestore();
 
 //import renderRecords from '../components/renderRecords';
 import {
@@ -61,6 +42,7 @@ export default class RecordsScreen extends React.Component {
     const { navigate } = this.props.navigation;
     const nric = this.props.navigation.getParam('nric', 'S1234567A');
     var records = [];
+    var recordMap = [];
 
     // Getting Data
     db.collection('scores').where('NRIC', '==', nric).get().then((snapshot) => { //.orderBy('date')
@@ -69,24 +51,28 @@ export default class RecordsScreen extends React.Component {
         var NRIC = doc.data().NRIC;
         var accuracy = doc.data().accuracy;
         var completionTime = doc.data().completionTime;
-        var date = doc.data().date.toDate();
+        var date = doc.data().date; //var date = doc.data().date.toDate()
         var noOfErrors = doc.data().noOfErrors;
+        var test = doc.data(); // A = 123...25 B=1A2B...13
         // console.log(NRIC);
         // console.log(accuracy);
         // console.log(completionTime);
         // console.log(date);
         // console.log(noOfErrors);
-        var temp = [NRIC, accuracy, completionTime, date, noOfErrors];
+        var temp = [NRIC, accuracy, completionTime, date, noOfErrors, test];
         records.push(temp);
+        
         console.log(records);
       }) 
     })
-    
+    const renderData = records.map(i => <li>{i}</li>);
+
+
     return (
-      
+
       <View style={styles.container}>
       
-        
+        {renderData}
         
                  
         

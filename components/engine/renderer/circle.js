@@ -10,10 +10,10 @@ class Circle extends PureComponent {
     const x = this.props.position[0] - radius; // x position
     const y = this.props.position[1] - radius; // y position
     const color = this.props.backgroundColor; // colour of circle
-    const number = this.props.number; // number of circle to be show on circle
+    const string = this.props.string; // number of circle to be show on circle
     return (
       <View style={[styles.circle, { left: x, top: y, backgroundColor: color}]}>
-        <Text style={{left: radius/2, top: radius/2}}>{number}</Text>
+        <Text style={{left: radius/2, top: radius/2}}>{string}</Text>
       </View>
     );
   }

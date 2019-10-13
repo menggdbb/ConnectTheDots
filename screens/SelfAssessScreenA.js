@@ -1,6 +1,6 @@
 import * as WebBrowser from 'expo-web-browser';
 import React, {PureComponent} from 'react';
-import { AppRegistry, StyleSheet, StatusBar } from "react-native";
+import { StyleSheet, StatusBar } from "react-native";
 import { GameEngine } from "react-native-game-engine";
 import { TouchCircle } from "../components/engine/systems"
 import Entities from '../components/engine/entities'
@@ -20,14 +20,13 @@ export default class SelfAssessScreenA extends PureComponent {
 
   // to receive events from game engine
   onEvent = (e) => {
-    const {navigate} = this.props.navigation //LOOK AT THISSS
-    if (e.type === "game-over") {
+    const {navigate} = this.props.navigation
+    if (e.type === "finished") {
       this.setState({
         timing: e.timing,
         errors: e.errors
       })
-      navigate('SelfAssessResult') //I THINK IS THIS
-      console.log(this.state.timing + " " + this.state.errors)
+      navigate('SelfAssessResultA', {time: this.state.timing, error: this.state.errors})
     }
   }
   
@@ -36,7 +35,7 @@ export default class SelfAssessScreenA extends PureComponent {
       <GameEngine
         style={styles.container}
         systems={[TouchCircle]} 
-        entities={Entities()}
+        entities={Entities("A")}
         onEvent={this.onEvent}>
           <StatusBar hidden={false} />
       </GameEngine>
@@ -50,5 +49,3 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFF"
   },
 });
-
-AppRegistry.registerComponent("SelfAssessScreen", () => SelfAssessScreen);

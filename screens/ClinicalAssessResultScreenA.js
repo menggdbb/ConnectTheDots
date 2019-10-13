@@ -1,5 +1,8 @@
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
+import firebase from 'firebase'; //firebase
+import 'firebase/firestore';
+import Firebase from '../components/Firebase';
 import {
   Image,
   Button,
@@ -12,6 +15,8 @@ import {
   View,
 } from 'react-native';
 
+const db = Firebase.firestore();
+
 export default class ClinicalAssessResultScreenA extends React.Component {
   static navigationOptions = {
     title: 'Part A result'
@@ -21,13 +26,24 @@ export default class ClinicalAssessResultScreenA extends React.Component {
   }
 
   render(){
-    
-    var timeTaken = 46; //need this
+    var nric = this.props.navigation.getParam('nric', 'S1234567A');
+
+    var timeTaken = this.props.navigation.getParam('time', 40)/1000; //need this
     var timeSec = timeTaken%60;
     var timeMin = ((timeTaken+(60-timeSec))/60) - 1;
-    var numErr = 4; //and this
+    var numErr = this.props.navigation.getParam('error', 0); //and this
     var accuracy = 100 - ((numErr/(numErr+25))*100);
 
+    var date = Date(); //var date = Date.now();
+
+    db.collection('scores').add({
+      NRIC: nric,
+      accuracy: accuracy,
+      completionTime: timeTaken,
+      date: date,
+      noOfErrors: numErr,
+      test: 'A'
+    });
 
     const { navigate } = this.props.navigation;
     return (
@@ -35,7 +51,7 @@ export default class ClinicalAssessResultScreenA extends React.Component {
 
         <View style={styles.timeView}>
           <Text style={styles.timeText}>
-              {timeMin.toFixed(0)}:{timeSec} min
+              {timeMin.toFixed(0)}:{timeSec.toFixed(0)} min
           </Text>
           <View style={styles.label}>
             <Image 
@@ -80,7 +96,7 @@ export default class ClinicalAssessResultScreenA extends React.Component {
 
         <View style={{justifyContent: 'flex-end', flex: 1, marginTop: 40}}>
           <TouchableOpacity style={styles.continue}
-                onPress={() => navigate('ClinicalAssessB')}>
+                onPress={() => navigate('ClinicalAssessB', {nric: nric})}>
             <Text style={styles.continueText}>
                 Continue
             </Text>

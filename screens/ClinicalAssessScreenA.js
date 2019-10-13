@@ -1,37 +1,59 @@
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
-import {
-  Image,
-  Button,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { StyleSheet, StatusBar } from "react-native";
+import { GameEngine } from "react-native-game-engine";
+import { TouchCircle } from "../components/engine/systems"
+import Entities from '../components/engine/entities'
+import 'firebase/firestore';
 
 export default class ClinicalAssessScreenA extends React.Component {
   static navigationOptions = {
     title: 'Part A Assessment'
   };
-  
-  render(){
-    const { navigate } = this.props.navigation;
-    return (
-      <View style={styles.container}>
-        <View style={styles.title}>
-          <Text style={{fontWeight: 'bold', fontSize: 20}}>
-            Do your assessment here
-          </Text>
-          <Button style={{fontWeight: 'bold', fontSize: 20, marginBottom: 35}}
-                title="Check result"
-                onPress={() => navigate('ClinicalAssessResultA')}/>
-        </View>
 
-        
-                
-      </View>
+  constructor() {
+    super();
+    this.state = {
+      timing: 0, //timing for part A
+      errors: 0, //number of errors for part A
+    }
+  }
+
+  
+  // to receive events from game engine
+  onEvent = (e) => {
+    const {navigate} = this.props.navigation
+    var nric = this.props.navigation.getParam('nric', 'S1234567A');
+    if (e.type === "finished") {
+      this.setState({
+        timing: e.timing,
+        errors: e.errors
+      })
+      navigate('ClinicalAssessResultA', {nric: nric, time: this.state.timing, error: this.state.errors})
+    }
+  }
+
+  render(){
+    
+    // const { navigate } = this.props.navigation;
+    return (
+      // <View style={styles.container}>
+      //   <View style={styles.title}>
+      //     <Text style={{fontWeight: 'bold', fontSize: 20}}>
+      //       Do your assessment here
+      //     </Text>
+      //     <Button style={{fontWeight: 'bold', fontSize: 20, marginBottom: 35}}
+      //           title="Check result"
+      //           onPress={() => navigate('ClinicalAssessResultA', {nric: this.state.nric})}/>
+      //   </View>   
+      // </View>
+      <GameEngine
+        style={styles.container}
+        systems={[TouchCircle]} 
+        entities={Entities("A")}
+        onEvent={this.onEvent}>
+          <StatusBar hidden={false} />
+      </GameEngine>
     );
   }
 }

@@ -1,5 +1,7 @@
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
+import firebase from 'firebase'; //firebase
+import 'firebase/firestore';
 import {
   Button,
   Image,

@@ -86,7 +86,7 @@ export default class StaffScreen extends React.Component {
 
             
             <TouchableOpacity style={styles.options}
-                onPress={() => navigate('ClinicalAssessA', {nric2: this.state.nric2})}>
+                onPress={() => navigate('ClinicalAssessA', {nric: this.state.nric2})}>
               <Text style={styles.optionTextSmall}>
                   START
               </Text>
