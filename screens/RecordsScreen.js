@@ -34,7 +34,7 @@ import {
 
 export default class RecordsScreen extends React.Component {
   static navigationOptions = {
-    title: 'Home'
+    title: 'Previous Records'
   };
   state = {items: []};
 
@@ -45,34 +45,35 @@ export default class RecordsScreen extends React.Component {
     var recordMap = [];
 
     // Getting Data
-    db.collection('scores').where('NRIC', '==', nric).get().then((snapshot) => { //.orderBy('date')
+    db.collection('scores').where('NRIC', '==', nric).get().then((snapshot) => {
       snapshot.docs.forEach(doc => {
-        //console.log(doc.data())
         var NRIC = doc.data().NRIC;
         var accuracy = doc.data().accuracy;
         var completionTime = doc.data().completionTime;
         var date = doc.data().date; //var date = doc.data().date.toDate()
         var noOfErrors = doc.data().noOfErrors;
-        var test = doc.data(); // A = 123...25 B=1A2B...13
+        var test = doc.data().test; // A = 123...25, B=1A2B...13
         // console.log(NRIC);
         // console.log(accuracy);
         // console.log(completionTime);
         // console.log(date);
         // console.log(noOfErrors);
         var temp = [NRIC, accuracy, completionTime, date, noOfErrors, test];
-        records.push(temp);
+        records.push(doc.data());
         
         console.log(records);
       }) 
     })
-    const renderData = records.map(i => <li>{i}</li>);
+    
 
 
     return (
 
       <View style={styles.container}>
       
-        {renderData}
+        {records.map((item, key)=> (
+          <Text key={key}> { item.NRIC }, { item.accuracy } </Text>)
+        )}
         
                  
         

@@ -10,6 +10,8 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import renderIf from '../components/renderIf';
+
 
 export default class SelfAssessResultScreenB extends React.Component {
   static navigationOptions = {
@@ -71,6 +73,14 @@ export default class SelfAssessResultScreenB extends React.Component {
             </Text>
           </View>
         </View>    
+
+        {renderIf(timeTaken > 80)(
+          <View style={styles.input}>
+            <Text style={{fontWeight: 'bold', fontSize: 20}}>
+              WARNING, check with your doctor 
+            </Text>
+          </View>
+        )}
 
         <View style={{justifyContent: 'flex-end', flex: 1, marginTop: 40}}>
           <TouchableOpacity style={styles.continue}

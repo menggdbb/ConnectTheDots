@@ -1,7 +1,8 @@
 import React from 'react'
 import { Circle } from "./renderer/circle"
 import { Line } from "./renderer/line"
-import { NUMBER_OF_NODES, COLOUR_UNTOUCHED, STRING_PART_A, STRING_PART_B, TUTORIAL_NUMBER_OF_NODES, TUTORIAL_STRING_PART_A } from "./constants"
+import { TestText } from "./renderer/test-text"
+import { NUMBER_OF_NODES, COLOUR_UNTOUCHED, STRING_PART_A, STRING_PART_B, TUTORIAL_NUMBER_OF_NODES, TUTORIAL_STRING_PART_A, WIDTH, HEIGHT, CIRCLE_RADIUS, TUTORIAL_CIRCLE_RADIUS } from "./constants"
 import * as logic from "./creation-logic"
 
 let time_of_start = 0
@@ -12,16 +13,20 @@ export default (type) => {
   const lines = []
   let strings = []
   let numberOfNodes = 0
+  let radius = 0
 
   if (type == "A") {
     strings = STRING_PART_A
     numberOfNodes = NUMBER_OF_NODES
+    radius = CIRCLE_RADIUS
   } else if (type == "B") {
     strings = STRING_PART_B
     numberOfNodes = NUMBER_OF_NODES
+    radius = CIRCLE_RADIUS
   } else if (type == "TA") {
     strings = TUTORIAL_STRING_PART_A
     numberOfNodes = TUTORIAL_NUMBER_OF_NODES
+    radius = TUTORIAL_CIRCLE_RADIUS
   }
 
   let timeStart = new Date().getTime() 
@@ -30,24 +35,24 @@ export default (type) => {
     // generates a circle
     let circlePosition = []
     if (type == "A" || type == "B"){
-      circlePosition = logic.getPosition(i)
+      circlePosition = logic.getPosition(i, radius)
     } else {
-      circlePosition = [logic.randomX(), logic.randomY()]
+      circlePosition = [logic.randomX(radius), logic.randomY(radius)]
     }
-    circles[i] = { position: [circlePosition[0], circlePosition[1]], backgroundColor: COLOUR_UNTOUCHED, string: strings[i], renderer: <Circle />}
+    circles[i] = { position: [circlePosition[0], circlePosition[1]], backgroundColor: COLOUR_UNTOUCHED, string: strings[i], radius: radius, renderer: <Circle />}
 
     for (let j = 0; j < i; j++) {
       // checks if both circles have minimum distance
-      let hasMinDistance = logic.minDistance(circles[j].position[0], circles[j].position[1], circles[i].position[0], circles[i].position[1])
+      let hasMinDistance = logic.minDistance(circles[j].position[0], circles[j].position[1], circles[i].position[0], circles[i].position[1], radius)
       if (!hasMinDistance) {
         i-- // if circle less than minimum distance index of current array will regenrate new circle
         break
       }
       if (i > 1 && j < i-1) {
         // checks if generated circle overlaps with all lines
-        let circleTouchesLine = logic.lineTouchCircle(circles[j].position[0], circles[j].position[1], circles[j+1].position[0], circles[j+1].position[1], circles[i].position[0], circles[i].position[1])
+        let circleTouchesLine = logic.lineTouchCircle(circles[j].position[0], circles[j].position[1], circles[j+1].position[0], circles[j+1].position[1], circles[i].position[0], circles[i].position[1], radius)
         // checks if generated line overlaps with all circles
-        let lineTouchesCirle = logic.lineTouchCircle(circles[i-1].position[0], circles[i-1].position[1], circles[i].position[0], circles[i].position[1], circles[j].position[0], circles[j].position[1])
+        let lineTouchesCirle = logic.lineTouchCircle(circles[i-1].position[0], circles[i-1].position[1], circles[i].position[0], circles[i].position[1], circles[j].position[0], circles[j].position[1], radius)
         // checks if generated line intercepts with other lines
         let linesIntercepts = false
         if (j+1 != i-1) {
@@ -136,9 +141,16 @@ export default (type) => {
     {
       0 : lines[0],
       1 : lines[1],
-      2 : circles[0],
-      3 : circles[1],
-      4 : circles[2],
+      2 : lines[2],
+      3 : lines[3],
+      4 : lines[4],
+      5 : circles[0],
+      6 : circles[1],
+      7 : circles[2],
+      8 : circles[3],
+      9 : circles[4],
+      10 : circles[5],
+      // 5 : { text: 'width: ' + WIDTH + ', height: ' + HEIGHT, width: WIDTH, top: 0, renderer: <TestText />}
     }
   }
 

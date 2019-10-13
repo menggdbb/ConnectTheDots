@@ -24,25 +24,19 @@ export default class TutorialScreen extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <View style={styles.title}>
-          <Text style={{fontWeight: 'bold', fontSize: 20}}>
-            Here's the tutorial
-          </Text>
-        </View>
         <GameEngine
-          style={styles.container}
-          systems={[TutorialTouchCircle]} 
-          entities={Entities("TA")}
-          onEvent={this.onEvent}>
-          <StatusBar hidden={false} />
-      </GameEngine>
+            style={styles.container}
+            systems={[TutorialTouchCircle]} 
+            entities={Entities("TA")}
+            onEvent={this.onEvent}>
+            <StatusBar hidden={false} />
+        </GameEngine>
         <TouchableOpacity style={styles.button}
               onPress={() => navigate('SelfAssessA')}>
             <Text style={styles.buttonText}>
                 Proceed
             </Text>
-        </TouchableOpacity>
-                
+        </TouchableOpacity>   
       </View>
     );
   }

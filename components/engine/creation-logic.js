@@ -1,18 +1,18 @@
-import { WIDTH, HEIGHT, BOTTOM_BAR_PIXELS, CIRCLE_RADIUS, NODE_DISTANCE} from "./constants"
+import { WIDTH, HEIGHT, BOTTOM_BAR_PIXELS, NODE_DISTANCE_RATIO} from "./constants"
 import * as constants from "./constants"
 
 // generates random x using width of screen
-export const randomX = () => {
-    return CIRCLE_RADIUS + Math.floor(Math.random() * Math.floor(WIDTH - CIRCLE_RADIUS * 2))
+export const randomX = (radius) => {
+    return radius + Math.floor(Math.random() * Math.floor(WIDTH - radius * 2))
 }
   
 // generates random y using height of screen
-export const randomY = () => {
-  return CIRCLE_RADIUS + Math.floor(Math.random() * Math.floor(HEIGHT - CIRCLE_RADIUS * 2 - BOTTOM_BAR_PIXELS))
+export const randomY = (radius) => {
+  return radius + Math.floor(Math.random() * Math.floor(HEIGHT - radius * 2 - BOTTOM_BAR_PIXELS))
 }
 
 // returns a position of the circle 
-export const getPosition = (index) => {
+export const getPosition = (index, radius) => {
   const ratio1 = getLayerRatioMin(index)
   const ratio2 = getLayerRatioMax(index) 
   let xRatio = Math.random()
@@ -21,7 +21,7 @@ export const getPosition = (index) => {
     xRatio = Math.random()
     yRatio = Math.random()
   }
-    return [CIRCLE_RADIUS + Math.floor(xRatio * Math.floor(WIDTH - CIRCLE_RADIUS*2)), CIRCLE_RADIUS + Math.floor(yRatio * Math.floor(HEIGHT - CIRCLE_RADIUS*2 - BOTTOM_BAR_PIXELS))]
+    return [radius + Math.floor(xRatio * Math.floor(WIDTH - radius*2)), radius + Math.floor(yRatio * Math.floor(HEIGHT - radius*2 - BOTTOM_BAR_PIXELS))]
 }
 
 //left ratio limit of layers
@@ -55,27 +55,17 @@ const getLayerRatioMax = (index) => {
 }
 
 //checks if both circles have minimum distance
-export const minDistance = (x1, y1, x2, y2) => {
+export const minDistance = (x1, y1, x2, y2, radius) => {
   const length = Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
-  if (length > NODE_DISTANCE) {
+  if (length > NODE_DISTANCE_RATIO + radius*2) {
     return true
   } else {
     return false
   }
 }
- 
-// // checks if circle generated overlaps with a circle
-// export const circleOverlap = (x1, y1, x2, y2) => {
-//   const length = Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
-//   if (length < CIRCLE_RADIUS * 2) {
-//     return true
-//   } else {
-//     return false
-//   }
-// }
   
 //checks if the line touches the circle
-export const lineTouchCircle = (x1, y1, x2, y2, x3, y3) => {
+export const lineTouchCircle = (x1, y1, x2, y2, x3, y3, radius) => {
 
   // equation of line ax + by + c = 0
   const a = y2 - y1
@@ -84,7 +74,7 @@ export const lineTouchCircle = (x1, y1, x2, y2, x3, y3) => {
 
   //finding distance of line from circle
   let distance = Math.abs(a*x3 + b*y3 + c) / Math.sqrt(a*a + b*b)
-  if (distance <= CIRCLE_RADIUS) {
+  if (distance <= radius) {
     return true
   } else {
     return false

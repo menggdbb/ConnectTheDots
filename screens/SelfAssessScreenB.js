@@ -1,6 +1,6 @@
 import * as WebBrowser from 'expo-web-browser';
 import React, {PureComponent} from 'react';
-import { AppRegistry, StyleSheet, StatusBar } from "react-native";
+import { StyleSheet, StatusBar } from "react-native";
 import { GameEngine } from "react-native-game-engine";
 import { TouchCircle } from "../components/engine/systems"
 import Entities from '../components/engine/entities'
@@ -36,8 +36,8 @@ export default class SelfAssessScreenB extends PureComponent {
         style={styles.container}
         systems={[TouchCircle]} 
         entities={Entities("B")}
-        onEvent={this.onEvent}>}> 
-          <StatusBar hidden={false} />
+        onEvent={this.onEvent}> 
+          <StatusBar hidden={false}/>
       </GameEngine>
     );
   }
