@@ -35,7 +35,7 @@ export default () => {
     // generates a circle
     let circlePosition = []
     circlePosition = logic.getPosition(i)
-    circles[i] = { position: [circlePosition[0], circlePosition[1]], backgroundColor: COLOUR_UNTOUCHED, number: string[i], renderer: <Circle />}
+    circles[i] = { position: [circlePosition[0], circlePosition[1]], backgroundColor: COLOUR_UNTOUCHED, number: i+1, renderer: <Circle />}
 
     for (let j = 0; j < i; j++) {
       // checks if all circles overlaps with current generated circle

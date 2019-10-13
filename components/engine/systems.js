@@ -1,12 +1,11 @@
 import { NAVIGATION_BAR_PIXELS, NUMBER_OF_NODES, CIRCLE_RADIUS, COLOUR_TOUCHED } from "./constants"
 import { getTimeStart } from "./entities"
-import React from 'react';
 
 
 //counter for node to be pressed
 let counter = 0;
 
-const TouchCircle = (entities, { touches }) => {
+const TouchCircle = (entities, { touches, dispatch, events }) => {
     if (entities[24].backgroundColor != COLOUR_TOUCHED && counter != 0) {
       counter = 0
     }   
@@ -25,8 +24,11 @@ const TouchCircle = (entities, { touches }) => {
                 if (counter == i) {
                   // last node pressed
                   if (counter == 24){
-                    console.log(new Date().getTime() - getTimeStart())
-                    navigate('Tutorial')
+                    dispatch({
+                      type: "game-over",
+                      timing: new Date().getTime() - getTimeStart(),
+                      errors: 4
+                    })
                   }
                   circle.backgroundColor = COLOUR_TOUCHED
                   counter++
