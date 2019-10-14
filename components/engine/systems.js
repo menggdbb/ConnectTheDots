@@ -61,7 +61,7 @@ const TouchCircle = (entities, { touches, dispatch }) => {
     return entities;
   };
 
-  const TutorialTouchCircle = (entities, { touches }) => {
+  const TutorialTouchCircle = (entities, { touches, dispatch }) => {
     // if reseted
     if (entities[TUTORIAL_NUMBER_OF_NODES-1].backgroundColor != COLOUR_TOUCHED && tutorialCounter != 0) {
       tutorialCounter = 0
@@ -69,8 +69,6 @@ const TouchCircle = (entities, { touches, dispatch }) => {
     // if circle is touched
     touches.filter(t => t.type === "press").forEach(t => {
         let touchOrigin = [t.event.pageX, t.event.pageY]; //position finger pressed
-
-        entities[5].text = 'x: ' + touchOrigin[0] + ', y: ' + touchOrigin[1];
   
         for (let i = 0; i < TUTORIAL_NUMBER_OF_NODES; i++) {
             let circle = entities[i+TUTORIAL_NUMBER_OF_NODES-1]; 
@@ -84,6 +82,17 @@ const TouchCircle = (entities, { touches, dispatch }) => {
                 if (tutorialCounter == i) {                  
                   circle.backgroundColor = COLOUR_TOUCHED
                   tutorialCounter++
+                  if (tutorialCounter == TUTORIAL_NUMBER_OF_NODES) {
+                    dispatch({
+                      type: "last",
+                      text: "Tutorial completed good job!",
+                    })
+                  } else {
+                    dispatch({
+                      type: "correct",
+                      text: "Good! Next one",
+                    })
+                  }
   
                   // if there are circles pressed wrongly, resetted
                   for (j = tutorialCounter; j < TUTORIAL_NUMBER_OF_NODES; j++){
@@ -99,6 +108,10 @@ const TouchCircle = (entities, { touches, dispatch }) => {
                 } else if (i > tutorialCounter) {
                   //TODO feedback for wrong circle
                   circle.backgroundColor = COLOUR_WRONG
+                  dispatch({
+                    type: "wrong",
+                    text: "Try again!",
+                  })
                 }
             }
         }
