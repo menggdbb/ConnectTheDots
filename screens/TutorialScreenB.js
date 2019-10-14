@@ -15,7 +15,7 @@ export default class TutorialScreenB extends React.Component {
   static navigationOptions = {
     title: 'Tutorial part B'
   };
-  
+
   render(){
     const { navigate } = this.props.navigation;
     return (
@@ -36,7 +36,6 @@ export default class TutorialScreenB extends React.Component {
     );
   }
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
