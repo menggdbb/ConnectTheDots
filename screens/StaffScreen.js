@@ -25,7 +25,7 @@ export default class StaffScreen extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <View style={styles.part}> 
+        {/* <View style={styles.part}> 
           <TouchableOpacity style={styles.optionsBlue}
               onPress={() => this.setState({
                 show: !this.state.show
@@ -58,7 +58,7 @@ export default class StaffScreen extends React.Component {
             </TouchableOpacity>
             </View>
           </View>
-        )}
+        )} */}
 
         <View style={styles.part}> 
           <TouchableOpacity style={styles.optionsBlue}

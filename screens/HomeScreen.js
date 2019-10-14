@@ -56,7 +56,7 @@ export default class HomeScreen extends React.Component {
         </View>
 
         
-        <View style = {styles.backgroundContainer}>
+        {/* <View style = {styles.backgroundContainer}>
           <Image
             style={{opacity: this.state.imgOpacity, width: Dimensions.get('window').width, height: 190}}
             resizeMode = 'contain'
@@ -72,7 +72,7 @@ export default class HomeScreen extends React.Component {
                 huehehehehe
             </Text>
         </TouchableOpacity>  
-        
+         */}
         
       </View>
     );

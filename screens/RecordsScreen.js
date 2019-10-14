@@ -40,7 +40,7 @@ export default class RecordsScreen extends React.Component {
   state = {items: []};
 
   // componentDidMount(){
-  //   var records = [];
+  //   const records = [];
   //   const nric = this.props.navigation.getParam('nric', 'S1234567A');
   //   // Getting Data
   //   db.collection('scores').where('NRIC', '==', nric).get().then((snapshot) => {
@@ -71,13 +71,37 @@ export default class RecordsScreen extends React.Component {
 
     console.log('qweeqweqweqwe');
     console.log(records);
+  
     
 
-    
+    CallFromDB=()=>{
+      const records = [];
+      const nric = this.props.navigation.getParam('nric', 'S1234567A');
+      // Getting Data
+      db.collection('scores').where('NRIC', '==', nric).get().then((snapshot) => {
+        snapshot.docs.forEach(doc => {
+          var NRIC = doc.data().NRIC;
+          var accuracy = doc.data().accuracy;
+          var completionTime = doc.data().completionTime;
+          var date = doc.data().date; //var date = doc.data().date.toDate()
+          var noOfErrors = doc.data().noOfErrors;
+          var test = doc.data().test; // A = 123...25, B=1A2B...13
+          // console.log(NRIC);
+          // console.log(accuracy);
+          // console.log(completionTime);
+          // console.log(date);
+          // console.log(noOfErrors);
+          var temp = [NRIC, accuracy, completionTime, date, noOfErrors, test];
+          
+          records.push(temp);
+          console.log(records);
+        }) 
+      })
+    }
     
 
-    // const renderData = records.map((record) =>
-    //   record.map((item) =>
+    // const renderData = records.map((records) =>
+    //   records.map((item) =>
     //     <Text>
     //       {item}
     //     </Text>
@@ -93,7 +117,8 @@ export default class RecordsScreen extends React.Component {
     return (
 
       <View style={styles.container}>
-      
+      <Text>{this.CallFromDB}</Text>
+      <Text>Testing</Text>
                
                  
         
