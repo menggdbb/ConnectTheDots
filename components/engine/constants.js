@@ -4,7 +4,7 @@ import { Dimensions } from "react-native"
 export const NAVIGATION_BAR_PIXELS = 80;
 export const BOTTOM_BAR_PIXELS = 85;
 export const { width: WIDTH, height: HEIGHT } = Dimensions.get("window");
-export const TUTORIAL_BOTTOM_MARGIN = 100;
+export const TUTORIAL_BOTTOM_MARGIN = 150;
 
 //number of nodes
 export const NUMBER_OF_NODES = 25;

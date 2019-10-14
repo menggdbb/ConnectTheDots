@@ -81,6 +81,13 @@ export default class SelfAssessResultScreenB extends React.Component {
             </Text>
           </View>
         )}
+        {renderIf(timeTaken <= 273)(
+          <View style={styles.input}>
+            <Text style={{fontWeight: 'bold', fontSize: 20}}>
+              You are under the normal range 
+            </Text>
+          </View>
+        )}
 
         <View style={{justifyContent: 'flex-end', flex: 1, marginTop: 40}}>
           <TouchableOpacity style={styles.continue}
