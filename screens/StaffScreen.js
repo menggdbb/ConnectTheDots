@@ -51,7 +51,7 @@ export default class StaffScreen extends React.Component {
 
             
             <TouchableOpacity style={styles.options}
-                onPress={() => navigate('Records', {nric: this.state.nric})}>
+                onPress={() => navigate('Loading', {nric: this.state.nric})}>
               <Text style={styles.optionTextSmall}>
                   SEARCH
               </Text>

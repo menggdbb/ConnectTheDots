@@ -16,6 +16,7 @@ import TutorialScreen from '../screens/TutorialScreen';
 import TutorialScreenB from '../screens/TutorialScreenB';
 import StaffScreen  from '../screens/StaffScreen';
 import RecordsScreen from '../screens/RecordsScreen';
+import LoadingScreen from '../screens/LoadingScreen';
 
 
 const Project = createStackNavigator({
@@ -61,6 +62,9 @@ const Project = createStackNavigator({
   TutorialB: {
     screen: TutorialScreenB,
   },
+  Loading: {
+    screen: LoadingScreen,
+  }
 });
 
 export default createAppContainer(Project);
