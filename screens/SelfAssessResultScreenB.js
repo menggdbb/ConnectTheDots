@@ -74,10 +74,17 @@ export default class SelfAssessResultScreenB extends React.Component {
           </View>
         </View>    
 
-        {renderIf(timeTaken > 80)(
+        {renderIf(timeTaken > 273)(
           <View style={styles.input}>
             <Text style={{fontWeight: 'bold', fontSize: 20}}>
               WARNING, check with your doctor 
+            </Text>
+          </View>
+        )}
+        {renderIf(timeTaken <= 273)(
+          <View style={styles.input}>
+            <Text style={{fontWeight: 'bold', fontSize: 20}}>
+              You are under the normal range 
             </Text>
           </View>
         )}

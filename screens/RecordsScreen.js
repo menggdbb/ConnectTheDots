@@ -30,6 +30,22 @@ import {
 // firebase.initializeApp(firebaseConfig);
 const db = Firebase.firestore();
 
+<<<<<<< HEAD
+=======
+//import renderRecords from '../components/renderRecords';
+import {
+  Button,
+  Image,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+  Dimensions
+} from 'react-native';
+>>>>>>> 80000f20cd24ebbd084b2e3c0825e98af07452d5
 
 export default class RecordsScreen extends React.Component {
   static navigationOptions = {
@@ -37,43 +53,87 @@ export default class RecordsScreen extends React.Component {
   };
   state = {items: []};
 
+  // componentDidMount(){
+  //   const records = [];
+  //   const nric = this.props.navigation.getParam('nric', 'S1234567A');
+  //   // Getting Data
+  //   db.collection('scores').where('NRIC', '==', nric).get().then((snapshot) => {
+  //     snapshot.docs.forEach(doc => {
+  //       var NRIC = doc.data().NRIC;
+  //       var accuracy = doc.data().accuracy;
+  //       var completionTime = doc.data().completionTime;
+  //       var date = doc.data().date; //var date = doc.data().date.toDate()
+  //       var noOfErrors = doc.data().noOfErrors;
+  //       var test = doc.data().test; // A = 123...25, B=1A2B...13
+  //       // console.log(NRIC);
+  //       // console.log(accuracy);
+  //       // console.log(completionTime);
+  //       // console.log(date);
+  //       // console.log(noOfErrors);
+  //       var temp = [NRIC, accuracy, completionTime, date, noOfErrors, test];
+        
+  //       records.push(temp);
+  //       console.log(records);
+  //     }) 
+  //   })
+  // }
+
   render(){
     const { navigate } = this.props.navigation;
-    const nric = this.props.navigation.getParam('nric', 'S1234567A');
-    var records = [];
-    var recordMap = [];
+    
+    const records =  this.props.navigation.getParam('records', 0);
 
-    // Getting Data
-    db.collection('scores').where('NRIC', '==', nric).get().then((snapshot) => {
-      snapshot.docs.forEach(doc => {
-        var NRIC = doc.data().NRIC;
-        var accuracy = doc.data().accuracy;
-        var completionTime = doc.data().completionTime;
-        var date = doc.data().date; //var date = doc.data().date.toDate()
-        var noOfErrors = doc.data().noOfErrors;
-        var test = doc.data().test; // A = 123...25, B=1A2B...13
-        // console.log(NRIC);
-        // console.log(accuracy);
-        // console.log(completionTime);
-        // console.log(date);
-        // console.log(noOfErrors);
-        var temp = [NRIC, accuracy, completionTime, date, noOfErrors, test];
-        records.push(doc.data());
-        
-        console.log(records);
-      }) 
-    })
+    console.log('qweeqweqweqwe');
+    console.log(records);
+  
     
 
+    CallFromDB=()=>{
+      const records = [];
+      const nric = this.props.navigation.getParam('nric', 'S1234567A');
+      // Getting Data
+      db.collection('scores').where('NRIC', '==', nric).get().then((snapshot) => {
+        snapshot.docs.forEach(doc => {
+          var NRIC = doc.data().NRIC;
+          var accuracy = doc.data().accuracy;
+          var completionTime = doc.data().completionTime;
+          var date = doc.data().date; //var date = doc.data().date.toDate()
+          var noOfErrors = doc.data().noOfErrors;
+          var test = doc.data().test; // A = 123...25, B=1A2B...13
+          // console.log(NRIC);
+          // console.log(accuracy);
+          // console.log(completionTime);
+          // console.log(date);
+          // console.log(noOfErrors);
+          var temp = [NRIC, accuracy, completionTime, date, noOfErrors, test];
+          
+          records.push(temp);
+          console.log(records);
+        }) 
+      })
+    }
+    
+
+    // const renderData = records.map((records) =>
+    //   records.map((item) =>
+    //     <Text>
+    //       {item}
+    //     </Text>
+    //   )
+    // );
+      
+    // {renderData}
+    console.log('records');
+
+    //const form = ['First Name', 'Last Name', 'Phone', 'Email', 'Etc']
+    //const textInputComponents = form.map((item)=> <TextInput placeholder={item} />);
 
     return (
 
       <View style={styles.container}>
-      
-        {records.map((item, key)=> (
-          <Text key={key}> { item.NRIC }, { item.accuracy } </Text>)
-        )}
-        
+      <Text>{this.CallFromDB}</Text>
+      <Text>Testing</Text>
+               
                  
         
       </View>
