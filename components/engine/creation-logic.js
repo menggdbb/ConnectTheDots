@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import { WIDTH, HEIGHT, BOTTOM_BAR_PIXELS, NODE_DISTANCE_RATIO, TUTORIAL_BOTTOM_MARGIN} from "./constants"
-=======
-import { WIDTH, HEIGHT, BOTTOM_BAR_PIXELS, NODE_DISTANCE_RATIO,TUTORIAL_BOTTOM_MARGIN} from "./constants"
->>>>>>> 80000f20cd24ebbd084b2e3c0825e98af07452d5
+import { WIDTH, HEIGHT, BOTTOM_BAR_PIXELS, NODE_DISTANCE_RATIO,TUTORIAL_BOTTOM_MARGIN } from "./constants"
 import * as constants from "./constants"
 
 // generates random x using width of screen
@@ -12,11 +8,7 @@ export const randomX = (radius) => {
   
 // generates random y using height of screen
 export const randomY = (radius) => {
-<<<<<<< HEAD
   return radius + Math.floor(Math.random() * Math.floor(HEIGHT - radius * 2 - BOTTOM_BAR_PIXELS - TUTORIAL_BOTTOM_MARGIN))
-=======
-  return radius + Math.floor(Math.random() * Math.floor(HEIGHT - radius * 2 - BOTTOM_BAR_PIXELS-constants.TUTORIAL_BOTTOM_MARGIN))
->>>>>>> 80000f20cd24ebbd084b2e3c0825e98af07452d5
 }
 
 // returns a position of the circle 

@@ -30,8 +30,6 @@ import {
 // firebase.initializeApp(firebaseConfig);
 const db = Firebase.firestore();
 
-<<<<<<< HEAD
-=======
 //import renderRecords from '../components/renderRecords';
 import {
   Button,
@@ -45,7 +43,6 @@ import {
   View,
   Dimensions
 } from 'react-native';
->>>>>>> 80000f20cd24ebbd084b2e3c0825e98af07452d5
 
 export default class RecordsScreen extends React.Component {
   static navigationOptions = {

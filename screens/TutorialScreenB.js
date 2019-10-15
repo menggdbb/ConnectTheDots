@@ -19,7 +19,6 @@ export default class TutorialScreenB extends React.Component {
   static navigationOptions = {
     title: 'Tutorial part B'
   };
-<<<<<<< HEAD
 
   constructor() {
     super();
@@ -29,8 +28,6 @@ export default class TutorialScreenB extends React.Component {
   }
 
   // to receive events from game engine
-=======
->>>>>>> 80000f20cd24ebbd084b2e3c0825e98af07452d5
   onEvent = (e) => {
     if (e.type === "correct") {
       this.setState({
@@ -46,11 +43,6 @@ export default class TutorialScreenB extends React.Component {
       })
     }
   }
-<<<<<<< HEAD
-  
-=======
-
->>>>>>> 80000f20cd24ebbd084b2e3c0825e98af07452d5
   render(){
     const { navigate } = this.props.navigation;
     return (
@@ -63,11 +55,7 @@ export default class TutorialScreenB extends React.Component {
             <StatusBar hidden={false} />
         </GameEngine>
         <Text style={styles.tutorialText}>
-<<<<<<< HEAD
-            {this.state.text}
-=======
           {this.state.text}
->>>>>>> 80000f20cd24ebbd084b2e3c0825e98af07452d5
         </Text>
         <TouchableOpacity style={styles.button}
               onPress={() => navigate('SelfAssessB')}>
