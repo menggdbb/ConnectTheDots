@@ -31,18 +31,6 @@ import {
 const db = Firebase.firestore();
 
 //import renderRecords from '../components/renderRecords';
-import {
-  Button,
-  Image,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-  Dimensions
-} from 'react-native';
 
 export default class RecordsScreen extends React.Component {
   static navigationOptions = {
