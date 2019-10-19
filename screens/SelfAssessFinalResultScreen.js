@@ -12,31 +12,40 @@ import {
 } from 'react-native';
 import renderIf from '../components/renderIf';
 
-
-export default class SelfAssessResultScreenB extends React.Component {
+export default class SelfAssessFinalResultScreen extends React.Component {
   static navigationOptions = {
-    title: 'Part B Result'
+    title: 'Summary'
   };
   
   render(){
-    var timeTaken = this.props.navigation.getParam('time', 40)/1000; //need this
-    var timeSec = timeTaken%60;
-    var timeMin = ((timeTaken+(60-timeSec))/60) - 1;
-    var numErr = this.props.navigation.getParam('error', 0); //and this
-    var accuracy = 100 - ((numErr/(numErr+25))*100);
+    var timeTakenA = this.props.navigation.getParam('timeA', 40); //need this
+    var timeSecA = timeTakenA%60;
+    var timeMinA = ((timeTakenA+(60-timeSecA))/60) - 1;
+    var numErrA = this.props.navigation.getParam('errorA', 0); //and this
+    var accuracyA = 100 - ((numErrA/(numErrA+25))*100);
 
-    var timeA =  this.props.navigation.getParam('timeA', 0);
-    var errorA = this.props.navigation.getParam('errorA', 0);
-    console.log(timeTaken, numErr, timeA, errorA);
+    var timeTakenB = this.props.navigation.getParam('timeB', 40);
+    var timeSecB = timeTakenB%60;
+    var timeMinB = ((timeTakenB+(60-timeSecB))/60) - 1;
+    var numErrB = this.props.navigation.getParam('errorB', 0); 
+    var accuracyB = 100 - ((numErrB/(numErrB+25))*100);
+    
 
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
 
         <View style={styles.timeView}>
-          <Text style={styles.timeText}>
-              {timeMin.toFixed(0)}:{timeSec.toFixed(0)} min
-          </Text>
+
+          <View style={styles.side}>
+            <Text style={styles.timeText}>
+                {timeMinA.toFixed(0)}:{timeSecA.toFixed(0)} min
+            </Text>
+            <Text style={styles.timeText}>
+                {timeMinB.toFixed(0)}:{timeSecB.toFixed(0)} min
+            </Text>
+          </View>
+
           <View style={styles.label}>
             <Image 
               source={ require('../assets/images/time.png')}
@@ -50,7 +59,7 @@ export default class SelfAssessResultScreenB extends React.Component {
 
         <View style={styles.accuracyView}>
           <Text style={styles.accuracyText}>
-              {accuracy.toFixed(2)}%
+              {accuracyA.toFixed(2)}%
           </Text>
           <View style={styles.label}>
             <Image 
@@ -65,7 +74,7 @@ export default class SelfAssessResultScreenB extends React.Component {
 
         <View style={styles.errorView}>
           <Text style={styles.errorText}>
-              {numErr}
+              {numErrA}
           </Text>
           <View style={styles.label}>
             <Image 
@@ -78,14 +87,14 @@ export default class SelfAssessResultScreenB extends React.Component {
           </View>
         </View>    
 
-        {renderIf(timeTaken > 273)(
+        {renderIf(timeTaken > 78)(
           <View style={styles.input}>
             <Text style={{fontWeight: 'bold', fontSize: 20}}>
               WARNING, check with your doctor 
             </Text>
           </View>
         )}
-        {renderIf(timeTaken <= 273)(
+        {renderIf(timeTaken <= 78)(
           <View style={styles.input}>
             <Text style={{fontWeight: 'bold', fontSize: 20}}>
               You are under the normal range 
@@ -95,9 +104,9 @@ export default class SelfAssessResultScreenB extends React.Component {
 
         <View style={{justifyContent: 'flex-end', flex: 1, marginTop: 40}}>
           <TouchableOpacity style={styles.continue}
-                onPress={() => navigate('SelfAssessFinalResult', {timeB: timeTaken, errorB: numErr, timeA: timeA, errorA: errorA})}>
+                onPress={() => navigate('Home')}>
             <Text style={styles.continueText}>
-                Summary
+                Home
             </Text>
           </TouchableOpacity>
         </View>
@@ -132,6 +141,9 @@ const styles = StyleSheet.create({
     height: 24,
     resizeMode: 'contain',
     marginLeft: 40
+  },
+  side: {
+    flexDirection:'row'
   },
   timeView: {
     flex: 4,

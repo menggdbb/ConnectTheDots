@@ -24,6 +24,8 @@ export default class SelfAssessResultScreenA extends React.Component {
     var numErr = this.props.navigation.getParam('error', 0); //and this
     var accuracy = 100 - ((numErr/(numErr+25))*100);
 
+    console.log(timeTaken, numErr);
+
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
@@ -90,7 +92,7 @@ export default class SelfAssessResultScreenA extends React.Component {
 
         <View style={{justifyContent: 'flex-end', flex: 1, marginTop: 40}}>
           <TouchableOpacity style={styles.continue}
-                onPress={() => navigate('TutorialB')}>
+                onPress={() => navigate('TutorialB', {timeA: timeTaken, errorA: numErr})}>
             <Text style={styles.continueText}>
                 Continue
             </Text>

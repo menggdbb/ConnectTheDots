@@ -12,6 +12,7 @@ import SelfAssessScreenA from '../screens/SelfAssessScreenA';
 import SelfAssessScreenB from '../screens/SelfAssessScreenB';
 import SelfAssessResultScreenA from '../screens/SelfAssessResultScreenA';
 import SelfAssessResultScreenB from '../screens/SelfAssessResultScreenB';
+import SelfAssessFinalResultScreen from '../screens/SelfAssessFinalResultScreen';
 import TutorialScreen from '../screens/TutorialScreen';
 import TutorialScreenB from '../screens/TutorialScreenB';
 import StaffScreen  from '../screens/StaffScreen';
@@ -56,6 +57,9 @@ const Project = createStackNavigator({
   SelfAssessResultB: {
     screen: SelfAssessResultScreenB,
   }, 
+  SelfAssessFinalResult: {
+    screen: SelfAssessFinalResultScreen
+  },
   Tutorial: {
     screen: TutorialScreen,
   },

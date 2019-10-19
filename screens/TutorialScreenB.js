@@ -45,6 +45,8 @@ export default class TutorialScreenB extends React.Component {
   }
   render(){
     const { navigate } = this.props.navigation;
+    var timeA =  this.props.navigation.getParam('timeA', 0);
+    var errorA = this.props.navigation.getParam('errorA', 0);
     return (
       <View style={styles.container}>
         <GameEngine
@@ -58,7 +60,7 @@ export default class TutorialScreenB extends React.Component {
           {this.state.text}
         </Text>
         <TouchableOpacity style={styles.button}
-              onPress={() => navigate('SelfAssessB')}>
+              onPress={() => navigate('SelfAssessB', {timeA: timeA, errorA: errorA})}>
             <Text style={styles.buttonText}>
                 Proceed
             </Text>

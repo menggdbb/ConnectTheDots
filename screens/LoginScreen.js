@@ -63,10 +63,10 @@ export default class LoginScreen extends React.Component {
                 </Text>
               </TouchableOpacity>
 
-              {/* <Button style={{fontWeight: 'bold', fontSize: 20, marginBottom: 35}}
+              <Button style={{fontWeight: 'bold', fontSize: 20, marginBottom: 35}}
                   title="Login"
                   onPress={() => navigate('Staff')}
-                  /> */}
+                  />
               </View>
           </View>
 
