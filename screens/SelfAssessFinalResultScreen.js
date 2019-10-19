@@ -35,7 +35,17 @@ export default class SelfAssessFinalResultScreen extends React.Component {
     return (
       <View style={styles.container}>
 
+        <View style={{flex: 1, flexDirection: 'row'}}>
+          <Text style={{flex: 1, textAlign: 'center', fontSize: 20}}>
+              A
+          </Text>
+          <Text style={{flex: 1, textAlign: 'center', fontSize: 20}}>
+              B
+          </Text>
+        </View>
+
         <View style={styles.timeView}>
+
 
           <View style={styles.side}>
             <Text style={styles.timeText}>
@@ -58,9 +68,16 @@ export default class SelfAssessFinalResultScreen extends React.Component {
         </View>
 
         <View style={styles.accuracyView}>
-          <Text style={styles.accuracyText}>
-              {accuracyA.toFixed(2)}%
-          </Text>
+
+          <View style={styles.side}>
+            <Text style={styles.accuracyText}>
+                {accuracyA.toFixed(2)}%
+            </Text>
+            <Text style={styles.accuracyText}>
+                {accuracyB.toFixed(2)}%
+            </Text>
+          </View>
+
           <View style={styles.label}>
             <Image 
               source={ require('../assets/images/accuracy.png')}
@@ -73,9 +90,16 @@ export default class SelfAssessFinalResultScreen extends React.Component {
         </View>
 
         <View style={styles.errorView}>
-          <Text style={styles.errorText}>
-              {numErrA}
-          </Text>
+
+          <View style={styles.side}>
+            <Text style={styles.errorText}>
+                {numErrA}
+            </Text>
+            <Text style={styles.errorText}>
+                {numErrB}
+            </Text>
+          </View>
+
           <View style={styles.label}>
             <Image 
               source={ require('../assets/images/mistake.png')}
@@ -86,21 +110,6 @@ export default class SelfAssessFinalResultScreen extends React.Component {
             </Text>
           </View>
         </View>    
-
-        {renderIf(timeTaken > 78)(
-          <View style={styles.input}>
-            <Text style={{fontWeight: 'bold', fontSize: 20}}>
-              WARNING, check with your doctor 
-            </Text>
-          </View>
-        )}
-        {renderIf(timeTaken <= 78)(
-          <View style={styles.input}>
-            <Text style={{fontWeight: 'bold', fontSize: 20}}>
-              You are under the normal range 
-            </Text>
-          </View>
-        )}
 
         <View style={{justifyContent: 'flex-end', flex: 1, marginTop: 40}}>
           <TouchableOpacity style={styles.continue}
@@ -140,10 +149,13 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 24,
     resizeMode: 'contain',
+    alignSelf: 'flex-end',
     marginLeft: 40
   },
   side: {
-    flexDirection:'row'
+    flex: 3,
+    flexDirection:'row', 
+    alignItems: 'center',
   },
   timeView: {
     flex: 4,
@@ -161,9 +173,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   timeText: {
+    flex: 1,
     backgroundColor: '#32CD32',
     color: '#ffffff',
-    alignSelf: 'center',
     textAlign: 'center',
     fontSize: 24,
     padding: 20,
@@ -171,6 +183,8 @@ const styles = StyleSheet.create({
     height: 120,
     borderRadius: 60,
     marginBottom: 10,
+    marginLeft: 20,
+    marginRight: 20,
     borderColor: 'black',
     borderWidth: 1,
     textShadowColor: '#000000',
@@ -178,6 +192,7 @@ const styles = StyleSheet.create({
     textShadowRadius: 4,
   },
   accuracyText: {
+    flex: 1,
     backgroundColor: '#0080FF',
     color: '#ffffff',
     alignSelf: 'center',
@@ -189,6 +204,8 @@ const styles = StyleSheet.create({
     height: 120,
     borderRadius: 60,
     marginBottom: 10,
+    marginLeft: 20,
+    marginRight: 20,
     borderColor: 'black',
     borderWidth: 1,
     textShadowColor: '#000000',
@@ -196,6 +213,7 @@ const styles = StyleSheet.create({
     textShadowRadius: 4,
   },
   errorText: {
+    flex: 1,
     backgroundColor: '#6D0101',
     color: '#ffffff',
     alignSelf: 'center',
@@ -206,6 +224,8 @@ const styles = StyleSheet.create({
     height: 120,
     borderRadius: 60,
     marginBottom: 10,
+    marginLeft: 20,
+    marginRight: 20,
     borderColor: 'black',
     borderWidth: 1,
     textShadowColor: '#000000',
