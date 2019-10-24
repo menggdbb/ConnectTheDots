@@ -21,13 +21,15 @@ export default class ClinicalAssessScreenB extends React.Component {
   // to receive events from game engine
   onEvent = (e) => {
     const {navigate} = this.props.navigation
+    var timeA =  this.props.navigation.getParam('timeA', 0);
+    var errorA = this.props.navigation.getParam('errorA', 0);
     var nric = this.props.navigation.getParam('nric', 'S1234567A');
     if (e.type === "finished") {
       this.setState({
         timing: e.timing,
         errors: e.errors
       })
-      navigate('ClinicalAssessResultB', {nric: nric, time: this.state.timing, error: this.state.errors})
+      navigate('ClinicalAssessResultB', {nric: nric, time: this.state.timing, error: this.state.errors, timeA: timeA, errorA: errorA})
     }
   }
   

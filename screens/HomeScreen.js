@@ -13,12 +13,14 @@ import {
   View,
   Dimensions
 } from 'react-native';
+import renderIf from '../components/renderIf';
+
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     title: 'Home'
   };
-  state = {imgOpacity: 0, textColor: "#ffffff"}
+  state = {imgOpacity: 0, textColor: "#ffffff", count: 0}
 
   
   render(){
@@ -29,8 +31,10 @@ export default class HomeScreen extends React.Component {
       
         <TouchableOpacity style={styles.title}
           onPress={() => this.setState({
-            imgOpacity: 0,
-            textColor: "#ffffff" })}>
+            count: this.state.count+1,
+            // imgOpacity: 0,
+            // textColor: "#ffffff" 
+            })}>
           <Image 
             source={ require('../assets/images/title.png')}
             style={styles.titleImage}
@@ -40,9 +44,9 @@ export default class HomeScreen extends React.Component {
         <View style={styles.menu}>
 
           <TouchableOpacity style={styles.optionsBlue}
-              onPress={() => navigate('Tutorial')}>
+              onPress={() => navigate('Tutorial')}> 
             <Text style={styles.optionText}>
-                Self Assessment
+                Self Assessment 
             </Text>
           </TouchableOpacity>
 
@@ -56,23 +60,19 @@ export default class HomeScreen extends React.Component {
         </View>
 
         
-        {/* <View style = {styles.backgroundContainer}>
-          <Image
-            style={{opacity: this.state.imgOpacity, width: Dimensions.get('window').width, height: 190}}
-            resizeMode = 'contain'
-            source={require('../assets/images/hehe.png')}
-          />
-        </View>
+        {renderIf(this.state.count > 5)(
         <TouchableOpacity style={styles.huehehehehe}
-              onPress={() => this.setState({
-                imgOpacity: 1,
-                textColor: "#000000"
-                })}>
-            <Text style={{color: this.state.textColor}}>
-                huehehehehe
-            </Text>
+          onPress={() => this.setState({
+            count: 0})}>
+          <View style = {styles.backgroundContainer}>
+            <Image
+              style={{width: Dimensions.get('window').width, height: 190}}
+              resizeMode = 'contain'
+              source={require('../assets/images/hehe.png')}
+            />
+          </View>
         </TouchableOpacity>  
-         */}
+        )}
         
       </View>
     );

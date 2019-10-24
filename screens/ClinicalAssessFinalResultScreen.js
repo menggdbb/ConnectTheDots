@@ -1,8 +1,5 @@
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
-import firebase from 'firebase'; //firebase
-import 'firebase/firestore';
-import Firebase from '../components/Firebase';
 import {
   Image,
   Button,
@@ -10,49 +7,55 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
+import renderIf from '../components/renderIf';
 
-const db = Firebase.firestore();
-
-export default class ClinicalAssessResultScreenA extends React.Component {
+export default class ClinicalAssessFinalResultScreen extends React.Component {
   static navigationOptions = {
-    title: 'Part A result'
+    title: 'Summary'
   };
-  state = {
-    text: ''
-  }
-
+  
   render(){
-    var nric = this.props.navigation.getParam('nric', 'S1234567A');
+    var timeTakenA = this.props.navigation.getParam('timeA', 40); //need this
+    var timeSecA = timeTakenA%60;
+    var timeMinA = ((timeTakenA+(60-timeSecA))/60) - 1;
+    var numErrA = this.props.navigation.getParam('errorA', 0); //and this
+    var accuracyA = 100 - ((numErrA/(numErrA+25))*100);
 
-    var timeTaken = this.props.navigation.getParam('time', 40)/1000; //need this
-    var timeSec = timeTaken%60;
-    var timeMin = ((timeTaken+(60-timeSec))/60) - 1;
-    var numErr = this.props.navigation.getParam('error', 0); //and this
-    var accuracy = 100 - ((numErr/(numErr+25))*100);
-
-    var date = Date(); //var date = Date.now();
-
-    db.collection('scores').add({
-      NRIC: nric,
-      accuracy: accuracy,
-      completionTime: timeTaken,
-      date: date,
-      noOfErrors: numErr,
-      test: 'A'
-    });
+    var timeTakenB = this.props.navigation.getParam('timeB', 40);
+    var timeSecB = timeTakenB%60;
+    var timeMinB = ((timeTakenB+(60-timeSecB))/60) - 1;
+    var numErrB = this.props.navigation.getParam('errorB', 0); 
+    var accuracyB = 100 - ((numErrB/(numErrB+25))*100);
+    
 
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
 
-        <View style={styles.timeView}>
-          <Text style={styles.timeText}>
-              {timeMin.toFixed(0)}:{timeSec.toFixed(0)} min
+        <View style={{flex: 1, flexDirection: 'row'}}>
+          <Text style={{flex: 1, textAlign: 'center', fontSize: 24}}>
+              A
           </Text>
+          <Text style={{flex: 1, textAlign: 'center', fontSize: 24}}>
+              B
+          </Text>
+        </View>
+
+        <View style={styles.timeView}>
+
+
+          <View style={styles.side}>
+            <Text style={styles.timeText}>
+                {timeMinA.toFixed(0)}:{timeSecA.toFixed(0)} min
+            </Text>
+            <Text style={styles.timeText}>
+                {timeMinB.toFixed(0)}:{timeSecB.toFixed(0)} min
+            </Text>
+          </View>
+
           <View style={styles.label}>
             <Image 
               source={ require('../assets/images/time.png')}
@@ -65,9 +68,16 @@ export default class ClinicalAssessResultScreenA extends React.Component {
         </View>
 
         <View style={styles.accuracyView}>
-          <Text style={styles.accuracyText}>
-              {accuracy.toFixed(2)}%
-          </Text>
+
+          <View style={styles.side}>
+            <Text style={styles.accuracyText}>
+                {accuracyA.toFixed(2)}%
+            </Text>
+            <Text style={styles.accuracyText}>
+                {accuracyB.toFixed(2)}%
+            </Text>
+          </View>
+
           <View style={styles.label}>
             <Image 
               source={ require('../assets/images/accuracy.png')}
@@ -80,9 +90,16 @@ export default class ClinicalAssessResultScreenA extends React.Component {
         </View>
 
         <View style={styles.errorView}>
-          <Text style={styles.errorText}>
-              {numErr}
-          </Text>
+
+          <View style={styles.side}>
+            <Text style={styles.errorText}>
+                {numErrA}
+            </Text>
+            <Text style={styles.errorText}>
+                {numErrB}
+            </Text>
+          </View>
+
           <View style={styles.label}>
             <Image 
               source={ require('../assets/images/mistake.png')}
@@ -96,9 +113,9 @@ export default class ClinicalAssessResultScreenA extends React.Component {
 
         <View style={{justifyContent: 'flex-end', flex: 1, marginTop: 40}}>
           <TouchableOpacity style={styles.continue}
-                onPress={() => navigate('ClinicalAssessB', {nric: nric, timeA: timeTaken, errorA: numErr})}>
+                onPress={() => navigate('Home')}>
             <Text style={styles.continueText}>
-                Continue
+                Home
             </Text>
           </TouchableOpacity>
         </View>
@@ -126,17 +143,24 @@ const styles = StyleSheet.create({
   labelText: {
     flex: 1,
     fontSize: 16,
+    marginTop: 12,
     alignSelf: 'flex-start'
   },
   icon: {
     flex: 1,
     height: 24,
     resizeMode: 'contain',
+    alignSelf: 'flex-end',
     marginLeft: 40
+  },
+  side: {
+    flex: 3,
+    flexDirection:'row', 
+
   },
   timeView: {
     flex: 4,
-    marginTop: 20,
+    marginTop: 10,
     justifyContent: 'center',
   },
   accuracyView: {
@@ -150,16 +174,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   timeText: {
+    flex: 1,
     backgroundColor: '#32CD32',
     color: '#ffffff',
-    alignSelf: 'center',
     textAlign: 'center',
     fontSize: 24,
     padding: 20,
-    width: 120,
-    height: 120,
+    width: 100,
+    height: 100,
     borderRadius: 60,
     marginBottom: 10,
+    marginLeft: 20,
+    marginRight: 20,
     borderColor: 'black',
     borderWidth: 1,
     textShadowColor: '#000000',
@@ -167,6 +193,7 @@ const styles = StyleSheet.create({
     textShadowRadius: 4,
   },
   accuracyText: {
+    flex: 1,
     backgroundColor: '#0080FF',
     color: '#ffffff',
     alignSelf: 'center',
@@ -178,6 +205,8 @@ const styles = StyleSheet.create({
     height: 120,
     borderRadius: 60,
     marginBottom: 10,
+    marginLeft: 20,
+    marginRight: 20,
     borderColor: 'black',
     borderWidth: 1,
     textShadowColor: '#000000',
@@ -185,6 +214,7 @@ const styles = StyleSheet.create({
     textShadowRadius: 4,
   },
   errorText: {
+    flex: 1,
     backgroundColor: '#6D0101',
     color: '#ffffff',
     alignSelf: 'center',
@@ -195,6 +225,8 @@ const styles = StyleSheet.create({
     height: 120,
     borderRadius: 60,
     marginBottom: 10,
+    marginLeft: 20,
+    marginRight: 20,
     borderColor: 'black',
     borderWidth: 1,
     textShadowColor: '#000000',

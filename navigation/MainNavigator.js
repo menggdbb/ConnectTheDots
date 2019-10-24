@@ -7,6 +7,7 @@ import ClinicalAssessScreenA from '../screens/ClinicalAssessScreenA';
 import ClinicalAssessScreenB from '../screens/ClinicalAssessScreenB';
 import ClinicalAssessResultScreenA from '../screens/ClinicalAssessResultScreenA';
 import ClinicalAssessResultScreenB from '../screens/ClinicalAssessResultScreenB';
+import ClinicalAssessFinalResultScreen from '../screens/ClinicalAssessFinalResultScreen';
 import LoginScreen from '../screens/LoginScreen';
 import SelfAssessScreenA from '../screens/SelfAssessScreenA';
 import SelfAssessScreenB from '../screens/SelfAssessScreenB';
@@ -44,6 +45,9 @@ const Project = createStackNavigator({
   },
   ClinicalAssessResultB: {
     screen: ClinicalAssessResultScreenB,
+  },
+  ClinicalAssessFinalResult: {
+    screen: ClinicalAssessFinalResultScreen
   },
   SelfAssessA: {
     screen: SelfAssessScreenA,

@@ -27,6 +27,8 @@ export default class ClinicalAssessResultScreenB extends React.Component {
 
   render(){
     var nric = this.props.navigation.getParam('nric', 'S1234567A');
+    var timeA =  this.props.navigation.getParam('timeA', 0);
+    var errorA = this.props.navigation.getParam('errorA', 0);
     
     var timeTaken = this.props.navigation.getParam('time', 40)/1000; //need this
     var timeSec = timeTaken%60;
@@ -96,9 +98,9 @@ export default class ClinicalAssessResultScreenB extends React.Component {
 
         <View style={{justifyContent: 'flex-end', flex: 1, marginTop: 40}}>
           <TouchableOpacity style={styles.continue}
-                onPress={() => navigate('Home')}>
+                onPress={() => navigate('ClinicalAssessFinalResult', {timeB: timeTaken, errorB: numErr, timeA: timeA, errorA: errorA})}>
             <Text style={styles.continueText}>
-                Home
+                Summary
             </Text>
           </TouchableOpacity>
         </View>

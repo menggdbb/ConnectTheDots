@@ -36,10 +36,10 @@ export default class SelfAssessFinalResultScreen extends React.Component {
       <View style={styles.container}>
 
         <View style={{flex: 1, flexDirection: 'row'}}>
-          <Text style={{flex: 1, textAlign: 'center', fontSize: 20}}>
+          <Text style={{flex: 1, textAlign: 'center', fontSize: 24}}>
               A
           </Text>
-          <Text style={{flex: 1, textAlign: 'center', fontSize: 20}}>
+          <Text style={{flex: 1, textAlign: 'center', fontSize: 24}}>
               B
           </Text>
         </View>
@@ -143,6 +143,7 @@ const styles = StyleSheet.create({
   labelText: {
     flex: 1,
     fontSize: 16,
+    marginTop: 12,
     alignSelf: 'flex-start'
   },
   icon: {
@@ -155,11 +156,11 @@ const styles = StyleSheet.create({
   side: {
     flex: 3,
     flexDirection:'row', 
-    alignItems: 'center',
+
   },
   timeView: {
     flex: 4,
-    marginTop: 20,
+    marginTop: 10,
     justifyContent: 'center',
   },
   accuracyView: {
@@ -179,8 +180,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 24,
     padding: 20,
-    width: 120,
-    height: 120,
+    width: 100,
+    height: 100,
     borderRadius: 60,
     marginBottom: 10,
     marginLeft: 20,

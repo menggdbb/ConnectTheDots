@@ -43,6 +43,9 @@ export default class LoadingScreen extends React.Component {
     const { navigate } = this.props.navigation;
     var records = [];
     const nric = this.props.navigation.getParam('nric', 'S1234567A');
+    if (records) {
+        navigate('Records', {records: records})
+    }
     // Getting Data
     db.collection('scores').where('NRIC', '==', nric).get().then((snapshot) => {
       snapshot.docs.forEach(doc => {
