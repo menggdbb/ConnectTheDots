@@ -7,6 +7,9 @@ import Entities from '../components/engine/entities'
 
 export default class SelfAssessScreenA extends PureComponent {
   static navigationOptions = {
+    headerStyle: {
+      backgroundColor: '#4fc3f7',
+    },
     title: 'Part A Assessment'
   };
 

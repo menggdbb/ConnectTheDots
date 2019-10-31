@@ -17,6 +17,9 @@ import {
 
 export default class TutorialScreen extends React.Component {
   static navigationOptions = {
+    headerStyle: {
+      backgroundColor: '#4fc3f7',
+    },
     title: 'Tutorial part A'
   };
 

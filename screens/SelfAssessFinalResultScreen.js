@@ -14,6 +14,9 @@ import renderIf from '../components/renderIf';
 
 export default class SelfAssessFinalResultScreen extends React.Component {
   static navigationOptions = {
+    headerStyle: {
+      backgroundColor: '#4fc3f7',
+    },
     title: 'Summary'
   };
   

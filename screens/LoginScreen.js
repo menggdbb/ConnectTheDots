@@ -4,6 +4,7 @@ import firebase from 'firebase'; //firebase
 import {
   Alert,
   Image,
+  ImageBackground,
   Button,
   StyleSheet,
   Text,
@@ -14,6 +15,9 @@ import {
 
 export default class LoginScreen extends React.Component {
   static navigationOptions = {
+    headerStyle: {
+      backgroundColor: '#4fc3f7',
+    },
     title: 'Login'
   };
   state = { email: '', password: '', errorMessage: "", text: '' }
@@ -22,10 +26,13 @@ export default class LoginScreen extends React.Component {
     
     const { navigate } = this.props.navigation;
     return (
+      <ImageBackground source={ require('../assets/images/background-1.jpg')} style={{width: '100%', height: '100%'}}>
+        
+      
       <View style={styles.container}>
           <View style={styles.title}>
             <Text style={{fontWeight: 'bold', fontSize: 20}}>
-                Login please
+                Staff Authentication
             </Text>
           </View>
           <View style={styles.input}>
@@ -63,14 +70,15 @@ export default class LoginScreen extends React.Component {
                 </Text>
               </TouchableOpacity>
 
-              <Button style={{fontWeight: 'bold', fontSize: 20, marginBottom: 35}}
+              {/* <Button style={{fontWeight: 'bold', fontSize: 20, marginBottom: 35}}
                   title="Login"
                   onPress={() => navigate('Staff')}
-                  />
+                  /> */}
               </View>
           </View>
 
       </View>
+      </ImageBackground>
     );
   }
 }
@@ -78,12 +86,17 @@ export default class LoginScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    margin: 30,
+    marginBottom: 160,
+    borderRadius: 15,
+    
   },
   title: {
     flex: 1,
     alignItems: 'center',
     marginTop: 40,
+    
   },
   titleImage: {
     height: 270,
@@ -113,7 +126,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     paddingHorizontal: '2%',
     paddingVertical: '1%',
-    marginBottom: 10
+    marginBottom: 10,
+    backgroundColor: "rgba(255, 255, 255, 0.8)"
     
   },
   input: {

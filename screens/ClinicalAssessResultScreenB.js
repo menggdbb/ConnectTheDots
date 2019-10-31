@@ -19,6 +19,9 @@ const db = Firebase.firestore();
 
 export default class ClinicalAssessResultScreenB extends React.Component {
   static navigationOptions = {
+    headerStyle: {
+      backgroundColor: '#4fc3f7',
+    },
     title: 'Part B result'
   };
   state = {

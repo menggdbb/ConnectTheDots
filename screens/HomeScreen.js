@@ -11,13 +11,17 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Dimensions
+  Dimensions,
+  Linking
 } from 'react-native';
 import renderIf from '../components/renderIf';
 
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
+    headerStyle: {
+      backgroundColor: '#4fc3f7',
+    },
     title: 'Home'
   };
   state = {imgOpacity: 0, textColor: "#ffffff", count: 0}
@@ -46,13 +50,24 @@ export default class HomeScreen extends React.Component {
           <TouchableOpacity style={styles.optionsBlue}
               onPress={() => navigate('Tutorial')}> 
             <Text style={styles.optionText}>
+              <Image
+                style={{width: 20, height: 20, margin: 10}}
+                resizeMode = 'contain'
+                source={require('../assets/images/assess.png')}
+              />
                 Self Assessment 
             </Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.optionsGrey}
               onPress={() => navigate('Login')}>
+            
             <Text style={styles.optionText}>
+              <Image
+                style={{width: 20, height: 20, margin: 10}}
+                resizeMode = 'contain'
+                source={require('../assets/images/assess_clinic.png')}
+              />
                 Clinical Assessment
             </Text>
           </TouchableOpacity>
@@ -61,17 +76,39 @@ export default class HomeScreen extends React.Component {
 
         
         {renderIf(this.state.count > 5)(
-        <TouchableOpacity style={styles.huehehehehe}
-          onPress={() => this.setState({
-            count: 0})}>
-          <View style = {styles.backgroundContainer}>
-            <Image
-              style={{width: Dimensions.get('window').width, height: 190}}
-              resizeMode = 'contain'
-              source={require('../assets/images/hehe.png')}
-            />
-          </View>
-        </TouchableOpacity>  
+        <View style= {{flex: 1, flexDirection: "row"}}>
+          <TouchableOpacity style={styles.huehehehehe}
+            onPress={() => this.setState({
+              count: 0})}>
+            <View style = {styles.backgroundContainer}>
+              <Image
+                style={{width: Dimensions.get('window').width*3/4, height: 160}}
+                resizeMode = 'contain'
+                source={require('../assets/images/hehe.png')}
+              />
+            
+            </View>
+          </TouchableOpacity>  
+          <TouchableOpacity style={styles.huehehehehe}
+          onPress={() => Linking.openURL('http://155.69.100.27/3002s11920_SAMWYD/index.php/Main_Page')}>
+            <View style = {styles.backgroundContainer, {alignSelf: "flex-end"}}>
+              <Image
+                style={{width: Dimensions.get('window').width/4, height: 80}}
+                resizeMode = 'contain'
+                source={require('../assets/images/special.png')}
+              />
+            </View>
+          </TouchableOpacity> 
+        </View>
+        )}
+        {renderIf(this.state.count < 6)(
+        <View style={{flex: 1, position: 'absolute', bottom: 0, right: 0}}>
+          <Image
+            style={{width: Dimensions.get('window').width/2, height: 160, alignSelf: "flex-end"}}
+            resizeMode = 'contain'
+            source={require('../assets/images/HPB.jpg')}
+          />
+        </View>
         )}
         
       </View>
@@ -85,8 +122,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   backgroundContainer: {
+    
     position: "absolute",
-    bottom: 0,
+    bottom: 0
     
 
   },
@@ -113,27 +151,31 @@ const styles = StyleSheet.create({
     alignContent: 'flex-start',
     justifyContent: 'flex-start',
     marginLeft: 40,
-    marginRight: 60,
+    marginRight: 50,
     
   },
   optionsGrey: {
     backgroundColor: '#DDDDDD',
     marginBottom: 20,
-    padding: 10,
-    borderRadius: 10
+    padding: 5,
+    borderRadius: 40,
   },
   optionsBlue: {
     backgroundColor: '#4fc3f7',
     marginBottom: 20,
-    padding: 10,
-    borderRadius: 10
+    padding: 5,
+    borderRadius: 40,
   },
   optionText: {
     fontSize: 20,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    backgroundColor: "#FFF",
+    borderRadius: 20,
+    padding: 5,
+    marginLeft: 15
   },
   huehehehehe: {
-    padding: 40
+    flex: 1,
   },
   
 });

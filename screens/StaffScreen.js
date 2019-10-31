@@ -16,6 +16,9 @@ import renderIf from '../components/renderIf';
 
 export default class StaffScreen extends React.Component {
   static navigationOptions = {
+    headerStyle: {
+      backgroundColor: '#4fc3f7',
+    },
     title: 'Staff'
   };
   state = { nric: '', nric2: '' , show: false, show2: false}
@@ -31,6 +34,11 @@ export default class StaffScreen extends React.Component {
                 show: !this.state.show
               })}>
             <Text style={styles.optionText}>
+              <Image
+                style={{width: 20, height: 20, margin: 10}}
+                resizeMode = 'contain'
+                source={require('../assets/images/search.png')}
+              />
                 Search previous record
             </Text>
           </TouchableOpacity>
@@ -66,6 +74,11 @@ export default class StaffScreen extends React.Component {
                 show2: !this.state.show2
               })}>
             <Text style={styles.optionText}>
+              <Image
+                style={{width: 20, height: 20, margin: 10}}
+                resizeMode = 'contain'
+                source={require('../assets/images/assess_clinic.png')}
+              />
                 Clinical Assessment
             </Text>
           </TouchableOpacity>
@@ -139,11 +152,10 @@ const styles = StyleSheet.create({
   optionsBlue: {
     marginTop: 80,
     backgroundColor: '#4fc3f7',
-    padding: 10,
-    paddingLeft: 10,
     marginLeft: 20,
     marginRight: 20,
-    borderRadius: 10
+    padding: 5,
+    borderRadius: 40,
   },
   options: {
     backgroundColor: '#0095dd',
@@ -155,6 +167,10 @@ const styles = StyleSheet.create({
   optionText: {
     fontSize: 20,
     fontWeight: 'bold',
+    backgroundColor: "#FFF",
+    borderRadius: 20,
+    padding: 5,
+    marginLeft: 20
     
   },
   optionTextSmall: {

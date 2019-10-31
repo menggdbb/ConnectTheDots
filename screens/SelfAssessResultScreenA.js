@@ -14,6 +14,9 @@ import renderIf from '../components/renderIf';
 
 export default class SelfAssessResultScreenA extends React.Component {
   static navigationOptions = {
+    headerStyle: {
+      backgroundColor: '#4fc3f7',
+    },
     title: 'Part A Result'
   };
   
@@ -77,15 +80,15 @@ export default class SelfAssessResultScreenA extends React.Component {
 
         {renderIf(timeTaken > 78)(
           <View style={styles.input}>
-            <Text style={{fontWeight: 'bold', fontSize: 20}}>
+            <Text style={{fontWeight: 'bold', fontSize: 20, color: "#b71c1c"}}>
               WARNING, check with your doctor 
             </Text>
           </View>
         )}
         {renderIf(timeTaken <= 78)(
           <View style={styles.input}>
-            <Text style={{fontWeight: 'bold', fontSize: 20}}>
-              You are under the normal range 
+            <Text style={{fontWeight: 'bold', fontSize: 20, color: "#00c853"}}>
+            SAFE, keep up and exercise regularly! 
             </Text>
           </View>
         )}
