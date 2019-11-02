@@ -7,6 +7,7 @@ import {
   StyleSheet,
   View,
   ListView,
+  Text
 } from 'react-native';
 
 const db = Firebase.firestore();
@@ -24,7 +25,9 @@ export default class RecordsScreen extends React.Component {
     this.state = {
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,
-      })
+      }),
+      errorText: "No records found.",
+      errorTextSize: 0,
     }
   }
 
@@ -43,7 +46,10 @@ export default class RecordsScreen extends React.Component {
     
     return (
       <View style={styles.container}>
-        <ListView dataSource={this.state.dataSource} renderRow={this._renderItem.bind(this)} style={styles.listview}/>
+        <Text style={[styles.textStyle, {fontSize: this.state.errorTextSize}]}>
+          {this.state.errorText}
+        </Text>
+        <ListView dataSource={this.state.dataSource} renderRow={this._renderItem.bind(this)} style={styles.listview}/> 
       </View>
     );
   }
@@ -57,8 +63,6 @@ const styles = StyleSheet.create({
   backgroundContainer: {
     position: "absolute",
     bottom: 0,
-    
-
   },
   title: {
     flex: 4,
@@ -106,7 +110,6 @@ const styles = StyleSheet.create({
     padding: 40
 	},
 	textStyle: {
-		fontSize: 25,
 		textAlign: 'center'
   },
   listview: {

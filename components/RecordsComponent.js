@@ -3,6 +3,7 @@ export const callFromDatabase = (screen, db) => {
 	const nric = screen.props.navigation.getParam('nric', 'S1234567A');
 
 	const records = []
+	let errorTextSize = 0
 
 	// Getting Data
 	db.collection('scores').where('NRIC', '==', nric).get().then((snapshot) => {
@@ -26,8 +27,15 @@ export const callFromDatabase = (screen, db) => {
 			})
 			records.sort((a, b) => b.unixTime - a.unixTime)
 		}) 
+
+		if (records.length == 0) {
+			errorTextSize = 25
+		}
+
 		screen.setState({
-			dataSource: screen.state.dataSource.cloneWithRows(records.sort((a, b) => b.unixTime - a.unixTime))
+			dataSource: screen.state.dataSource.cloneWithRows(records.sort((a, b) => b.unixTime - a.unixTime)),
+			errorTextSize: errorTextSize,
+			errorMargin: 0
 		})
 	})
 }
