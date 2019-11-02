@@ -33,17 +33,12 @@ export default class HomeScreen extends React.Component {
       
       <View style={styles.container}>
       
-        <TouchableOpacity style={styles.title}
-          onPress={() => this.setState({
-            count: this.state.count+1,
-            // imgOpacity: 0,
-            // textColor: "#ffffff" 
-            })}>
+        <View style={styles.title}>
           <Image 
             source={ require('../assets/images/title.png')}
             style={styles.titleImage}
           />
-        </TouchableOpacity>
+        </View>
 
         <View style={styles.menu}>
 
@@ -73,43 +68,7 @@ export default class HomeScreen extends React.Component {
           </TouchableOpacity>
 
         </View>
-
         
-        {renderIf(this.state.count > 5)(
-        <View style= {{flex: 1, flexDirection: "row"}}>
-          <TouchableOpacity style={styles.huehehehehe}
-            onPress={() => this.setState({
-              count: 0})}>
-            <View style = {styles.backgroundContainer}>
-              <Image
-                style={{width: Dimensions.get('window').width*3/4, height: 160}}
-                resizeMode = 'contain'
-                source={require('../assets/images/hehe.png')}
-              />
-            
-            </View>
-          </TouchableOpacity>  
-          <TouchableOpacity style={styles.huehehehehe}
-          onPress={() => Linking.openURL('http://155.69.100.27/3002s11920_SAMWYD/index.php/Main_Page')}>
-            <View style = {styles.backgroundContainer, {alignSelf: "flex-end"}}>
-              <Image
-                style={{width: Dimensions.get('window').width/4, height: 80}}
-                resizeMode = 'contain'
-                source={require('../assets/images/special.png')}
-              />
-            </View>
-          </TouchableOpacity> 
-        </View>
-        )}
-        {renderIf(this.state.count < 6)(
-        <View style={{flex: 1, position: 'absolute', bottom: 0, right: 0}}>
-          <Image
-            style={{width: Dimensions.get('window').width/2, height: 160, alignSelf: "flex-end"}}
-            resizeMode = 'contain'
-            source={require('../assets/images/HPB.jpg')}
-          />
-        </View>
-        )}
         
       </View>
     );
@@ -173,9 +132,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 5,
     marginLeft: 15
-  },
-  huehehehehe: {
-    flex: 1,
   },
   
 });
