@@ -36,6 +36,8 @@ import 'firebase/firestore';
 //   }) 
 // })
 
+console.ignoredYellowBox = ['Setting a timer'];
+
 const App = () => <MainNavigator/>
 
 export default App;

@@ -13,7 +13,6 @@ export const callFromDatabase = (screen, db) => {
 			var date = doc.data().date; //var date = doc.data().date.toDate()
 			var noOfErrors = doc.data().noOfErrors;
 			var test = doc.data().test; // A = 123...25, B=1A2B...13
-
 			var unixTime = new Date(date).getTime();
 			
 			records.push({
@@ -25,14 +24,10 @@ export const callFromDatabase = (screen, db) => {
 				test: test,
 				unixTime: unixTime
 			})
-
 			records.sort((a, b) => b.unixTime - a.unixTime)
-
 		}) 
-
 		screen.setState({
 			dataSource: screen.state.dataSource.cloneWithRows(records.sort((a, b) => b.unixTime - a.unixTime))
-			
 		})
 	})
 }
