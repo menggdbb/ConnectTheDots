@@ -5,12 +5,8 @@ import 'firebase/firestore';
 import Firebase from '../components/Firebase';
 import {
   Image,
-  Button,
-  Platform,
-  ScrollView,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -29,17 +25,18 @@ export default class ClinicalAssessResultScreenB extends React.Component {
   }
 
   render(){
+    //get all stat from previous screen
     var nric = this.props.navigation.getParam('nric', 'S1234567A');
     var timeA =  this.props.navigation.getParam('timeA', 0);
     var errorA = this.props.navigation.getParam('errorA', 0);
     
-    var timeTaken = this.props.navigation.getParam('time', 40)/1000; //need this
+    var timeTaken = this.props.navigation.getParam('time', 40)/1000;
     var timeSec = timeTaken%60;
     var timeMin = ((timeTaken+(60-timeSec))/60) - 1;
-    var numErr = this.props.navigation.getParam('error', 0); //and this
+    var numErr = this.props.navigation.getParam('error', 0);
     var accuracy = 100 - ((numErr/(numErr+25))*100);
 
-    var date = Date(); //var date = Date.now();
+    var date = Date();
 
     db.collection('scores').add({
       NRIC: nric,
@@ -117,11 +114,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-  },
-  title: {
-    flex: 1,
-    alignItems: 'center',
-    marginTop: 40,
   },
   label: {
     flex: 1,
@@ -206,18 +198,15 @@ const styles = StyleSheet.create({
     textShadowOffset: {width: 0, height: 0},
     textShadowRadius: 4,
   },
-  continue: {
-    
+  continue: {    
     backgroundColor: '#4fc3f7',
     padding: 10,
     paddingLeft: 25,
     paddingRight: 25,
     borderRadius: 10,
     marginRight: 20,
-    marginBottom: 20,
-    
-    alignSelf: "flex-end",
-    
+    marginBottom: 20,    
+    alignSelf: "flex-end",    
   },
   continueText: {
     fontSize: 20,

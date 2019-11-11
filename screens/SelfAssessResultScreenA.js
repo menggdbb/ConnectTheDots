@@ -21,6 +21,7 @@ export default class SelfAssessResultScreenA extends React.Component {
   };
   
   render(){
+    //get all stat from previous screen
     var timeTaken = this.props.navigation.getParam('time', 40)/1000; //need this
     var timeSec = timeTaken%60;
     var timeMin = ((timeTaken+(60-timeSec))/60) - 1;
@@ -78,6 +79,7 @@ export default class SelfAssessResultScreenA extends React.Component {
           </View>
         </View>    
 
+        {/* check whether to display good or bad result text, use component*/}
         {renderIf(timeTaken > 78)(
           <View style={styles.input}>
             <Text style={{fontWeight: 'bold', fontSize: 20, color: "#b71c1c"}}>
@@ -111,11 +113,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-  },
-  title: {
-    flex: 1,
-    alignItems: 'center',
-    marginTop: 40,
   },
   label: {
     flex: 1,
@@ -200,18 +197,15 @@ const styles = StyleSheet.create({
     textShadowOffset: {width: 0, height: 0},
     textShadowRadius: 4,
   },
-  continue: {
-    
+  continue: {    
     backgroundColor: '#4fc3f7',
     padding: 10,
     paddingLeft: 25,
     paddingRight: 25,
     borderRadius: 10,
     marginRight: 20,
-    marginBottom: 20,
-    
-    alignSelf: "flex-end",
-    
+    marginBottom: 20,    
+    alignSelf: "flex-end",    
   },
   continueText: {
     fontSize: 20,

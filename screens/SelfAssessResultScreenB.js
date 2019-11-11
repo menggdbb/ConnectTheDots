@@ -2,9 +2,6 @@ import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
 import {
   Image,
-  Button,
-  Platform,
-  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -22,6 +19,7 @@ export default class SelfAssessResultScreenB extends React.Component {
   };
   
   render(){
+    //get all stat from previous screen
     var timeTaken = this.props.navigation.getParam('time', 40)/1000; //need this
     var timeSec = timeTaken%60;
     var timeMin = ((timeTaken+(60-timeSec))/60) - 1;
@@ -79,8 +77,9 @@ export default class SelfAssessResultScreenB extends React.Component {
                 Mistakes
             </Text>
           </View>
-        </View>    
+        </View>   
 
+        {/* check whether to display good or bad result text, use component*/}
         {renderIf(timeTaken > 273)(
           <View style={styles.input}>
             <Text style={{fontWeight: 'bold', fontSize: 20, color: "#b71c1c"}}>

@@ -2,15 +2,11 @@ import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
 import {
   Image,
-  Button,
-  Platform,
-  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
-import renderIf from '../components/renderIf';
 
 export default class ClinicalAssessFinalResultScreen extends React.Component {
   static navigationOptions = {
@@ -21,10 +17,11 @@ export default class ClinicalAssessFinalResultScreen extends React.Component {
   };
   
   render(){
-    var timeTakenA = this.props.navigation.getParam('timeA', 40); //need this
+    //get all stat from previous screen
+    var timeTakenA = this.props.navigation.getParam('timeA', 40); 
     var timeSecA = timeTakenA%60;
     var timeMinA = ((timeTakenA+(60-timeSecA))/60) - 1;
-    var numErrA = this.props.navigation.getParam('errorA', 0); //and this
+    var numErrA = this.props.navigation.getParam('errorA', 0); 
     var accuracyA = 100 - ((numErrA/(numErrA+25))*100);
 
     var timeTakenB = this.props.navigation.getParam('timeB', 40);
@@ -33,7 +30,6 @@ export default class ClinicalAssessFinalResultScreen extends React.Component {
     var numErrB = this.props.navigation.getParam('errorB', 0); 
     var accuracyB = 100 - ((numErrB/(numErrB+25))*100);
     
-
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
@@ -48,8 +44,6 @@ export default class ClinicalAssessFinalResultScreen extends React.Component {
         </View>
 
         <View style={styles.timeView}>
-
-
           <View style={styles.side}>
             <Text style={styles.timeText}>
                 {timeMinA.toFixed(0)}:{timeSecA.toFixed(0)} min
@@ -71,7 +65,6 @@ export default class ClinicalAssessFinalResultScreen extends React.Component {
         </View>
 
         <View style={styles.accuracyView}>
-
           <View style={styles.side}>
             <Text style={styles.accuracyText}>
                 {accuracyA.toFixed(2)}%
@@ -93,7 +86,6 @@ export default class ClinicalAssessFinalResultScreen extends React.Component {
         </View>
 
         <View style={styles.errorView}>
-
           <View style={styles.side}>
             <Text style={styles.errorText}>
                 {numErrA}
@@ -133,11 +125,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  title: {
-    flex: 1,
-    alignItems: 'center',
-    marginTop: 40,
-  },
   label: {
     flex: 1,
     flexDirection: 'row',
@@ -159,7 +146,6 @@ const styles = StyleSheet.create({
   side: {
     flex: 3,
     flexDirection:'row', 
-
   },
   timeView: {
     flex: 4,
@@ -236,8 +222,7 @@ const styles = StyleSheet.create({
     textShadowOffset: {width: 0, height: 0},
     textShadowRadius: 4,
   },
-  continue: {
-    
+  continue: {    
     backgroundColor: '#4fc3f7',
     padding: 10,
     paddingLeft: 25,
@@ -245,7 +230,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginRight: 20,
     marginBottom: 20,
-    
     alignSelf: "flex-end",
     
   },

@@ -3,9 +3,7 @@ import React from 'react';
 import firebase from 'firebase'; //firebase
 import {
   Alert,
-  Image,
   ImageBackground,
-  Button,
   StyleSheet,
   Text,
   TextInput,
@@ -26,16 +24,18 @@ export default class LoginScreen extends React.Component {
     
     const { navigate } = this.props.navigation;
     return (
-      <ImageBackground source={ require('../assets/images/background-2.jpg')} style={{width: '100%', height: '100%'}}>
-        
+      <ImageBackground source={ require('../assets/images/background-2.jpg')} style={{width: '100%', height: '100%'}}>       
       
       <View style={styles.container}>
+
           <View style={styles.title}>
             <Text style={{fontWeight: 'bold', fontSize: 20}}>
                 Staff Authentication
             </Text>
           </View>
+
           <View style={styles.input}>
+
             <Text style={{fontWeight: 'bold', fontSize: 20}}>
               User name
             </Text>
@@ -45,6 +45,7 @@ export default class LoginScreen extends React.Component {
               onChangeText={email => this.setState({ email })}
               value={this.state.email}
             />
+
             <Text style={{fontWeight: 'bold', fontSize: 20}}>
               Password
             </Text>
@@ -55,6 +56,7 @@ export default class LoginScreen extends React.Component {
               onChangeText={password => this.setState({ password })}
               value={this.state.password}
             />
+
             <View style={styles.buttonView}>
               <TouchableOpacity style={styles.options}
                   onPress={() => firebase
@@ -69,12 +71,8 @@ export default class LoginScreen extends React.Component {
                     LOGIN
                 </Text>
               </TouchableOpacity>
+            </View>
 
-              {/* <Button style={{fontWeight: 'bold', fontSize: 20, marginBottom: 35}}
-                  title="Login"
-                  onPress={() => navigate('Staff')}
-                  /> */}
-              </View>
           </View>
 
       </View>
@@ -89,31 +87,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, 0.8)',
     margin: 30,
     marginBottom: 160,
-    borderRadius: 15,
-    
+    borderRadius: 15,    
   },
   title: {
     flex: 1,
     alignItems: 'center',
     marginTop: 40,
-    
-  },
-  titleImage: {
-    height: 270,
-    resizeMode: 'contain',
-  },
-  homeContainer: {
-    flex: 1,
-    justifyContent: 'flex-end',
-  },
-  homeImage: {
-    width: 150,
-    height: 200,
-    resizeMode: 'contain',
-    marginBottom: -10,
-  },
-  bottomContainer: {
-    flexDirection: "row",
   },
   menu: {
     alignContent: 'flex-end',
@@ -127,8 +106,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: '2%',
     paddingVertical: '1%',
     marginBottom: 10,
-    backgroundColor: "rgba(255, 255, 255, 0.8)"
-    
+    backgroundColor: "rgba(255, 255, 255, 0.8)"    
   },
   input: {
     flex: 6,
@@ -144,7 +122,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#0095dd',
     padding: 10,
     paddingLeft: 10,
-
   },
   optionText: {
     textAlign: 'center',

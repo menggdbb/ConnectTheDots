@@ -2,15 +2,11 @@ import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
 import {
   Image,
-  Button,
-  Platform,
-  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
-import renderIf from '../components/renderIf';
 
 export default class SelfAssessFinalResultScreen extends React.Component {
   static navigationOptions = {
@@ -133,11 +129,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  title: {
-    flex: 1,
-    alignItems: 'center',
-    marginTop: 40,
-  },
   label: {
     flex: 1,
     flexDirection: 'row',
@@ -236,18 +227,15 @@ const styles = StyleSheet.create({
     textShadowOffset: {width: 0, height: 0},
     textShadowRadius: 4,
   },
-  continue: {
-    
+  continue: {    
     backgroundColor: '#4fc3f7',
     padding: 10,
     paddingLeft: 25,
     paddingRight: 25,
     borderRadius: 10,
     marginRight: 20,
-    marginBottom: 20,
-    
-    alignSelf: "flex-end",
-    
+    marginBottom: 20,    
+    alignSelf: "flex-end",    
   },
   continueText: {
     fontSize: 20,

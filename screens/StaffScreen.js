@@ -1,11 +1,7 @@
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
 import {
-  Alert,
   Image,
-  Button,
-  Platform,
-  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -96,7 +92,6 @@ export default class StaffScreen extends React.Component {
               value={this.state.nric2}
             />
             <View style={styles.buttonView}>
-
             
             <TouchableOpacity style={styles.options}
                 onPress={() => navigate('ClinicalAssessA', {nric: this.state.nric2})}>
@@ -118,28 +113,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  title: {
-    flex: 1,
-    alignItems: 'center',
-    marginTop: 40,
-  },
-  titleImage: {
-    height: 270,
-    resizeMode: 'contain',
-  },
-  homeContainer: {
-    flex: 1,
-    justifyContent: 'flex-end',
-  },
-  homeImage: {
-    width: 150,
-    height: 200,
-    resizeMode: 'contain',
-    marginBottom: -10,
-  },
-  bottomContainer: {
-    flexDirection: "row",
-  },
   menu: {
     alignContent: 'flex-end',
     justifyContent: 'flex-end',
@@ -147,8 +120,7 @@ const styles = StyleSheet.create({
   },
   part: {
     
-  }
-  ,
+  },
   optionsBlue: {
     marginTop: 80,
     backgroundColor: '#4fc3f7',
@@ -162,7 +134,6 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingLeft: 10,
     marginRight: 80,
-    
   },
   optionText: {
     fontSize: 20,
@@ -171,7 +142,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 5,
     marginLeft: 20
-    
   },
   optionTextSmall: {
     textAlign: 'center',
@@ -183,22 +153,20 @@ const styles = StyleSheet.create({
   },
   textInput: {
     fontSize: 20,
+    autoCapitalize: 'characters',
     borderColor: 'darkslategrey',
     borderWidth: 1,
     paddingHorizontal: '2%',
     paddingVertical: '1%',
-    marginBottom: 10
-    
+    marginBottom: 10    
   },
   input: {
     justifyContent: 'flex-start',
     marginTop: 20,
     marginLeft: 30,
     marginRight: 60,
-    
   },
-  buttonView: {
-    
+  buttonView: {    
     marginRight: 50,
     marginTop: 10
   }

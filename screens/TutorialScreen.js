@@ -4,10 +4,6 @@ import { GameEngine } from "react-native-game-engine";
 import { TutorialTouchCircle } from "../components/engine/systems"
 import Entities from '../components/engine/entities'
 import {
-  Image,
-  Button,
-  Platform,
-  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -77,39 +73,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  title: {
-    flex: 1,
-    alignItems: 'center',
-    marginTop: 40,
-  },
-  titleImage: {
-    height: 270,
-    resizeMode: 'contain',
-  },
-  homeContainer: {
-    flex: 1,
-    justifyContent: 'flex-end',
-  },
-  homeImage: {
-    width: 150,
-    height: 200,
-    resizeMode: 'contain',
-    marginBottom: -10,
-  },
-  bottomContainer: {
-    flexDirection: "row",
-  },
-  menu: {
-    alignContent: 'flex-end',
-    justifyContent: 'flex-end',
-    marginRight: 10,
-  },
   button: {
     backgroundColor: '#4fc3f7',
     marginBottom: 20,
     padding: 10,
-    borderRadius: 10,
-    
+    borderRadius: 10,    
   },
   buttonText: {
     textAlign: 'center',

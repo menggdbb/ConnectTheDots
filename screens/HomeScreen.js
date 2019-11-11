@@ -1,21 +1,13 @@
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
-import firebase from 'firebase'; //firebase
 import 'firebase/firestore';
 import {
-  Button,
   Image,
-  Platform,
-  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
-  Dimensions,
-  Linking
 } from 'react-native';
-import renderIf from '../components/renderIf';
-
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -24,9 +16,7 @@ export default class HomeScreen extends React.Component {
     },
     title: 'Home'
   };
-  state = {imgOpacity: 0, textColor: "#ffffff", count: 0}
 
-  
   render(){
     const { navigate } = this.props.navigation;
     return (
@@ -46,7 +36,7 @@ export default class HomeScreen extends React.Component {
               onPress={() => navigate('Tutorial')}> 
             <Text style={styles.optionText}>
               <Image
-                style={{width: 20, height: 20, margin: 10}}
+                style={styles.icon}
                 resizeMode = 'contain'
                 source={require('../assets/images/assess.png')}
               />
@@ -56,19 +46,16 @@ export default class HomeScreen extends React.Component {
 
           <TouchableOpacity style={styles.optionsGrey}
               onPress={() => navigate('Login')}>
-            
             <Text style={styles.optionText}>
               <Image
-                style={{width: 20, height: 20, margin: 10}}
+                style={styles.icon}
                 resizeMode = 'contain'
                 source={require('../assets/images/assess_clinic.png')}
               />
                 Clinical Assessment
             </Text>
           </TouchableOpacity>
-
         </View>
-        
         
       </View>
     );
@@ -80,38 +67,21 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  backgroundContainer: {
-    
-    position: "absolute",
-    bottom: 0
-    
-
-  },
   title: {
     flex: 4,
     alignItems: 'center',
     marginTop: 10,
   },
-
   titleImage: {
     height: 250,
     resizeMode: 'contain',
   },
-
-  homeImage: {
-    width: 150,
-    height: 200,
-    resizeMode: 'contain',
-    marginBottom: -10,
-  },
-
   menu: {
     flex: 3,
     alignContent: 'flex-start',
     justifyContent: 'flex-start',
     marginLeft: 40,
     marginRight: 50,
-    
   },
   optionsGrey: {
     backgroundColor: '#DDDDDD',
@@ -133,5 +103,9 @@ const styles = StyleSheet.create({
     padding: 5,
     marginLeft: 15
   },
-  
+  icon: {
+    width: 20, 
+    height: 20, 
+    margin: 10
+  }
 });

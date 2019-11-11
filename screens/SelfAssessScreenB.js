@@ -31,6 +31,7 @@ export default class SelfAssessScreenB extends PureComponent {
         timing: e.timing,
         errors: e.errors
       })
+      //send result to next screen
       navigate('SelfAssessResultB', {time: this.state.timing, error: this.state.errors, timeA: timeA, errorA: errorA})
     }
   }

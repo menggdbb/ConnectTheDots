@@ -42,8 +42,6 @@ export default class RecordsScreen extends React.Component {
   }
 
   render(){
-    const { navigate } = this.props.navigation;
-    
     return (
       <View style={styles.container}>
         <Text style={[styles.textStyle, {fontSize: this.state.errorTextSize}]}>
@@ -60,55 +58,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  backgroundContainer: {
-    position: "absolute",
-    bottom: 0,
-  },
-  title: {
-    flex: 4,
-    alignItems: 'center',
-    marginTop: 10,
-  },
-
-  titleImage: {
-    height: 250,
-    resizeMode: 'contain',
-  },
-
-  homeImage: {
-    width: 150,
-    height: 200,
-    resizeMode: 'contain',
-    marginBottom: -10,
-  },
-
-  menu: {
-    flex: 3,
-    alignContent: 'flex-start',
-    justifyContent: 'flex-start',
-    marginLeft: 40,
-    marginRight: 60,
-    
-  },
-  optionsGrey: {
-    backgroundColor: '#DDDDDD',
-    marginBottom: 20,
-    padding: 10,
-    borderRadius: 10
-  },
-  optionsBlue: {
-    backgroundColor: '#4fc3f7',
-    marginBottom: 20,
-    padding: 10,
-    borderRadius: 10
-  },
-  optionText: {
-    fontSize: 20,
-    fontWeight: 'bold'
-  },
-  huehehehehe: {
-    padding: 40
-	},
 	textStyle: {
 		textAlign: 'center'
   },
