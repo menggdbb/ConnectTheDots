@@ -3,6 +3,7 @@ import 'firebase/firestore';
 import Firebase from '../components/Firebase';
 import { ListItem } from '../components/ListItem'
 import { callFromDatabase } from '../components/RecordsComponent'
+import { ErrorBoundary } from '../components/ErrorBoundary'
 import {
   StyleSheet,
   View,
@@ -43,12 +44,14 @@ export default class RecordsScreen extends React.Component {
 
   render(){
     return (
-      <View style={styles.container}>
-        <Text style={[styles.textStyle, {fontSize: this.state.errorTextSize}]}>
-          {this.state.errorText}
-        </Text>
-        <ListView dataSource={this.state.dataSource} renderRow={this._renderItem.bind(this)} style={styles.listview}/> 
-      </View>
+      <ErrorBoundary>
+        <View style={styles.container}>
+          <Text style={[styles.textStyle, {fontSize: this.state.errorTextSize}]}>
+            {this.state.errorText}
+          </Text>
+          <ListView dataSource={this.state.dataSource} renderRow={this._renderItem.bind(this)} style={styles.listview}/> 
+        </View>
+      </ErrorBoundary>
     );
   }
 }

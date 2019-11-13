@@ -1,5 +1,6 @@
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
+import { ErrorBoundary } from '../components/ErrorBoundary'
 import {
   Image,
   StyleSheet,
@@ -33,92 +34,92 @@ export default class SelfAssessFinalResultScreen extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-
-        <View style={{flex: 1, flexDirection: 'row'}}>
-          <Text style={{flex: 1, textAlign: 'center', fontSize: 24}}>
-              A
-          </Text>
-          <Text style={{flex: 1, textAlign: 'center', fontSize: 24}}>
-              B
-          </Text>
-        </View>
-
-        <View style={styles.timeView}>
-
-
-          <View style={styles.side}>
-            <Text style={styles.timeText}>
-                {timeMinA.toFixed(0)}:{timeSecA.toFixed(0)} min
+        <ErrorBoundary>
+          <View style={{flex: 1, flexDirection: 'row'}}>
+            <Text style={{flex: 1, textAlign: 'center', fontSize: 24}}>
+                A
             </Text>
-            <Text style={styles.timeText}>
-                {timeMinB.toFixed(0)}:{timeSecB.toFixed(0)} min
+            <Text style={{flex: 1, textAlign: 'center', fontSize: 24}}>
+                B
             </Text>
           </View>
 
-          <View style={styles.label}>
-            <Image 
-              source={ require('../assets/images/time.png')}
-              style={styles.icon}
-            />
-            <Text style={styles.labelText}>
-                Time Taken
-            </Text>
-          </View>
-        </View>
+          <View style={styles.timeView}>
 
-        <View style={styles.accuracyView}>
 
-          <View style={styles.side}>
-            <Text style={styles.accuracyText}>
-                {accuracyA.toFixed(2)}%
-            </Text>
-            <Text style={styles.accuracyText}>
-                {accuracyB.toFixed(2)}%
-            </Text>
-          </View>
+            <View style={styles.side}>
+              <Text style={styles.timeText}>
+                  {timeMinA.toFixed(0)}:{timeSecA.toFixed(0)} min
+              </Text>
+              <Text style={styles.timeText}>
+                  {timeMinB.toFixed(0)}:{timeSecB.toFixed(0)} min
+              </Text>
+            </View>
 
-          <View style={styles.label}>
-            <Image 
-              source={ require('../assets/images/accuracy.png')}
-              style={styles.icon}
-            />
-            <Text style={styles.labelText}>
-                Accuracy
-            </Text>
-          </View>
-        </View>
-
-        <View style={styles.errorView}>
-
-          <View style={styles.side}>
-            <Text style={styles.errorText}>
-                {numErrA}
-            </Text>
-            <Text style={styles.errorText}>
-                {numErrB}
-            </Text>
+            <View style={styles.label}>
+              <Image 
+                source={ require('../assets/images/time.png')}
+                style={styles.icon}
+              />
+              <Text style={styles.labelText}>
+                  Time Taken
+              </Text>
+            </View>
           </View>
 
-          <View style={styles.label}>
-            <Image 
-              source={ require('../assets/images/mistake.png')}
-              style={styles.icon}
-            />
-            <Text style={styles.labelText}>
-                Mistakes
-            </Text>
+          <View style={styles.accuracyView}>
+
+            <View style={styles.side}>
+              <Text style={styles.accuracyText}>
+                  {accuracyA.toFixed(2)}%
+              </Text>
+              <Text style={styles.accuracyText}>
+                  {accuracyB.toFixed(2)}%
+              </Text>
+            </View>
+
+            <View style={styles.label}>
+              <Image 
+                source={ require('../assets/images/accuracy.png')}
+                style={styles.icon}
+              />
+              <Text style={styles.labelText}>
+                  Accuracy
+              </Text>
+            </View>
           </View>
-        </View>    
 
-        <View style={{justifyContent: 'flex-end', flex: 1, marginTop: 40}}>
-          <TouchableOpacity style={styles.continue}
-                onPress={() => navigate('Home')}>
-            <Text style={styles.continueText}>
-                Home
-            </Text>
-          </TouchableOpacity>
-        </View>
+          <View style={styles.errorView}>
 
+            <View style={styles.side}>
+              <Text style={styles.errorText}>
+                  {numErrA}
+              </Text>
+              <Text style={styles.errorText}>
+                  {numErrB}
+              </Text>
+            </View>
+
+            <View style={styles.label}>
+              <Image 
+                source={ require('../assets/images/mistake.png')}
+                style={styles.icon}
+              />
+              <Text style={styles.labelText}>
+                  Mistakes
+              </Text>
+            </View>
+          </View>    
+
+          <View style={{justifyContent: 'flex-end', flex: 1, marginTop: 40}}>
+            <TouchableOpacity style={styles.continue}
+                  onPress={() => navigate('Home')}>
+              <Text style={styles.continueText}>
+                  Home
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </ErrorBoundary>
       </View>
     );
   }

@@ -1,6 +1,7 @@
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
 import 'firebase/firestore';
+import { ErrorBoundary } from '../components/ErrorBoundary'
 import {
   Image,
   StyleSheet,
@@ -22,39 +23,42 @@ export default class HomeScreen extends React.Component {
     return (
       
       <View style={styles.container}>
-      
-        <View style={styles.title}>
-          <Image 
-            source={ require('../assets/images/title.png')}
-            style={styles.titleImage}
-          />
-        </View>
-
+        <ErrorBoundary>
+          <View style={styles.title}>
+            <Image 
+              source={ require('../assets/images/title.png')}
+              style={styles.titleImage}
+            />
+          </View>
+        </ErrorBoundary>
+        
         <View style={styles.menu}>
-
-          <TouchableOpacity style={styles.optionsBlue}
-              onPress={() => navigate('Tutorial')}> 
-            <Text style={styles.optionText}>
-              <Image
-                style={styles.icon}
-                resizeMode = 'contain'
-                source={require('../assets/images/assess.png')}
-              />
-                Self Assessment 
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.optionsGrey}
-              onPress={() => navigate('Login')}>
-            <Text style={styles.optionText}>
-              <Image
-                style={styles.icon}
-                resizeMode = 'contain'
-                source={require('../assets/images/assess_clinic.png')}
-              />
-                Clinical Assessment
-            </Text>
-          </TouchableOpacity>
+          <ErrorBoundary>
+            <TouchableOpacity style={styles.optionsBlue}
+                onPress={() => navigate('Tutorial')}> 
+              <Text style={styles.optionText}>
+                <Image
+                  style={styles.icon}
+                  resizeMode = 'contain'
+                  source={require('../assets/images/assess.png')}
+                />
+                  Self Assessment 
+              </Text>
+            </TouchableOpacity>
+          </ErrorBoundary>
+          <ErrorBoundary>
+            <TouchableOpacity style={styles.optionsGrey}
+                onPress={() => navigate('Login')}>
+              <Text style={styles.optionText}>
+                <Image
+                  style={styles.icon}
+                  resizeMode = 'contain'
+                  source={require('../assets/images/assess_clinic.png')}
+                />
+                  Clinical Assessment
+              </Text>
+            </TouchableOpacity>
+          </ErrorBoundary>
         </View>
         
       </View>

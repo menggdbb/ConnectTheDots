@@ -4,6 +4,7 @@ import { StyleSheet, StatusBar } from "react-native";
 import { GameEngine } from "react-native-game-engine";
 import { TouchCircle } from "../components/engine/systems"
 import Entities from '../components/engine/entities'
+import { ErrorBoundary } from '../components/ErrorBoundary'
 
 export default class SelfAssessScreenA extends PureComponent {
   static navigationOptions = {
@@ -36,13 +37,15 @@ export default class SelfAssessScreenA extends PureComponent {
   
   render(){
     return (
-      <GameEngine
-        style={styles.container}
-        systems={[TouchCircle]} 
-        entities={Entities("A")}
-        onEvent={this.onEvent}>
-          <StatusBar hidden={false} />
-      </GameEngine>
+      <ErrorBoundary>
+        <GameEngine
+          style={styles.container}
+          systems={[TouchCircle]} 
+          entities={Entities("A")}
+          onEvent={this.onEvent}>
+            <StatusBar hidden={false} />
+        </GameEngine>
+      </ErrorBoundary>
     );
   }
 }

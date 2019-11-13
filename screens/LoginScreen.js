@@ -1,6 +1,7 @@
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
 import firebase from 'firebase'; //firebase
+import { ErrorBoundary } from '../components/ErrorBoundary'
 import {
   Alert,
   ImageBackground,
@@ -26,56 +27,58 @@ export default class LoginScreen extends React.Component {
     return (
       <ImageBackground source={ require('../assets/images/background-2.jpg')} style={{width: '100%', height: '100%'}}>       
       
-      <View style={styles.container}>
+        <ErrorBoundary>
+          <View style={styles.container}>
 
-          <View style={styles.title}>
-            <Text style={{fontWeight: 'bold', fontSize: 20}}>
-                Staff Authentication
-            </Text>
-          </View>
-
-          <View style={styles.input}>
-
-            <Text style={{fontWeight: 'bold', fontSize: 20}}>
-              User name
-            </Text>
-            <TextInput
-              style={styles.textInput}
-              autoCapitalize={'none'}
-              onChangeText={email => this.setState({ email })}
-              value={this.state.email}
-            />
-
-            <Text style={{fontWeight: 'bold', fontSize: 20}}>
-              Password
-            </Text>
-            <TextInput
-              style={styles.textInput}
-              autoCapitalize={'none'}
-              secureTextEntry={true}
-              onChangeText={password => this.setState({ password })}
-              value={this.state.password}
-            />
-
-            <View style={styles.buttonView}>
-              <TouchableOpacity style={styles.options}
-                  onPress={() => firebase
-                    .auth()
-                    .signInWithEmailAndPassword(this.state.email, this.state.password)
-                    .then(() => navigate('Staff'))
-                    .catch(error => Alert.alert(
-                      'Authentication Error!',
-                      'You have entered the wrong username or password'
-                    ) )}>
-                <Text style={styles.optionText}>
-                    LOGIN
+              <View style={styles.title}>
+                <Text style={{fontWeight: 'bold', fontSize: 20}}>
+                    Staff Authentication
                 </Text>
-              </TouchableOpacity>
-            </View>
+              </View>
+
+              <View style={styles.input}>
+
+                <Text style={{fontWeight: 'bold', fontSize: 20}}>
+                  User name
+                </Text>
+                <TextInput
+                  style={styles.textInput}
+                  autoCapitalize={'none'}
+                  onChangeText={email => this.setState({ email })}
+                  value={this.state.email}
+                />
+
+                <Text style={{fontWeight: 'bold', fontSize: 20}}>
+                  Password
+                </Text>
+                <TextInput
+                  style={styles.textInput}
+                  autoCapitalize={'none'}
+                  secureTextEntry={true}
+                  onChangeText={password => this.setState({ password })}
+                  value={this.state.password}
+                />
+
+                <View style={styles.buttonView}>
+                  <TouchableOpacity style={styles.options}
+                      onPress={() => firebase
+                        .auth()
+                        .signInWithEmailAndPassword(this.state.email, this.state.password)
+                        .then(() => navigate('Staff'))
+                        .catch(error => Alert.alert(
+                          'Authentication Error!',
+                          'You have entered the wrong username or password'
+                        ) )}>
+                    <Text style={styles.optionText}>
+                        LOGIN
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+
+              </View>
 
           </View>
-
-      </View>
+        </ErrorBoundary>
       </ImageBackground>
     );
   }

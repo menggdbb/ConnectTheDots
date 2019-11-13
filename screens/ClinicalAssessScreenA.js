@@ -4,6 +4,7 @@ import { StyleSheet, StatusBar } from "react-native";
 import { GameEngine } from "react-native-game-engine";
 import { TouchCircle } from "../components/engine/systems"
 import Entities from '../components/engine/entities'
+import { ErrorBoundary } from '../components/ErrorBoundary'
 import 'firebase/firestore';
 
 export default class ClinicalAssessScreenA extends React.Component {
@@ -38,13 +39,15 @@ export default class ClinicalAssessScreenA extends React.Component {
 
   render(){
     return (
-      <GameEngine
-        style={styles.container}
-        systems={[TouchCircle]} 
-        entities={Entities("A")}
-        onEvent={this.onEvent}>
-          <StatusBar hidden={false} />
-      </GameEngine>
+      <ErrorBoundary>
+        <GameEngine
+          style={styles.container}
+          systems={[TouchCircle]} 
+          entities={Entities("A")}
+          onEvent={this.onEvent}>
+            <StatusBar hidden={false} />
+        </GameEngine>
+      </ErrorBoundary>
     );
   }
 }

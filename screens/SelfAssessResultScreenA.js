@@ -1,5 +1,6 @@
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
+import { ErrorBoundary } from '../components/ErrorBoundary'
 import {
   Image,
   StyleSheet,
@@ -30,77 +31,77 @@ export default class SelfAssessResultScreenA extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-
-        <View style={styles.timeView}>
-          <Text style={styles.timeText}>
-              {timeMin.toFixed(0)}:{timeSec.toFixed(0)} min
-          </Text>
-          <View style={styles.label}>
-            <Image 
-              source={ require('../assets/images/time.png')}
-              style={styles.icon}
-            />
-            <Text style={styles.labelText}>
-                Time Taken
+        <ErrorBoundary>
+          <View style={styles.timeView}>
+            <Text style={styles.timeText}>
+                {timeMin.toFixed(0)}:{timeSec.toFixed(0)} min
             </Text>
+            <View style={styles.label}>
+              <Image 
+                source={ require('../assets/images/time.png')}
+                style={styles.icon}
+              />
+              <Text style={styles.labelText}>
+                  Time Taken
+              </Text>
+            </View>
           </View>
-        </View>
 
-        <View style={styles.accuracyView}>
-          <Text style={styles.accuracyText}>
-              {accuracy.toFixed(2)}%
-          </Text>
-          <View style={styles.label}>
-            <Image 
-              source={ require('../assets/images/accuracy.png')}
-              style={styles.icon}
-            />
-            <Text style={styles.labelText}>
-                Accuracy
+          <View style={styles.accuracyView}>
+            <Text style={styles.accuracyText}>
+                {accuracy.toFixed(2)}%
             </Text>
+            <View style={styles.label}>
+              <Image 
+                source={ require('../assets/images/accuracy.png')}
+                style={styles.icon}
+              />
+              <Text style={styles.labelText}>
+                  Accuracy
+              </Text>
+            </View>
           </View>
-        </View>
 
-        <View style={styles.errorView}>
-          <Text style={styles.errorText}>
-              {numErr}
-          </Text>
-          <View style={styles.label}>
-            <Image 
-              source={ require('../assets/images/mistake.png')}
-              style={styles.icon}
-            />
-            <Text style={styles.labelText}>
-                Mistakes
+          <View style={styles.errorView}>
+            <Text style={styles.errorText}>
+                {numErr}
             </Text>
+            <View style={styles.label}>
+              <Image 
+                source={ require('../assets/images/mistake.png')}
+                style={styles.icon}
+              />
+              <Text style={styles.labelText}>
+                  Mistakes
+              </Text>
+            </View>
+          </View>    
+
+          {/* check whether to display good or bad result text, use component*/}
+          {renderIf(timeTaken > 78)(
+            <View style={styles.input}>
+              <Text style={{fontWeight: 'bold', fontSize: 20, color: "#b71c1c"}}>
+                WARNING, check with your doctor 
+              </Text>
+            </View>
+          )}
+          {renderIf(timeTaken <= 78)(
+            <View style={styles.input}>
+              <Text style={{fontWeight: 'bold', fontSize: 20, color: "#00c853"}}>
+              SAFE, keep up and exercise regularly! 
+              </Text>
+            </View>
+          )}
+
+          <View style={{justifyContent: 'flex-end', flex: 1, marginTop: 40}}>
+            <TouchableOpacity style={styles.continue}
+                  onPress={() => navigate('TutorialB', {timeA: timeTaken, errorA: numErr})}>
+              <Text style={styles.continueText}>
+                  Continue
+              </Text>
+            </TouchableOpacity>
           </View>
-        </View>    
-
-        {/* check whether to display good or bad result text, use component*/}
-        {renderIf(timeTaken > 78)(
-          <View style={styles.input}>
-            <Text style={{fontWeight: 'bold', fontSize: 20, color: "#b71c1c"}}>
-              WARNING, check with your doctor 
-            </Text>
-          </View>
-        )}
-        {renderIf(timeTaken <= 78)(
-          <View style={styles.input}>
-            <Text style={{fontWeight: 'bold', fontSize: 20, color: "#00c853"}}>
-            SAFE, keep up and exercise regularly! 
-            </Text>
-          </View>
-        )}
-
-        <View style={{justifyContent: 'flex-end', flex: 1, marginTop: 40}}>
-          <TouchableOpacity style={styles.continue}
-                onPress={() => navigate('TutorialB', {timeA: timeTaken, errorA: numErr})}>
-            <Text style={styles.continueText}>
-                Continue
-            </Text>
-          </TouchableOpacity>
-        </View>
-
+        </ErrorBoundary>
       </View>
     );
   }

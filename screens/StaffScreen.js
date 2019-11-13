@@ -1,5 +1,6 @@
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
+import { ErrorBoundary } from '../components/ErrorBoundary'
 import {
   Image,
   StyleSheet,
@@ -24,85 +25,86 @@ export default class StaffScreen extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <View style={styles.part}> 
-          <TouchableOpacity style={styles.optionsBlue}
-              onPress={() => this.setState({
-                show: !this.state.show
-              })}>
-            <Text style={styles.optionText}>
-              <Image
-                style={{width: 20, height: 20, margin: 10}}
-                resizeMode = 'contain'
-                source={require('../assets/images/search.png')}
-              />
-                Search previous record
-            </Text>
-          </TouchableOpacity>
-        </View>
-
-        {renderIf(this.state.show)(
-          <View style={styles.input}>
-            <Text style={{fontWeight: 'bold', fontSize: 20}}>
-              NRIC
-            </Text>
-            <TextInput
-              style={styles.textInput}
-              autoCapitalize={'none'}
-              onChangeText={nric => this.setState({ nric })}
-              value={this.state.nric}
-            />
-            <View style={styles.buttonView}>
-
-            
-            <TouchableOpacity style={styles.options}
-                onPress={() => navigate('Records', {nric: this.state.nric})}>
-              <Text style={styles.optionTextSmall}>
-                  SEARCH
+        <ErrorBoundary>
+          <View style={styles.part}> 
+            <TouchableOpacity style={styles.optionsBlue}
+                onPress={() => this.setState({
+                  show: !this.state.show
+                })}>
+              <Text style={styles.optionText}>
+                <Image
+                  style={{width: 20, height: 20, margin: 10}}
+                  resizeMode = 'contain'
+                  source={require('../assets/images/search.png')}
+                />
+                  Search previous record
               </Text>
             </TouchableOpacity>
-            </View>
           </View>
-        )}
 
-        <View style={styles.part}> 
-          <TouchableOpacity style={styles.optionsBlue}
-              onPress={() => this.setState({
-                show2: !this.state.show2
-              })}>
-            <Text style={styles.optionText}>
-              <Image
-                style={{width: 20, height: 20, margin: 10}}
-                resizeMode = 'contain'
-                source={require('../assets/images/assess_clinic.png')}
+          {renderIf(this.state.show)(
+            <View style={styles.input}>
+              <Text style={{fontWeight: 'bold', fontSize: 20}}>
+                NRIC
+              </Text>
+              <TextInput
+                style={styles.textInput}
+                autoCapitalize={'characters'}
+                onChangeText={nric => this.setState({ nric })}
+                value={this.state.nric}
               />
-                Clinical Assessment
-            </Text>
-          </TouchableOpacity>
-        </View>
+              <View style={styles.buttonView}>
 
-        {renderIf(this.state.show2)(
-          <View style={styles.input}>
-            <Text style={{fontWeight: 'bold', fontSize: 20}}>
-              NRIC
-            </Text>
-            <TextInput
-              style={styles.textInput}
-              autoCapitalize={'none'}
-              onChangeText={nric2 => this.setState({ nric2 })}
-              value={this.state.nric2}
-            />
-            <View style={styles.buttonView}>
-            
-            <TouchableOpacity style={styles.options}
-                onPress={() => navigate('ClinicalAssessA', {nric: this.state.nric2})}>
-              <Text style={styles.optionTextSmall}>
-                  START
+              
+              <TouchableOpacity style={styles.options}
+                  onPress={() => navigate('Records', {nric: this.state.nric})}>
+                <Text style={styles.optionTextSmall}>
+                    SEARCH
+                </Text>
+              </TouchableOpacity>
+              </View>
+            </View>
+          )}
+
+          <View style={styles.part}> 
+            <TouchableOpacity style={styles.optionsBlue}
+                onPress={() => this.setState({
+                  show2: !this.state.show2
+                })}>
+              <Text style={styles.optionText}>
+                <Image
+                  style={{width: 20, height: 20, margin: 10}}
+                  resizeMode = 'contain'
+                  source={require('../assets/images/assess_clinic.png')}
+                />
+                  Clinical Assessment
               </Text>
             </TouchableOpacity>
-            </View>
           </View>
-        )}
 
+          {renderIf(this.state.show2)(
+            <View style={styles.input}>
+              <Text style={{fontWeight: 'bold', fontSize: 20}}>
+                NRIC
+              </Text>
+              <TextInput
+                style={styles.textInput}
+                autoCapitalize={'characters'}
+                onChangeText={nric2 => this.setState({ nric2 })}
+                value={this.state.nric2}
+              />
+              <View style={styles.buttonView}>
+              
+              <TouchableOpacity style={styles.options}
+                  onPress={() => navigate('ClinicalAssessA', {nric: this.state.nric2})}>
+                <Text style={styles.optionTextSmall}>
+                    START
+                </Text>
+              </TouchableOpacity>
+              </View>
+            </View>
+          )}
+        </ErrorBoundary>
       </View>
     );
   }
@@ -153,7 +155,6 @@ const styles = StyleSheet.create({
   },
   textInput: {
     fontSize: 20,
-    autoCapitalize: 'characters',
     borderColor: 'darkslategrey',
     borderWidth: 1,
     paddingHorizontal: '2%',

@@ -3,6 +3,7 @@ import React from 'react';
 import { GameEngine } from "react-native-game-engine";
 import { TutorialTouchCircle } from "../components/engine/systems"
 import Entities from '../components/engine/entities'
+import { ErrorBoundary } from '../components/ErrorBoundary'
 import {
   StyleSheet,
   Text,
@@ -48,23 +49,24 @@ export default class TutorialScreenB extends React.Component {
     var errorA = this.props.navigation.getParam('errorA', 0);
     return (
       <View style={styles.container}>
-        <GameEngine
-            style={styles.container}
-            systems={[TutorialTouchCircle]} 
-            entities={Entities("TB")}
-            onEvent={this.onEvent}>
-            <StatusBar hidden={false} />
-        </GameEngine>
-        <Text style={styles.tutorialText}>
-          {this.state.text}
-        </Text>
-        <TouchableOpacity style={styles.button}
-              onPress={() => navigate('SelfAssessB', {timeA: timeA, errorA: errorA})}>
-            <Text style={styles.buttonText}>
-                Proceed
-            </Text>
-        </TouchableOpacity>
-                
+        <ErrorBoundary>
+          <GameEngine
+              style={styles.container}
+              systems={[TutorialTouchCircle]} 
+              entities={Entities("TB")}
+              onEvent={this.onEvent}>
+              <StatusBar hidden={false} />
+          </GameEngine>
+          <Text style={styles.tutorialText}>
+            {this.state.text}
+          </Text>
+          <TouchableOpacity style={styles.button}
+                onPress={() => navigate('SelfAssessB', {timeA: timeA, errorA: errorA})}>
+              <Text style={styles.buttonText}>
+                  Proceed
+              </Text>
+          </TouchableOpacity>
+        </ErrorBoundary>
       </View>
     );
   }

@@ -3,6 +3,7 @@ import React from 'react';
 import firebase from 'firebase'; //firebase
 import 'firebase/firestore';
 import Firebase from '../components/Firebase';
+import { ErrorBoundary } from '../components/ErrorBoundary'
 import {
   Image,
   StyleSheet,
@@ -47,63 +48,65 @@ export default class ClinicalAssessResultScreenA extends React.Component {
 
     const { navigate } = this.props.navigation;
     return (
-      <View style={styles.container}>
+      <ErrorBoundary>
+        <View style={styles.container}>
 
-        <View style={styles.timeView}>
-          <Text style={styles.timeText}>
-              {timeMin.toFixed(0)}:{timeSec.toFixed(0)} min
-          </Text>
-          <View style={styles.label}>
-            <Image 
-              source={ require('../assets/images/time.png')}
-              style={styles.icon}
-            />
-            <Text style={styles.labelText}>
-                Time Taken
+          <View style={styles.timeView}>
+            <Text style={styles.timeText}>
+                {timeMin.toFixed(0)}:{timeSec.toFixed(0)} min
             </Text>
+            <View style={styles.label}>
+              <Image 
+                source={ require('../assets/images/time.png')}
+                style={styles.icon}
+              />
+              <Text style={styles.labelText}>
+                  Time Taken
+              </Text>
+            </View>
           </View>
-        </View>
 
-        <View style={styles.accuracyView}>
-          <Text style={styles.accuracyText}>
-              {accuracy.toFixed(2)}%
-          </Text>
-          <View style={styles.label}>
-            <Image 
-              source={ require('../assets/images/accuracy.png')}
-              style={styles.icon}
-            />
-            <Text style={styles.labelText}>
-                Accuracy
+          <View style={styles.accuracyView}>
+            <Text style={styles.accuracyText}>
+                {accuracy.toFixed(2)}%
             </Text>
+            <View style={styles.label}>
+              <Image 
+                source={ require('../assets/images/accuracy.png')}
+                style={styles.icon}
+              />
+              <Text style={styles.labelText}>
+                  Accuracy
+              </Text>
+            </View>
           </View>
-        </View>
 
-        <View style={styles.errorView}>
-          <Text style={styles.errorText}>
-              {numErr}
-          </Text>
-          <View style={styles.label}>
-            <Image 
-              source={ require('../assets/images/mistake.png')}
-              style={styles.icon}
-            />
-            <Text style={styles.labelText}>
-                Mistakes
+          <View style={styles.errorView}>
+            <Text style={styles.errorText}>
+                {numErr}
             </Text>
+            <View style={styles.label}>
+              <Image 
+                source={ require('../assets/images/mistake.png')}
+                style={styles.icon}
+              />
+              <Text style={styles.labelText}>
+                  Mistakes
+              </Text>
+            </View>
+          </View>    
+
+          <View style={{justifyContent: 'flex-end', flex: 1, marginTop: 40}}>
+            <TouchableOpacity style={styles.continue}
+                  onPress={() => navigate('ClinicalAssessB', {nric: nric, timeA: timeTaken, errorA: numErr})}>
+              <Text style={styles.continueText}>
+                  Continue
+              </Text>
+            </TouchableOpacity>
           </View>
-        </View>    
 
-        <View style={{justifyContent: 'flex-end', flex: 1, marginTop: 40}}>
-          <TouchableOpacity style={styles.continue}
-                onPress={() => navigate('ClinicalAssessB', {nric: nric, timeA: timeTaken, errorA: numErr})}>
-            <Text style={styles.continueText}>
-                Continue
-            </Text>
-          </TouchableOpacity>
         </View>
-
-      </View>
+      </ErrorBoundary>
     );
   }
 }
